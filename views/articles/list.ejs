@@ -1,0 +1,29 @@
+<% layout('/layout/main') -%>
+
+<% block('title', 'Hírek'); -%>
+
+<h2 class="uk-align-left">Hírek</h2>
+<a href="/hirek/new" class="uk-button uk-button-primary uk-align-right">Új hír</a>
+
+<table class="uk-table uk-table-striped uk-table-hover">
+	<thead>
+		<tr>
+			<th>Cím</th>
+			<th>Dátum</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<% articles.forEach(function(article) { %>
+			<tr>
+				<td><a href="/hirek/<%= article._id %>"><%= article.title %></a></td>
+				<td><%= article.createdAt %></td>
+				<td>
+					<a href="/hirek/<%= article._id %>/edit" class="uk-button uk-button-primary uk-button-small uk-align-right">Szerkesztés</a>
+					<a href="/hirek/<%= article._id %>/delete" class="uk-button uk-button-danger uk-button-small uk-align-right">Törlés</a>
+				</td>
+			</tr>
+		<% }); %>
+	</tbody>
+</table>
+

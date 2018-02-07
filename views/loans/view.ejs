@@ -1,0 +1,30 @@
+<% layout('/layout/main') -%>
+
+<% block('title', tool.name); -%>
+
+<section typeof="Tool">
+   
+	<div class="uk-margin-medium-bottom">
+		
+		<h2 class="uk-margin-remove-top">
+			<a class="uk-link-reset" href="#">
+				<%= tool.name %>
+			</a>
+		</h2>
+
+	</div>
+
+    
+
+	<div property="text">
+		<p class="uk-width-xxlarge">
+			<%= tool.description %>
+		</p>
+	</div>
+
+    
+	<p class="uk-margin-medium">
+		<a class="uk-button uk-button-default" href="#">Kölcsönzés</a>
+   	</p>
+</section>
+

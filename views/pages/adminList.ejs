@@ -1,0 +1,26 @@
+<% layout('/layout/main') -%>
+<% block('title', 'Oldalak') -%>
+
+<h2 class="uk-align-left">Oldalak</h2>
+
+<table class="uk-table uk-table-striped uk-table-hover">
+    <thead>
+        <tr>
+            <th>Cím</th>
+            <th>Hely</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <% pages.forEach(function(page) { %>
+            <tr>
+                <td><a href="/oldal/<%= page.name %>"><%= page.title %></a></td>
+                <td><%= page.name %></td>
+                <td>
+                    <a href="/oldal/<%= page.name %>/edit" class="uk-button uk-button-primary uk-button-small uk-align-right">Szerkesztés</a>
+                </td>
+            </tr>
+        <% }); %>
+    </tbody>
+</table>
+

@@ -1,0 +1,13 @@
+<% layout('/layout/main') -%>
+
+<% block('title', 'Szerkesztés'); -%>
+<h2>Szerkesztés</h2>
+
+<form class="uk-form-stacked" action="/csapatok/<%= team._id %>" method="POST">
+    <div class="uk-margin">
+		<label class="uk-form-label">Név</label>
+		<input type="text" class="uk-input" name="name" value="<%= team.name %>">
+	</div>
+
+	<input type="submit" value="Mentés" class="uk-button uk-button-primary">
+</form>

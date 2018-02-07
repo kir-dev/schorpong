@@ -1,3 +1,8 @@
-<h1><%= message %></h1>
-<h2><%= error.status %></h2>
+<% layout('layout/main') -%>
+
+<% block('title', 'Kezdőlap'); -%>
+
+<h1 class="uk-text-center"><%= error.status %></h1>
+<h2 class="uk-text-center"><%= message %></h2>
+
 <pre><%= error.stack %></pre>

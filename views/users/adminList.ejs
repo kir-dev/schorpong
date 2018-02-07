@@ -1,0 +1,25 @@
+<% layout('/layout/main') -%>
+
+<% block('title', 'Felhasználók'); -%>
+
+<h2 class="uk-align-left">Felhasználók</h2>
+<table class="uk-table uk-table-striped uk-table-hover">
+	<thead>
+		<tr>
+			<th>Név</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<% users.forEach(function(user) { %>
+			<tr>
+				<td><a href="/felhasznalok/<%= user._id %>"><%= user.name %></a></td>
+				<td>
+					<a href="/felhasznalok/<%= user._id %>/edit" class="uk-button uk-button-primary uk-button-small uk-align-right">Szerkesztés</a>
+					<a href="/felhasznalok/<%= user._id %>/delete" class="uk-button uk-button-danger uk-button-small uk-align-right">Törlés</a>
+				</td>
+			</tr>
+		<% }); %>
+	</tbody>
+</table>
+

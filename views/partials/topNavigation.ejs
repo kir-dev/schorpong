@@ -1,0 +1,55 @@
+<div style="background: #1b1b1b;">
+    <div class="uk-container">
+        <nav class="uk-navbar-container" uk-navbar style="background: none;">
+
+            <div class="uk-navbar-left">
+
+                <ul class="uk-navbar-nav">
+                    <li><a href="/">Hírek</a></li>
+                    <li><a href="/eszkozok/lista">Kölcsönzés</a></li>
+                    <li><a href="/esemenyek/lista">Események</a></li>
+                </ul>
+
+            </div>
+
+            <div class="uk-navbar-right">
+
+                <ul class="uk-navbar-nav">
+
+                    <li><a href="/oldal/rolunk">Rólunk</a></li>
+                    <li><a href="/oldal/szabalyok">Szabályok</a></li>
+                    <% if(logged_in) { %>
+                    <% if(is_admin) { %>
+                    <li>
+                        <a href="#">Admin</a>
+                        <div class="uk-navbar-dropdown">
+                            <ul class="uk-nav uk-navbar-dropdown-nav">
+                                <li><a href="/hirek">Hírek</a></li>
+                                <li><a href="/oldal">Oldalak</a></li>
+                                <li><a href="/eszkozok">Eszközök</a></li>
+                                <li><a href="/esemenyek">Események</a></li>
+                                <li><a href="/felhasznalok">Felhasználók</a></li>
+
+                                <li><a href="/csapatok">Csapatok</a></li>
+
+                                <li class="uk-nav-divider"></li>
+
+                                <li><a href="/nevezesek">Nevezések</a></li>
+                                <li><a href="/kolcsonzesek">Kölcsönzések</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <% } %>
+                    <li><a href="/auth/logout">Kijelentkezés</a></li>
+                    <% } else { %>
+                    <li><a href="/auth/login">Bejelentkezés</a></li>
+
+                    <% } %>
+
+                </ul>
+
+            </div>
+
+        </nav>
+    </div>
+</div>

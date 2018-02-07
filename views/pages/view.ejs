@@ -1,0 +1,30 @@
+<% layout('/layout/main') -%>
+
+<% block('title', page.title); -%>
+
+<section typeof="Page">
+   
+	<div class="uk-margin-medium-bottom">
+		
+		<h2 class="uk-margin-remove-top">
+			<a class="uk-link-reset" href="#">
+				<%= page.title %>
+			</a>
+		</h2>
+
+	</div>
+
+    
+
+	<div property="text">
+		<div id="markdown" class="uk-hidden"><%= page.content %></div>
+		<div id="html"></div>
+		<script>
+            var converter = new showdown.Converter();
+            html = converter.makeHtml($('#markdown').text());
+            $('#html').html(html);
+		</script>
+	</div>
+
+</section>
+

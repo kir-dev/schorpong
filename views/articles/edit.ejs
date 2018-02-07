@@ -1,0 +1,28 @@
+<% layout('/layout/main') -%>
+
+<% block('title', 'Szerkesztés'); -%>
+<h2>Szerkesztés</h2>
+
+<form class="uk-form-stacked" action="/hirek/<%= article._id %>" method="POST">
+    <div class="uk-margin">
+		<label class="uk-form-label">Cím</label>
+		<input type="text" class="uk-input" name="title" value="<%= article.title %>">
+	</div>
+
+    <div class="uk-margin">
+        <label class="uk-form-label">Bevezető</label>
+		<textarea name="intro" class="uk-textarea"><%= article.intro %></textarea>
+	</div>
+
+    <div class="uk-margin">
+        <label class="uk-form-label">Tartalom</label>
+		<textarea name="content" id="content"><%= article.content %></textarea>
+	</div>
+
+	<input type="submit" value="Mentés" class="uk-button uk-button-primary">
+</form>
+
+<script>
+	var simplemde = new SimpleMDE({ element: document.getElementById("content") });
+</script>
+

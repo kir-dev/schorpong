@@ -1,0 +1,15 @@
+<% layout('/layout/main') -%>
+
+<% block('title', 'Szerkesztés'); -%>
+<h2>Szerkesztés</h2>
+
+<form class="uk-form-stacked" action="/felhasznalok/<%= user._id %>" method="POST">
+    <div class="uk-margin">
+		<label class="uk-form-label">Név</label>
+		<input type="text" class="uk-input" name="name" value="<%= user.name %>">
+		<label class="uk-form-label">Admin</label>
+		<input type="checkbox" name="admin" <% if(user.admin) { %> checked <% } %> >
+	</div>
+
+	<input type="submit" value="Mentés" class="uk-button uk-button-primary">
+</form>

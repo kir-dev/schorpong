@@ -1,0 +1,28 @@
+<% layout('/layout/main') -%>
+
+<% block('title', 'Nevezések'); -%>
+
+<h2 class="uk-align-left">Nevezések</h2>
+<a href="/csapatok/new" class="uk-button uk-button-primary uk-align-right">Új nevezések</a>
+
+<table class="uk-table uk-table-striped uk-table-hover">
+	<thead>
+		<tr>
+			<th>Csapat név</th>
+			<th>Esemény</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<% entries.forEach(function(entry) { %>
+			<tr>
+				<td><a href="/csapatok/<%= entry._id %>"><%= entry.name %></a></td>
+				<td>
+					<a href="/csapatok/<%= entry._id %>/edit" class="uk-button uk-button-primary uk-button-small uk-align-right">Szerkesztés</a>
+					<a href="/csapatok/<%= entry._id %>/delete" class="uk-button uk-button-danger uk-button-small uk-align-right">Törlés</a>
+				</td>
+			</tr>
+		<% }); %>
+	</tbody>
+</table>
+

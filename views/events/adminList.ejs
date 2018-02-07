@@ -1,0 +1,29 @@
+<% layout('/layout/main') -%>
+
+<% block('title', 'Események'); -%>
+
+<h2 class="uk-align-left">Események</h2>
+<a href="/esemenyek/new" class="uk-button uk-button-primary uk-align-right">Új esemény</a>
+
+<table class="uk-table uk-table-striped uk-table-hover">
+	<thead>
+		<tr>
+			<th>Név</th>
+			<th>Dátum</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<% events.forEach(function(event) { %>
+			<tr>
+				<td><a href="/esemeny/<%= event._id %>"><%= event.name %></a></td>
+				<td><%= event.date %></td>
+				<td>
+					<a href="/esemeny/<%= event._id %>/edit" class="uk-button uk-button-primary uk-button-small uk-align-right">Szerkesztés</a>
+					<a href="/esemeny/<%= event._id %>/delete" class="uk-button uk-button-danger uk-button-small uk-align-right">Törlés</a>
+				</td>
+			</tr>
+		<% }); %>
+	</tbody>
+</table>
+

@@ -1,0 +1,29 @@
+<% layout('/layout/main') -%>
+
+<% block('title', 'Eszközök'); -%>
+
+<h2 class="uk-align-left">Köcsönzések</h2>
+<a href="/kolcsonzesek/new" class="uk-button uk-button-primary uk-align-right">Új kölcsönzés</a>
+
+<table class="uk-table uk-table-striped uk-table-hover">
+	<thead>
+		<tr>
+			<th>Felhasználó</th>
+			<th>Eszköz</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<% loans.forEach(function(loan) { %>
+			<tr>
+				<td><a href="/felhasznalok/<%= loan.userId %>"><%= loan.userId %></a></td>
+				<td><a href="/eszkozok/<%= loan.toolId %>"><%= loan.toolId %></a></td>
+				<td>
+					<a href="/kolcsonzesek/<%= loan._id %>/edit" class="uk-button uk-button-primary uk-button-small uk-align-right">Szerkesztés</a>
+					<a href="/kolcsonzesek/<%= loan._id %>/delete" class="uk-button uk-button-danger uk-button-small uk-align-right">Törlés</a>
+				</td>
+			</tr>
+		<% }); %>
+	</tbody>
+</table>
+

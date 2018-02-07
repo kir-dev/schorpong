@@ -1,11 +1,35 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
-</html>
+<% layout('layout/main') -%>
+
+<% block('title', 'Kezdőlap'); -%>
+
+<% articles.forEach(function(article) { %>
+<article class="uk-article" typeof="Article">
+   
+	<div class="uk-margin-medium-bottom">
+
+		<ul class="uk-subnav uk-subnav-divider">
+			<li><span><time datetime="<%= article.created_at %>"><%= article.created_at %></time></span></li>
+
+		</ul>
+		
+		<h2 class="uk-article-title uk-margin-remove-top">
+			<a class="uk-link-reset" href="#">
+				<%= article.title %>
+			</a>
+		</h2>
+
+	</div>
+
+	<div property="text">
+		<p class="uk-width-xxlarge">
+			<%= article.intro %>
+		</p>
+	</div>
+
+    
+	<p class="uk-margin-medium">
+		<a class="uk-button uk-button-primary" href="/hirek/<%= article._id %>">Megtekintés</a>
+   	</p>
+</article>
+<hr>
+<% }); %>

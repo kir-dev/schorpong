@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= blocks.title %></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="/bower_components/uikit/dist/css/uikit.css"/>
+    <link rel="stylesheet" href="/bower_components/simplemde/dist/simplemde.min.css"/>
+    <link rel="stylesheet" href="/css/app.css"/>
+
+    <script src="/bower_components/simplemde/dist/simplemde.min.js"></script>
+    <script src="/bower_components/jquery/dist/jquery.js"></script>
+    <script src="/bower_components/showdown/dist/showdown.js"></script>
+    <script src="/bower_components/uikit/dist/js/uikit.js"></script>
+</head>
+<body>
+<header class="small-header">
+    <%- blocks.header %>
+</header>
+<%- partial('../partials/topNavigation') %>
+<div class="uk-container">
+    <section class="uk-container">
+        <div>
+            <div class="uk-padding">
+                <%- body -%>
+            </div>
+        </div>
+    </section>
+</div>
+<footer class="uk-text-center uk-padding footer">
+    <a href="http://kir-dev.sch.bme.hu">Kir-Dev</a>
+</footer>
+</body>
+</html>

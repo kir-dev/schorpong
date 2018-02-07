@@ -1,0 +1,18 @@
+<% layout('/layout/main') -%>
+
+<% block('title', user.name); -%>
+
+<section typeof="User">
+   
+	<div class="uk-margin-medium-bottom">
+		
+		<h2 class="uk-margin-remove-top">
+			<a class="uk-link-reset" href="#">
+				<%= user.name %>
+			</a>
+		</h2>
+
+	</div>
+
+</section>
+

@@ -1,0 +1,34 @@
+<% layout('/layout/main') -%>
+<% block('title', article.title) -%>
+
+<article class="uk-article" typeof="Article">
+
+    <div class="uk-margin-medium-bottom">
+
+        <ul class="uk-subnav uk-subnav-divider">
+            <li><span><time datetime="<%= article.createdAt %>"><%= article.createdAt %></time></span></li>
+
+        </ul>
+
+        <h2 class="uk-article-title uk-margin-remove-top">
+            <a class="uk-link-reset" href="#">
+                <%= article.title %>
+            </a>
+        </h2>
+
+    </div>
+
+
+    <div property="text">
+        <div id="markdown" class="uk-hidden"><%= article.content %></div>
+        <div id="html"></div>
+        <script>
+            var converter = new showdown.Converter();
+            html = converter.makeHtml($('#markdown').text());
+            $('#html').html(html);
+        </script>
+
+    </div>
+
+</article>
+
