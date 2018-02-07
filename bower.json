@@ -1,0 +1,22 @@
+{
+  "name": "vendor",
+  "authors": [
+    "kiralybalint <kiraly.balint@simonyi.bme.hu>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.0",
+    "simplemde": "^1.11.2",
+    "uikit": "v3.0.0-beta.6"
+  }
+}
