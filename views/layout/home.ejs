@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= blocks.title %></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="/bower_components/uikit/dist/css/uikit.css"/>
+    <link rel="stylesheet" href="/bower_components/simplemde/dist/simplemde.min.css"/>
+    <link rel="stylesheet" href="/css/app.css"/>
+
+    <script src="/bower_components/simplemde/dist/simplemde.min.js"></script>
+    <script src="/bower_components/jquery/dist/jquery.js"></script>
+    <script src="/bower_components/showdown/dist/showdown.js"></script>
+    <script src="/bower_components/uikit/dist/js/uikit.js"></script>
+</head>
+<body>
+<header class="header">
+    <%- blocks.header %>
+
+    <div class="ball"></div>
+    <div class="pohar"></div>
+    <div class="poharhat"></div>
+    <div class="circle"></div>
+</header>
+
+<%- partial('../partials/topNavigation') %>
+
+<div class="uk-container">
+    <section class="uk-container">
+        <div>
+
+            <div class="uk-padding">
+                <%- body -%>
+            </div>
+        </div>
+    </section>
+</div>
+<footer class="uk-text-center uk-padding footer">
+    <a href="http://kir-dev.sch.bme.hu">Kir-Dev</a>
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script>
+    $( document ).ready(function() {
+
+        $(window).scroll(function(){
+
+       /*     if($(this).scrollTop()>=280){
+                $('.ball').hide();
+            } else {
+                $('.ball').show();
+            }
+*/
+            if($(this).scrollTop()>=150){
+                $('.title').fadeOut("slow");
+            }
+            else {
+                $('.title').fadeIn("slow");
+            }
+
+            if($(this).scrollTop()>=270){
+                $('.circle').fadeIn("slow");
+            }
+            else {
+                $('.circle').fadeOut("slow");
+                var pos = (400 + (-1 * ($(this).scrollTop()/8-10)*($(this).scrollTop()/8-10) + 150));
+                console.log(pos);
+                $('.ball').css('bottom', pos);
+                $('.ball').css('width', 100+$(this).scrollTop()/2);
+                $('.ball').css('height', 100+$(this).scrollTop()/2);
+                var blur = -$(this).scrollTop()/100+3;
+                $('.ball').css('filter', 'blur(' + blur + 'px)');
+                $('.ball').css('background-size', 100+$(this).scrollTop()/2);
+            }
+
+            if($(this).scrollTop()>=400){
+                //$('.pohar').fadeOut("slow");
+            }
+            else {
+                //$('.pohar').fadeIn("slow");
+            }
+        });
+    });
+</script>
+</body>
+</html>
