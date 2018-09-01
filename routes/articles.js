@@ -3,11 +3,20 @@ var router = express.Router();
 
 var requireAdmin = require('../middleware/auth/requireAdmin');
 
+var uploadImage = require('../middleware/main/uploadImage');
 var getArticle = require('../middleware/article/getArticle');
 var getArticles = require('../middleware/article/getArticles');
 var createArticle = require('../middleware/article/createArticle');
 var updateArticle = require('../middleware/article/updateArticle');
 var deleteArticle = require('../middleware/article/deleteArticle');
+
+var multer  = require('multer')
+var upload = multer({ dest: './public/' })
+var sharp = require('sharp')
+
+router.get('/lista', getArticles(), function(req, res) {
+    res.render('articles/list', { articles: req.articles });
+});
 
 router.get('/', getArticles(), function(req, res) {
 	res.render('articles/adminList', { articles: req.articles });
@@ -26,7 +35,7 @@ router.get('/:id/edit', getArticle(), function(req, res) {
     res.render('articles/edit', { article: req.article });
 });
 
-router.post('/', requireAdmin(), createArticle(), function(req, res) {
+router.post('/', requireAdmin(), upload.single("file"), uploadImage(), createArticle(), function(req, res) {
 	res.redirect('/');
 });
 

@@ -3,10 +3,15 @@
 <% block('title', 'Új eszköz'); -%>
 <h2>Új eszköz</h2>
 
-<form class="uk-form-stacked" action="/eszkozok" method="POST">
+<form class="uk-form-stacked" action="/eszkozok" method="POST" enctype="multipart/form-data">
     <div class="uk-margin">
 		<label class="uk-form-label">Név</label>
 		<input type="text" class="uk-input" name="name">
+	</div>
+
+	<div class="uk-margin">
+		<label class="uk-form-label">Kep</label>
+		<input type="file" name="file" id="file">
 	</div>
 
     <div class="uk-margin">

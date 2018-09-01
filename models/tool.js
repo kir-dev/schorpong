@@ -10,6 +10,7 @@ module.exports = function(mongoose) {
                 return new mongoose.Types.ObjectId();
             }
         },
+        image: String,
         name: String,
         description: String
     }, {timestamps: true});

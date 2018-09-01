@@ -9,6 +9,7 @@ require('dotenv').config();
 var passport = require('passport'),
     OAuth2Strategy = require('passport-oauth2');
 var session = require('express-session');
+var flash = require('express-flash');
 
 var authorizationRoutes = require('./routes/auth');
 var index = require('./routes/index');
@@ -17,13 +18,16 @@ var pages = require('./routes/pages');
 var teams = require('./routes/teams');
 var tools = require('./routes/tools');
 var events = require('./routes/events');
-var loans = require('./routes/loans');
+var cart = require('./routes/cart');
 var entries = require('./routes/entries');
 var users = require('./routes/users');
 var errors = require('./routes/errors');
 
 var app = express();
 dal = require('./models/mongo.js');
+moment = require('moment');
+moment.locale('hu-HU');
+currentUser = {};
 
 // view engine setup
 app.engine('ejs', require('ejs-locals'));
@@ -49,6 +53,7 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
 
 passport.use(new OAuth2Strategy({
         authorizationURL: 'https://auth.sch.bme.hu/site/login',
@@ -77,14 +82,29 @@ app.use(function (req, res, next) {
 
     //TODO: DO IN MIDLEWARE
     if(req.isAuthenticated()){
-        dal.User.findOne({ authschId: req.user.internal_id}).then(function (user) {
-            if (user !== null && user.admin) {
-                res.locals.is_admin = true;
-                next();
-            } else {
-                res.locals.is_admin = false;
-                next();
-            }
+        dal.User.findOne({
+            authschId: req.user.internal_id
+        }).populate({ path: 'team', select: 'name' }).then(function (user) {
+            currentUser = user;
+            res.locals.currentUser = currentUser;
+            dal.Cart.findOne({
+                user: currentUser,
+                checkedOut: false,
+            }).exec((err, cart) => {
+                res.locals.inCart = 0;
+                if (cart && cart.items.length) {
+                    cart.items.forEach(item => {
+                        res.locals.inCart += item.amount
+                    })
+                }
+                if (user !== null && user.admin) {
+                    res.locals.is_admin = true;
+                    next();
+                } else {
+                    res.locals.is_admin = false;
+                    next();
+                }
+            });
         });
     } else {
         next();
@@ -103,7 +123,7 @@ app.use('/hirek', articles);
 app.use('/oldal', pages);
 app.use('/csapatok', teams);
 app.use('/eszkozok', tools);
-app.use('/kolcsonzesek', loans);
+app.use('/kolcsonzes', cart);
 app.use('/esemenyek', events);
 app.use('/nevezesek', entries);
 app.use('/felhasznalok', users);

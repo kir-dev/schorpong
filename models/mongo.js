@@ -6,22 +6,22 @@ mongoose.connect('mongodb://localhost/schorpong');
 var Article = require('./article');
 var Entry = require('./entry');
 var Event = require('./event');
-var Loan = require('./loan');
 var Page = require('./page');
 var Team = require('./team');
-var TeamMembership = require('./teamMembership');
+var Membership = require('./membership');
 var Tool = require('./tool');
 var User = require('./user');
+var Cart = require('./cart');
 
 mongoose.model('Article', Article(mongoose));
 mongoose.model('Entry', Entry(mongoose));
 mongoose.model('Event', Event(mongoose));
-mongoose.model('Loan', Loan(mongoose));
 mongoose.model('Page', Page(mongoose));
 mongoose.model('Team', Team(mongoose));
-mongoose.model('TeamMembership', TeamMembership(mongoose));
+mongoose.model('Membership', Membership(mongoose));
 mongoose.model('Tool', Tool(mongoose));
 mongoose.model('User', User(mongoose));
+mongoose.model('Cart', Cart(mongoose));
 
 module.exports = mongoose.models;
 

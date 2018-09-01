@@ -1,16 +1,17 @@
 <% layout('/layout/main') -%>
 
 <% block('title', user.name); -%>
+<% block('header', user.name); -%>
 
 <section typeof="User">
    
 	<div class="uk-margin-medium-bottom">
 		
 		<h2 class="uk-margin-remove-top">
-			<a class="uk-link-reset" href="#">
-				<%= user.name %>
-			</a>
+			<%= user.name %>
 		</h2>
+
+		Csapat: <a href="/csapatok/<%= user.membership.team._id %>"><%= user.membership.team.name %></a>
 
 	</div>
 

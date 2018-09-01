@@ -1,12 +1,13 @@
 <% layout('/layout/main') -%>
 
 <% block('title', 'Eszközök'); -%>
+<% block('header', 'Eszközök'); -%>
 
 <% tools.forEach(function(tool) { %>
 <section typeof="Tool">
-   
+
 	<div class="uk-margin-medium-bottom">
-		
+
 		<h2 class="uk-margin-remove-top">
 			<a class="uk-link-reset" href="#">
 				<%= tool.name %>

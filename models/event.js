@@ -11,10 +11,14 @@ module.exports = function(mongoose) {
             }
         },
         name: String,
-        description: String,
-        date: Date
+        image: String,
+        description: String
     }, {timestamps: true});
 
+    Event.virtual('datettt').get(function() {
+        moment.locale('hu-HU');
+        return moment(this.date).fromNow();
+    });
     return Event;
 
-};
+};{}

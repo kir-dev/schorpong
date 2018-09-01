@@ -11,10 +11,15 @@ module.exports = function(mongoose) {
                 return new mongoose.Types.ObjectId();
             }
         },
+        image: String,
         title: String,
         intro: String,
         content: String
     }, {timestamps: true});
+
+    Article.virtual('date').get(function() {
+        return moment(this.createdAt).fromNow();
+    });
 
     return Article;
 

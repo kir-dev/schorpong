@@ -10,8 +10,15 @@ module.exports = function(mongoose) {
                 return new mongoose.Types.ObjectId();
             }
         },
-        teamId: ObjectId,
-        eventId: ObjectId,
+
+        team: {
+            type: Schema.Types.ObjectId,
+            ref: 'Team'
+        },
+        event: {
+            type: Schema.Types.ObjectId,
+            ref: 'Event'
+        },
         comment: String
     }, {timestamps: true});
 

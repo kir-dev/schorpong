@@ -3,11 +3,13 @@
 <% block('title', 'Új hír'); -%>
 <h2>Új hír</h2>
 
-<form class="uk-form-stacked" action="/hirek" method="POST">
+<form class="uk-form-stacked" action="/hirek" method="POST" enctype="multipart/form-data">
     <div class="uk-margin">
 		<label class="uk-form-label">Cím</label>
 		<input type="text" class="uk-input" name="title">
 	</div>
+
+    <input type="file" name="file" id="file">
 
     <div class="uk-margin">
         <label class="uk-form-label">Bevezető</label>

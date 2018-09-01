@@ -1,29 +1,29 @@
 <% layout('/layout/main') -%>
-
 <% block('title', 'Hírek'); -%>
+<% block('header', 'Hírek'); -%>
 
-<h2 class="uk-align-left">Hírek</h2>
-<a href="/hirek/new" class="uk-button uk-button-primary uk-align-right">Új hír</a>
+<% articles.forEach(function(article) { %>
+    <article class="uk-card uk-card-default uk-card-hover uk-grid-collapse uk-margin" typeof="Article" uk-grid>
 
-<table class="uk-table uk-table-striped uk-table-hover">
-	<thead>
-		<tr>
-			<th>Cím</th>
-			<th>Dátum</th>
-			<th></th>
-		</tr>
-	</thead>
-	<tbody>
-		<% articles.forEach(function(article) { %>
-			<tr>
-				<td><a href="/hirek/<%= article._id %>"><%= article.title %></a></td>
-				<td><%= article.createdAt %></td>
-				<td>
-					<a href="/hirek/<%= article._id %>/edit" class="uk-button uk-button-primary uk-button-small uk-align-right">Szerkesztés</a>
-					<a href="/hirek/<%= article._id %>/delete" class="uk-button uk-button-danger uk-button-small uk-align-right">Törlés</a>
-				</td>
-			</tr>
-		<% }); %>
-	</tbody>
-</table>
+        <div class="uk-width-1-4@s">
+            <div class="uk-card-media-left uk-cover-container">
+                <img src="/img/<%= article.image %>">
+            </div>
+        </div>
+        <div class="uk-width-3-4@s">
+            <div class="uk-card-body">
+                <div class="uk-card-badge uk-align-right">
+                    <time datetime="<%= article.createdAt %>"><%= article.date %></time>
+                </div>
+                <h3 class="uk-card-title"><%= article.title %></h3>
+                <p>
+                    <%= article.intro %>
+                </p>
+                    <a class="uk-button uk-button-text" href="/hirek/<%= article._id %>">Tovább olvasom</a>
+            </div>
+        </div>
+
+
+    </article>
+<% }); %>
 

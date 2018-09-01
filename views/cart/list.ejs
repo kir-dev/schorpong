@@ -1,0 +1,44 @@
+<% layout('/layout/main') -%>
+<% block('title', 'Kosár'); -%>
+<% block('header', 'Kosár'); -%>
+
+
+<% if(!cart || !cart.items.length){ %>
+    <div uk-alert>
+        <h4>A kosarad jelenleg üres!</h4>
+    </div>
+<% } else { %>
+    <p>Foglalásod még nem került rögzítésre, kérlek véglegesítsd a kosarat a foglalás elküldéséhez!</p>
+    <table class="uk-table uk-table-striped">
+        <tr>
+            <th>Eszköz neve</th>
+            <th>Mennyiség</th>
+            <th></th>
+        </tr>
+        <% cart.items.forEach(function(item) { %>
+            <tr>
+                <td><%= item.tool.name %></td>
+                <td>
+                    <form action="/kolcsonzes/<%= item.tool._id %>/edit" method="POST">
+                        <div uk-grid>
+                            <div>
+                                <input type="number" class="uk-input" name="amount" value="<%= item.amount %>">
+                            </div>
+                            <div>
+                                <button type="submit" class="uk-icon-button" uk-icon="icon: check"></button>
+                            </div>
+                        </div>
+                    </form>
+                </td>
+                <td class="uk-align-right">
+                    <a href="/kolcsonzes/<%= item.tool._id %>/delete" class="uk-icon-button" uk-icon="trash"></a>
+                </td>
+            </tr>
+        <% }); %>
+    </table>
+
+
+    <form action="/kolcsonzes/confirm" method="POST">
+        <input type="submit" class="uk-button uk-button-primary uk-align-center" value="Kosár véglegesítése">
+    </form>
+<% } %>

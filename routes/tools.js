@@ -3,11 +3,16 @@ var router = express.Router();
 
 var requireAdmin = require('../middleware/auth/requireAdmin');
 
+var uploadImage = require('../middleware/main/uploadImage');
 var getTool = require('../middleware/tool/getTool');
 var getTools = require('../middleware/tool/getTools');
 var createTool = require('../middleware/tool/createTool');
 var updateTool = require('../middleware/tool/updateTool');
 var deleteTool = require('../middleware/tool/deleteTool');
+
+var multer  = require('multer')
+var upload = multer({ dest: './public/' })
+var sharp = require('sharp')
 
 router.get('/lista', getTools(), function(req, res) {
     res.render('tools/list', { tools: req.tools });
@@ -30,7 +35,7 @@ router.get('/:id/edit', requireAdmin(), getTool(), function(req, res) {
     res.render('tools/edit', { tool: req.tool });
 });
 
-router.post('/', requireAdmin(), createTool(), function(req, res) {
+router.post('/', requireAdmin(), upload.single("file"), uploadImage(), createTool(), function(req, res) {
     res.redirect('/');
 });
 

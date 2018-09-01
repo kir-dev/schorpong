@@ -1,7 +1,7 @@
 var getArticles = function (id) {
 
     return function (req, res, next) {
-        dal.Article.find({}).then(function (articles) {
+        dal.Article.find({}, null, {sort: '-createdAt'}).then(function (articles) {
             req.articles = articles;
             return next();
         });

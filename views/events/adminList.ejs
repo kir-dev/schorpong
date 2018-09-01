@@ -16,11 +16,11 @@
 	<tbody>
 		<% events.forEach(function(event) { %>
 			<tr>
-				<td><a href="/esemeny/<%= event._id %>"><%= event.name %></a></td>
+				<td><a href="/esemenyek/<%= event._id %>"><%= event.name %></a></td>
 				<td><%= event.date %></td>
 				<td>
-					<a href="/esemeny/<%= event._id %>/edit" class="uk-button uk-button-primary uk-button-small uk-align-right">Szerkesztés</a>
-					<a href="/esemeny/<%= event._id %>/delete" class="uk-button uk-button-danger uk-button-small uk-align-right">Törlés</a>
+					<a href="/esemenyek/<%= event._id %>/edit" class="uk-button uk-button-primary uk-button-small uk-align-right">Szerkesztés</a>
+					<a href="/esemenyek/<%= event._id %>/delete" class="uk-button uk-button-danger uk-button-small uk-align-right">Törlés</a>
 				</td>
 			</tr>
 		<% }); %>

@@ -1,6 +1,7 @@
 <% layout('/layout/main') -%>
 
 <% block('title', 'Új csapat'); -%>
+<% block('header', 'Új csapat'); -%>
 <h2>Új csapaat</h2>
 
 <form class="uk-form-stacked" action="/csapatok" method="POST">
@@ -12,3 +13,23 @@
 	<input type="submit" value="Mentés" class="uk-button uk-button-primary">
 </form>
 
+
+<% teams.forEach(function(team) { %>
+	<section typeof="Team">
+
+		<div class="uk-margin-medium-bottom">
+
+			<h2 class="uk-margin-remove-top">
+				<a href="/csapatok/<%= team._id %>"><%= team.name %></a>
+			</h2>
+		</div>
+
+		<% team.memberships.forEach(function(member) { %>
+			<a href="/felhasznalok/<%= member.user._id %>"><%= member.user.name %></a>
+		<% }); %>
+
+		<form action="/csapatok/<%= team._id %>/join" method="POST">
+			<input type="submit" class="uk-button uk-button-primary" value="Csatalkozas">
+		</form>
+	</section>
+<% }); %>

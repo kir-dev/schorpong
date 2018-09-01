@@ -1,0 +1,80 @@
+<div style="background: #1b1b1b;">
+    <div class="uk-container">
+        <nav class="uk-navbar-container" uk-navbar style="background: none;">
+
+            <div class="uk-navbar-left">
+                <a class="uk-navbar-item uk-logo" href="/">
+                    <img src="/logo.png" alt="" width="87px">
+                </a>
+                <ul class="uk-navbar-nav">
+                    <li><a href="/hirek/lista">Hírek</a></li>
+                    <li><a href="/eszkozok/lista">Eszközök</a></li>
+                    <li><a href="/esemenyek/lista">Események</a></li>
+                    <li><a href="/oldal/rolunk">Rólunk</a></li>
+                    <li><a href="/oldal/szabalyok">Szabályok</a></li>
+                    <% if(logged_in) { %>
+                        <li><a href="/csapatok/lista">Csapatok</a></li>
+                    <% } %>
+                </ul>
+
+            </div>
+
+            <div class="uk-navbar-right">
+
+                <ul class="uk-navbar-nav">
+                    <% if(logged_in) { %>
+                    <% if(is_admin) { %>
+                    <li>
+                        <a href="#">Admin</a>
+                        <div class="uk-navbar-dropdown">
+                            <ul class="uk-nav uk-navbar-dropdown-nav">
+                                <li><a href="/hirek">Hírek</a></li>
+                                <li><a href="/oldal">Oldalak</a></li>
+                                <li><a href="/eszkozok">Eszközök</a></li>
+                                <li><a href="/esemenyek">Események</a></li>
+                                <li><a href="/felhasznalok">Felhasználók</a></li>
+
+                                <li><a href="/csapatok">Csapatok</a></li>
+
+                                <li class="uk-nav-divider"></li>
+
+                                <li><a href="/nevezesek">Nevezések</a></li>
+                                <li><a href="/kolcsonzes">Kölcsönzések</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <% } %>
+
+                    <li>
+                        <a href="/kolcsonzes/kosar">
+                            <span class="uk-icon uk-margin-small-right" uk-icon="icon: cart"></span>
+                            <% if(inCart) { %>
+                                <span class="uk-badge"><%= inCart %></span>
+                            <% } %>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <%= currentUser.name %>
+                        </a>
+                        <div class="uk-navbar-dropdown">
+                            <ul class="uk-nav uk-navbar-dropdown-nav">
+                                <li><a href="/csapatok/csapatom">Csapatom</a></li>
+                                <li><a href="/kolcsonzes/kolcsonzeseim">Kölcsönzéseim</a></li>
+                                <li><a href="/auth/logout">Kijelentkezés</a></li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <% } else { %>
+                    <li><a href="/auth/login">Bejelentkezés</a></li>
+
+                    <% } %>
+
+                </ul>
+
+            </div>
+
+        </nav>
+    </div>
+</div>

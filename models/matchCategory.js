@@ -3,18 +3,16 @@ module.exports = function(mongoose) {
     var Schema = mongoose.Schema,
         ObjectId = Schema.ObjectId;
 
-    var Loan = new mongoose.Schema({
+    var MatchCategory = new mongoose.Schema({
         _id: {
             type: ObjectId,
             default: function f() {
                 return new mongoose.Types.ObjectId();
             }
         },
-        userId: ObjectId,
-        toolId: ObjectId,
-        quantity: Number,
-        comment: String
+        name: String,
+        matches: [{type: Schema.Types.ObjectId, ref: 'Match'}]
     }, {timestamps: true});
 
-    return Loan;
+    return MatchCategory;
 };

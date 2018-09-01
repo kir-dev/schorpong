@@ -10,7 +10,8 @@ module.exports = function(mongoose) {
                 return new mongoose.Types.ObjectId();
             }
         },
-        name: String
+        name: String,
+        memberships: [{type: Schema.Types.ObjectId, ref: 'Membership'}]
     }, {timestamps: true});
 
     return Team;

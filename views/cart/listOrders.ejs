@@ -1,0 +1,53 @@
+<% layout('/layout/main') -%>
+<% block('title', 'Kölcsönzéseim'); -%>
+<% block('header', 'Kölcsönzéseim'); -%>
+
+
+<div class="uk-child-width-1-3@m uk-grid uk-grid-match" uk-grid>
+    <% carts.forEach(function(cart) { %>
+        <div>
+            <div class="uk-card uk-card-body uk-card-secondary">
+                <h2><%= cart.date %></h2>
+                <div uk-grid>
+                    <div class="uk-width-1-2">
+                        <% if(cart.gaveOut) { %>
+                            <span class="uk-icon" uk-icon="icon: check"></span>
+                        <% } else { %>
+                            <div class="uk-label-danger">
+                                Ki
+                                <span class="uk-icon uk-margin-small-right" uk-icon="icon: close"></span>
+                            </div>
+                        <% } %>
+                    </div>
+                    <div class="uk-width-1-2">
+                        <% if(cart.tookIn) { %>
+                            <span class="uk-icon uk-margin-small-right" uk-icon="icon: check"></span>
+                        <% } else { %>
+                            <div class="uk-label-danger">
+                                Vissza
+                                <span class="uk-icon uk-margin-small-right" uk-icon="icon: close"></span>
+                            </div>
+                        <% } %>
+                    </div>
+                </div>
+
+                <table class="uk-table">
+                    <tr>
+                        <th>Eszköz neve</th>
+                        <th>Mennyiség</th>
+                    </tr>
+                    <% cart.items.forEach(function(item) { %>
+                        <tr>
+                            <td><%= item.tool.name %></td>
+                            <td>
+                                <%= item.amount %>
+                            </td>
+                        </tr>
+                    <% }); %>
+                </table>
+                <div>
+                </div>
+            </div>
+        </div>
+    <% }); %>
+</div>

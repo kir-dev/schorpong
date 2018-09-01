@@ -1,20 +1,9 @@
 <% layout('/layout/main') -%>
 
 <% block('title', page.title); -%>
+<% block('header', page.title); -%>
 
 <section typeof="Page">
-   
-	<div class="uk-margin-medium-bottom">
-		
-		<h2 class="uk-margin-remove-top">
-			<a class="uk-link-reset" href="#">
-				<%= page.title %>
-			</a>
-		</h2>
-
-	</div>
-
-    
 
 	<div property="text">
 		<div id="markdown" class="uk-hidden"><%= page.content %></div>

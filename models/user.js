@@ -14,7 +14,8 @@ module.exports = function(mongoose) {
         date: Date,
         authschId: String,
         admin: Boolean,
-        avatar: String
+        avatar: String,
+        memberships: [{type: Schema.Types.ObjectId, ref: 'Membership'}]
     }, {timestamps: true});
 
     return User;

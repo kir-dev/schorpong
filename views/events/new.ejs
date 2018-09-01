@@ -3,21 +3,29 @@
 <% block('title', 'Új esemény'); -%>
 <h2>Új esemény</h2>
 
-<form class="uk-form-stacked" action="/esemenyek" method="POST">
+<form class="uk-form-stacked" action="/esemenyek" method="POST"  enctype="multipart/form-data">
+
     <div class="uk-margin">
-		<label class="uk-form-label">Név</label>
-		<input type="text" class="uk-input" name="name">
-	</div>
+        <label class="uk-form-label">Név</label>
+        <input type="text" class="uk-input" name="name">
+    </div>
+
+    <input type="file" name="file" id="file">
+
+    <div class="uk-margin">
+        <label class="uk-form-label">Időpont</label>
+        <input type="datetime-local" name="date" class="uk-textarea" id="date"></input>
+    </div>
 
     <div class="uk-margin">
         <label class="uk-form-label">Leírás</label>
-		<textarea name="description" class="uk-textarea" id="description"></textarea>
-	</div>
+        <textarea name="description" class="uk-textarea" id="description"></textarea>
+    </div>
 
-	<input type="submit" value="Mentés" class="uk-button uk-button-primary">
+    <input type="submit" value="Mentés" class="uk-button uk-button-primary">
 </form>
 
 <script>
-	var simplemde = new SimpleMDE({ element: document.getElementById("description") });
+    var simplemde = new SimpleMDE({element: document.getElementById("description")});
 </script>
 

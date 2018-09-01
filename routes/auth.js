@@ -36,7 +36,7 @@ router.use('/example/callback',
                     res.redirect('/oldal/welcome');
                 });
             } else {
-                res.redirect('/');
+                res.redirect('/hirek/lista');
             }
         });
     });
