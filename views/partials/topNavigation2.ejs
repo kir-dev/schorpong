@@ -1,4 +1,4 @@
-<div style="background: #1b1b1b;">
+<div style="background: #1b1b1b; z-index: 9999999;" uk-sticky>
     <div class="uk-container">
         <nav class="uk-navbar-container" uk-navbar style="background: none;">
 
@@ -13,7 +13,7 @@
                     <li><a href="/oldal/rolunk">Rólunk</a></li>
                     <li><a href="/oldal/szabalyok">Szabályok</a></li>
                     <% if(logged_in) { %>
-                        <li><a href="/csapatok/lista">Csapatok</a></li>
+                    <li><a href="/csapatok/lista">Csapatok</a></li>
                     <% } %>
                 </ul>
 
@@ -49,7 +49,8 @@
                         <a href="/kolcsonzes/kosar">
                             <span class="uk-icon uk-margin-small-right" uk-icon="icon: cart"></span>
                             <% if(inCart) { %>
-                                <span class="uk-badge"><%= inCart %></span>
+                            <span class="uk-badge">
+                                <%= inCart %></span>
                             <% } %>
                         </a>
                     </li>

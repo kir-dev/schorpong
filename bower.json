@@ -17,6 +17,8 @@
   "dependencies": {
     "jquery": "~2.1.0",
     "simplemde": "^1.11.2",
-    "uikit": "v3.0.0-beta.6"
+    "uikit": "v3.0.0-beta.6",
+    "showdown": "^1.8.6",
+    "date-and-time": "^0.6.2"
   }
 }

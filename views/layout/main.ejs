@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title><%= blocks.title %></title>
+    <title>
+        <%= blocks.title %>
+    </title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="/bower_components/uikit/dist/css/uikit.css"/>
-    <link rel="stylesheet" href="/bower_components/simplemde/dist/simplemde.min.css"/>
-    <link rel="stylesheet" href="/css/app.css"/>
+    <link rel="stylesheet" href="/bower_components/uikit/dist/css/uikit.css" />
+    <link rel="stylesheet" href="/bower_components/simplemde/dist/simplemde.min.css" />
+    <link rel="stylesheet" href="/css/app.css" />
 
     <script src="/bower_components/simplemde/dist/simplemde.min.js"></script>
     <script src="/bower_components/jquery/dist/jquery.js"></script>
@@ -15,63 +18,71 @@
     <script src="/bower_components/uikit/dist/js/uikit.js"></script>
     <script src="/bower_components/date-and-time/date-and-time.js"></script>
 </head>
+
 <body>
-<%- partial('../partials/topNavigation2') %>
-<header class="small-header">
-    <h1><%- blocks.header %></h1>
-</header>
-<div class="headbg" style="
-    width: 100%;
-    background: url(/head_bg.png);
-    background-size: 100% 100%;
-    height: 80px;
-    top: -70px;
-    position: relative;
-    margin-bottom: -80px;
-"></div>
-<div class="uk-container">
-    <section class="uk-container">
-        <div>
-            <div class="uk-padding">
+    <%- partial('../partials/topNavigation2') %>
+    <header class="small-header">
+        <h1>
+            <%- blocks.header %>
+        </h1>
+    </header>
+    <div class="headbg"
+    style="
+        width: 100%;
+        background: url(/head_bg.png);
+        background-size: 100% 100%;
+        height: 80px;
+        top: -70px;
+        position: relative;
+        margin-bottom: -80px;">
+    </div>
+    <div class="uk-container">
+        <section class="uk-container">
+            <div>
+                <div class="uk-padding">
+                    <% if (messages.info) { %>
+                    <div class="uk-alert-primary" uk-alert>
+                        <a class="uk-alert-close" uk-close></a>
+                        <p>
+                            <%= messages.info %>
+                        </p>
+                    </div>
+                    <% } %>
 
-                <% if (messages.info) { %>
-                <div class="uk-alert-primary" uk-alert>
-                    <a class="uk-alert-close" uk-close></a>
-                    <p><%= messages.info %></p>
+                    <% if (messages.success) { %>
+                    <div class="uk-alert-success" uk-alert>
+                        <a class="uk-alert-close" uk-close></a>
+                        <p>
+                            <%= messages.success %>
+                        </p>
+                    </div>
+                    <% } %>
+
+                    <% if (messages.warning) { %>
+                    <div class="uk-alert-warning" uk-alert>
+                        <a class="uk-alert-close" uk-close></a>
+                        <p>
+                            <%= messages.warning %>
+                        </p>
+                    </div>
+                    <% } %>
+
+                    <% if (messages.danger) { %>
+                    <div class="uk-alert-danger" uk-alert>
+                        <a class="uk-alert-close" uk-close></a>
+                        <p>
+                            <%= messages.danger %>
+                        </p>
+                    </div>
+                    <% } %>
+
+                    <%- body -%>
                 </div>
-                <% } %>
-
-
-                <% if (messages.success) { %>
-                <div class="uk-alert-success" uk-alert>
-                    <a class="uk-alert-close" uk-close></a>
-                    <p><%= messages.success %></p>
-                </div>
-                <% } %>
-
-
-                <% if (messages.warning) { %>
-                <div class="uk-alert-warning" uk-alert>
-                    <a class="uk-alert-close" uk-close></a>
-                    <p><%= messages.warning %></p>
-                </div>
-                <% } %>
-
-                <% if (messages.danger) { %>
-                <div class="uk-alert-danger" uk-alert>
-                    <a class="uk-alert-close" uk-close></a>
-                    <p><%= messages.danger %></p>
-                </div>
-                <% } %>
-
-                <%- body -%>
             </div>
-        </div>
-    </section>
-</div>
-<footer class="uk-text-center uk-padding footer">
-    <a href="http://kir-dev.sch.bme.hu">Kir-Dev</a>
-</footer>
-<script id="dsq-count-scr" src="//schorpong.disqus.com/count.js" async></script>
+        </section>
+    </div>
+    <%- partial('../partials/footer.ejs') %>
+    <script id="dsq-count-scr" src="//schorpong.disqus.com/count.js" async></script>
 </body>
+
 </html>
