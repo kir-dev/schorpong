@@ -5,7 +5,7 @@ var hasTeam = function (id) {
             user: currentUser
         }).populate({ path: 'team', select: 'name' }).then(function(membership) {
             if(membership) {
-                return res.redirect('/csapatok/' + membership.team._id)
+                return res.redirect('/csapatok/' + membership.team._id);
             } else {
                 return res.redirect('/csapatok/new');
             }

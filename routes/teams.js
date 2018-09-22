@@ -46,7 +46,7 @@ router.post('/:id/join', joinTeam(), function(req, res) {
 });
 
 router.post('/:id', requireAdmin(), updateTeam(), function(req, res) {
-    res.redirect('/csapatok')
+    res.redirect('/csapatok');
 });
 
 router.get('/:id/delete', requireAdmin(), deleteTeam(), function(req, res) {

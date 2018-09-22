@@ -20,7 +20,7 @@ router.get('/:name/edit', requireAdmin(), getPage(), function(req, res) {
 });
 
 router.post('/:id', requireAdmin(), updatePage(), function(req, res) {
-    res.redirect('/oldal')
+    res.redirect('/oldal');
 });
 
 

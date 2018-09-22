@@ -10,24 +10,23 @@ var createArticle = require('../middleware/article/createArticle');
 var updateArticle = require('../middleware/article/updateArticle');
 var deleteArticle = require('../middleware/article/deleteArticle');
 
-var multer  = require('multer')
-var upload = multer({ dest: './public/' })
-var sharp = require('sharp')
+var multer  = require('multer');
+var upload = multer({ dest: './public/' });
 
 router.get('/lista', getArticles(), function(req, res) {
     res.render('articles/list', { articles: req.articles });
 });
 
 router.get('/', getArticles(), function(req, res) {
-	res.render('articles/adminList', { articles: req.articles });
+    res.render('articles/adminList', { articles: req.articles });
 });
 
 router.get('/new', requireAdmin(), function(req, res) {
-	res.render('articles/new');
+    res.render('articles/new');
 });
 
 router.get('/:id', getArticle(), function(req, res) {
-	res.render('articles/view', { article: req.article });
+    res.render('articles/view', { article: req.article });
 });
 
 
@@ -35,16 +34,16 @@ router.get('/:id/edit', getArticle(), function(req, res) {
     res.render('articles/edit', { article: req.article });
 });
 
-router.post('/', requireAdmin(), upload.single("file"), uploadImage(), createArticle(), function(req, res) {
-	res.redirect('/');
+router.post('/', requireAdmin(), upload.single('file'), uploadImage(), createArticle(), function(req, res) {
+    res.redirect('/');
 });
 
 router.post('/:id', requireAdmin(), updateArticle(), function(req, res) {
-	res.redirect('/hirek')
+    res.redirect('/hirek');
 });
 
 router.get('/:id/delete', requireAdmin(), deleteArticle(), function(req, res) {
-	res.redirect('/hirek');
+    res.redirect('/hirek');
 });
 
 

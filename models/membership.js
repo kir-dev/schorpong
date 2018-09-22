@@ -17,4 +17,4 @@ module.exports = function(mongoose) {
     }, {timestamps: true});
 
     return Membership;
-}
+};

@@ -27,7 +27,7 @@ router.get('/:id/edit', getUser(), function(req, res) {
 });
 
 router.post('/:id', requireAdmin(), updateUser(), function(req, res) {
-    res.redirect('/felhasznalok')
+    res.redirect('/felhasznalok');
 });
 
 router.get('/:id/delete', requireAdmin(), deleteUser(), function(req, res) {

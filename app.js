@@ -24,10 +24,10 @@ var users = require('./routes/users');
 var errors = require('./routes/errors');
 
 var app = express();
-dal = require('./models/mongo.js');
-moment = require('moment');
+var dal = require('./models/mongo.js');
+var moment = require('moment');
 moment.locale('hu-HU');
-currentUser = {};
+var currentUser = {};
 
 // view engine setup
 app.engine('ejs', require('ejs-locals'));
@@ -56,24 +56,24 @@ app.use(passport.session());
 app.use(flash());
 
 passport.use(new OAuth2Strategy({
-        authorizationURL: 'https://auth.sch.bme.hu/site/login',
-        tokenURL: 'https://auth.sch.bme.hu/oauth2/token',
-        clientID: process.env.AUTHSCH_CLIENT_ID,
-        clientSecret: process.env.AUTHSCH_CLIENT_SECRET,
-        callbackURL: "/auth/example/callback",
-        scope: ["basic","displayName","mail","roomNumber"]
-    },
-    function (accessToken, refreshToken, profile, cb) {
-        console.log(accessToken + '\n' + refreshToken + '\n' + JSON.stringify(profile));
-        var request = require('request');
-        request('https://auth.sch.bme.hu/api/profile?access_token=' + accessToken, function (error, response, body) {
-            if (!error && response.statusCode == 200) {
-                return cb(null, JSON.parse(body), null);
-            } else {
-                return cb(new Error('hello'));
-            }
-        });
-    }));
+    authorizationURL: 'https://auth.sch.bme.hu/site/login',
+    tokenURL: 'https://auth.sch.bme.hu/oauth2/token',
+    clientID: process.env.AUTHSCH_CLIENT_ID,
+    clientSecret: process.env.AUTHSCH_CLIENT_SECRET,
+    callbackURL: '/auth/example/callback',
+    scope: ['basic','displayName','mail','roomNumber']
+},
+function (accessToken, refreshToken, profile, cb) {
+    console.log(accessToken + '\n' + refreshToken + '\n' + JSON.stringify(profile));
+    var request = require('request');
+    request('https://auth.sch.bme.hu/api/profile?access_token=' + accessToken, function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+            return cb(null, JSON.parse(body), null);
+        } else {
+            return cb(new Error('hello'));
+        }
+    });
+}));
 
 
 app.use(function (req, res, next) {
@@ -94,8 +94,8 @@ app.use(function (req, res, next) {
                 res.locals.inCart = 0;
                 if (cart && cart.items.length) {
                     cart.items.forEach(item => {
-                        res.locals.inCart += item.amount
-                    })
+                        res.locals.inCart += item.amount;
+                    });
                 }
                 if (user !== null && user.admin) {
                     res.locals.is_admin = true;
@@ -132,20 +132,20 @@ app.use('/errors', errors);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+    var err = new Error('Not Found');
+    err.status = 404;
+    next(err);
 });
 
 // error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+app.use(function(err, req, res) {
+    // set locals, only providing error in development
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+    // render the error page
+    res.status(err.status || 500);
+    res.render('error');
 });
 
 module.exports = app;

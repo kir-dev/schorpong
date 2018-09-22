@@ -3,9 +3,9 @@ var deleteCartItem = function (id) {
         dal.Cart.findOneAndUpdate({
             user: currentUser,
             checkedOut: false
-        }, {$pull: {items: {tool: req.params.id}}}, (err, res) => {})
-        return next()
-    }
+        }, {$pull: {items: {tool: req.params.id}}}, (err, res) => {});
+        return next();
+    };
 };
 
 module.exports = deleteCartItem;

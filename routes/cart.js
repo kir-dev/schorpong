@@ -26,16 +26,16 @@ router.get('/kolcsonzeseim', requireLogin(), getOrders(), function(req, res) {
 });
 
 router.post('/confirm', requireLogin(), confirmCart(), function(req, res) {
-    res.redirect('/kolcsonzes/kolcsonzeseim')
+    res.redirect('/kolcsonzes/kolcsonzeseim');
 });
 
 router.post('/:id', requireLogin(), addCartItem(), function(req, res) {
     req.flash('success', 'Sikeresen a kosaradba helyezted.');
-    res.redirect('/eszkozok/lista')
+    res.redirect('/eszkozok/lista');
 });
 
 router.post('/:id/edit', requireLogin(), updateCartItem(), function(req, res) {
-    res.redirect('/kolcsonzes/kosar')
+    res.redirect('/kolcsonzes/kosar');
 });
 
 router.get('/:id/delete', requireLogin(), deleteCartItem(), function(req, res) {

@@ -9,7 +9,7 @@ var confirmCart = function (id) {
             cart.save();
             return next();
         });
-    }
+    };
 };
 
 module.exports = confirmCart;

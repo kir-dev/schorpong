@@ -8,8 +8,7 @@ var getAllOrders = function (id) {
             select: 'name'
         }).populate({
             path: 'user',
-            selecet: 'name',
-            selecet: 'mail',
+            select: 'name mail'
         }).then(function (carts) {
             req.carts = carts;
             return next();

@@ -11,9 +11,9 @@ var getUser = function (id) {
                 }
             })
             .then(function (user) {
-            req.user = user;
-            return next();
-        });
+                req.user = user;
+                return next();
+            });
     };
 };
 

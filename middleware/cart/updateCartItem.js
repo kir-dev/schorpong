@@ -5,7 +5,7 @@ var addCartItem = function (id) {
             dal.Cart.findOneAndUpdate({
                 user: currentUser,
                 checkedOut: false
-            }, {$pull: {items: {tool: req.params.id}}}, (err, res) => {})
+            }, {$pull: {items: {tool: req.params.id}}}, (err, res) => {});
         } else {
             dal.Cart.findOne({
                 user: currentUser,
@@ -13,12 +13,12 @@ var addCartItem = function (id) {
             }).exec((err, cart) => {
                 if (cart) {
                     var item = cart.items.find(function(item) {
-                        return item.tool == req.params.id
+                        return item.tool == req.params.id;
                     });
                     if(item) {
-                        item.amount = parseInt(req.body.amount)
+                        item.amount = parseInt(req.body.amount);
                     }
-                    cart.save(err => {if(err) return next(err)})
+                    cart.save(err => {if(err) return next(err);});
                     return next();
                 }
                 return next();

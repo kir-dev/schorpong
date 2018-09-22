@@ -11,9 +11,9 @@ var getTeam = function (id) {
                 }
             })
             .then(function (team) {
-            req.team = team;
-            return next();
-        });
+                req.team = team;
+                return next();
+            });
     };
 };
 

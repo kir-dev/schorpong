@@ -1,4 +1,4 @@
-var createArticle = function (id) {
+var createArticle = function () {
 
     return function (req, res, next) {
         dal.Article.create({

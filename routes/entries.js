@@ -35,7 +35,7 @@ router.post('/', requireAdmin(), createEntry(), function(req, res) {
 });
 
 router.post('/:id', requireAdmin(), updateEntry(), function(req, res) {
-    res.redirect('/nevezesek')
+    res.redirect('/nevezesek');
 });
 
 router.get('/:id/delete', requireAdmin(), deleteEntry(), function(req, res) {

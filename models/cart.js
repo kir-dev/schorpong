@@ -25,7 +25,7 @@ module.exports = function(mongoose) {
     }, {timestamps: true});
 
     Cart.virtual('date').get(function() {
-        return moment(this.createdAt).format("YYYY-MM-DD HH:mm");
+        return moment(this.createdAt).format('YYYY-MM-DD HH:mm');
     });
 
 

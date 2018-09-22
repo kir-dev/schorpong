@@ -1,7 +1,7 @@
-var deleteArticle = function (id) {
+var deleteArticle = function () {
 
     return function (req, res, next) {
-        dal.Article.findById(req.params.id).remove(function (article) {
+        dal.Article.findById(req.params.id).remove(() => {
             return next();
         });
     };

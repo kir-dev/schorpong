@@ -24,7 +24,7 @@ router.use('/example/callback',
         dal.User.count({
             authschId: req.user.internal_id
         }, function( err, count){
-            console.log( "Number of users:", count );
+            console.log( 'Number of users:', count );
             if(!count) {
                 dal.User.create({
                     authschId: req.user.internal_id,

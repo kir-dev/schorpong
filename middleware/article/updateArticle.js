@@ -1,4 +1,4 @@
-var updateArticle = function (id) {
+var updateArticle = function () {
 
     return function (req, res, next) {
         dal.Article.findById(req.params.id, function (err, doc){

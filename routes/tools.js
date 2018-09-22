@@ -10,9 +10,9 @@ var createTool = require('../middleware/tool/createTool');
 var updateTool = require('../middleware/tool/updateTool');
 var deleteTool = require('../middleware/tool/deleteTool');
 
-var multer  = require('multer')
-var upload = multer({ dest: './public/' })
-var sharp = require('sharp')
+var multer  = require('multer');
+var upload = multer({ dest: './public/' });
+var sharp = require('sharp');
 
 router.get('/lista', getTools(), function(req, res) {
     res.render('tools/list', { tools: req.tools });
@@ -35,12 +35,12 @@ router.get('/:id/edit', requireAdmin(), getTool(), function(req, res) {
     res.render('tools/edit', { tool: req.tool });
 });
 
-router.post('/', requireAdmin(), upload.single("file"), uploadImage(), createTool(), function(req, res) {
+router.post('/', requireAdmin(), upload.single('file'), uploadImage(), createTool(), function(req, res) {
     res.redirect('/');
 });
 
 router.post('/:id', requireAdmin(), updateTool(), function(req, res) {
-    res.redirect('/eszkozok')
+    res.redirect('/eszkozok');
 });
 
 router.get('/:id/delete', requireAdmin(), deleteTool(), function(req, res) {
