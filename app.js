@@ -24,10 +24,10 @@ var users = require('./routes/users');
 var errors = require('./routes/errors');
 
 var app = express();
-var dal = require('./models/mongo.js');
-var moment = require('moment');
-moment.locale('hu-HU');
-var currentUser = {};
+dal = require('./models/mongo.js'); // eslint-disable-line no-undef
+moment = require('moment'); // eslint-disable-line no-undef
+moment.locale('hu-HU'); // eslint-disable-line no-undef
+currentUser = {}; // eslint-disable-line no-undef
 
 // view engine setup
 app.engine('ejs', require('ejs-locals'));
