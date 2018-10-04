@@ -1,7 +1,7 @@
 var canCreateTeam = function (id) {
 
     return function (req, res, next) {
-        if(!currentUser.memberships) {
+        if(!currentUser.memberships.len) {
             return next();
         } else {
             req.flash('warning', 'Nem hozhatsz létre csapatot, mert már tagja vagy egy csapatnak.');
