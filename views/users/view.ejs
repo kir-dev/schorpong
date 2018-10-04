@@ -4,16 +4,24 @@
 <% block('header', user.name); -%>
 
 <section typeof="User">
-   
+
 	<div class="uk-margin-medium-bottom">
-		
+
 		<h2 class="uk-margin-remove-top">
 			<%= user.name %>
 		</h2>
 
-		Csapat: <a href="/csapatok/<%= user.membership.team._id %>"><%= user.membership.team.name %></a>
+		<h3>Csapatok:</h3>
+		<ul class="uk-list uk-list-bullet">
+			<% user.memberships.forEach(function(membership) { %>
+			<li>
+				<a href="/csapatok/<%= membership.team._id %>">
+					<%= membership.team.name %>
+				</a>
+			</li>
+			<% }); %>
+		</ul>
 
 	</div>
 
 </section>
-

@@ -5,16 +5,66 @@
 
 
 <section typeof="Team">
-   
-	<div class="uk-margin-medium-bottom">
-		
-		<h2 class="uk-margin-remove-top">
-				<%= team.name %>
-		</h2>
 
-		<% team.memberships.forEach(function(member) { %>
-			<a href="/felhasznalok/<%= member.user._id %>"><%= member.user.name %></a>
-		<% }); %>
+	<div class="uk-margin-medium-bottom">
+
+		<h2
+			class="uk-margin-remove-top"
+			style="display: inline-block;">
+			<%= team.name %>
+		</h2>
+		<!-- TODO: ha még nincs a csapatban és jelentkezhet még csapatba -->
+		<button class="uk-button-primary">Jelentkezés</button>
+		<!-- TODO: ha a csapat tagja, ha nem admin vagy ha admin és nincs más a csapatban -->
+		<button class="uk-button-danger">Kilépés</button>
+
+		<h3>Aktív tagok</h3>
+		<table class="uk-table uk-table-striped uk-table-small"
+			style="width: 80%;">
+			<% team.memberships.forEach(function(member) { %>
+			<form>
+				<tr>
+					<td class="uk-table-grow">
+						<a href="/felhasznalok/<%= member.user._id %>">
+							<%= member.user.name %>
+							<% if (member.owner) { %>
+								<span data-uk-tooltip title="Admin">
+									<span uk-icon=nut></span>
+								</span>
+							<% } %>
+						</a>
+					</td>
+					<td class="uk-table-shrink"><button class="uk-button-danger">Törlés</button></td>
+					<!-- TODO: csak akkor jelenjen meg az oszlop, ha a current user
+						egyben a csapat owner-e is -->
+					<td class="uk-table-shrink">
+					<% if (!member.owner) { %>
+						<button class="uk-button-primary">Admin</button></td>
+					<% } %>
+				</tr>
+			</form>
+			<% }); %>
+		</table>
+		<h3>
+			Függő tagok
+		</h3>
+		<!-- TODO: csak a függőben lévő tagok jelenjenek meg, ha vannak -->
+		<table class="uk-table uk-table-striped uk-table-small"
+			style="width: 80%;">
+			<% team.memberships.forEach(function(member) { %>
+			<form>
+				<% if (!member.active) { %>
+					<tr>
+						<td class="uk-table-grow">
+							<a href="/felhasznalok/<%= member.user._id %>">
+								<%= member.user.name %>
+							</a>
+						</td>
+						<td class="uk-table-shrink"><button class="uk-button-secondary">Elfogadás</button></td>
+					</tr>
+				<% } %>
+			</form>
+			<% }); %>
+		</table>
 	</div>
 </section>
-

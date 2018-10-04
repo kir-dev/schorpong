@@ -3,8 +3,8 @@ var getUser = function (id) {
     return function (req, res, next) {
         dal.User.findById(req.params.id)
             .populate({
-                path: 'membership',
-                select: 'name',
+                path: 'memberships',
+                select: 'name team',
                 populate : {
                     path : 'team',
                     select: 'name'

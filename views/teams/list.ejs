@@ -6,19 +6,25 @@
 <div class="uk-child-width-1-3@m uk-grid uk-grid-match" uk-grid>
     <% teams.forEach(function(team) { %>
         <div>
-            <section class="uk-card uk-card-body uk-card-secondary" typeof="Team">
+            <section class="uk-card uk-card-body uk-card-default uk-card-hover" typeof="Team">
 
                 <div class="uk-margin-medium-bottom">
 
                     <h2 class="uk-margin-remove-top">
                         <%= team.name %>
                     </h2>
-                    <% team.memberships.forEach(function(member) { %>
-                        <a href="/felhasznalok/<%= member.user._id %>"><%= member.user.name %></a>
-                    <% }); %>
+                    <h3>6 pont</h3>
+                    <h3>Tagok</h3>
+                    <ul class="uk-list uk-list-bullet">
+                        <% team.memberships.forEach(function(member) { %>
+                            <li>
+                                <a href="/felhasznalok/<%= member.user._id %>"><%= member.user.name %></a>
+                            </li>
+                        <% }); %>
+                    </ul>
                 </div>
 
-                <a href="/csapatok/<%= team._id %>" class="uk-button uk-button-secondary">Megtekintés</a>
+                <a href="/csapatok/<%= team._id %>" class="uk-button uk-button-default">Megtekintés</a>
 
             </section>
         </div>

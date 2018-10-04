@@ -100,11 +100,20 @@ hr {
     font-size: 46px
 }
 
+/* OK color */
 .uk-button-primary {
-    background: #bd2839;
+    background: #1485CC;
 }
-
 .uk-button-primary:active,
 .uk-button-primary:hover {
-    background-color: #a02332;
+    background-color: #0971B2;
+}
+
+/* Accept color */
+.uk-button-secondary {
+    background-color: #4FCC2B;
+}
+.uk-button-secondary:active,
+.uk-button-secondary:hover {
+    background-color: #3A9620;
 }

@@ -4,7 +4,7 @@ var getTeam = function (id) {
         dal.Team.findById(req.params.id)
             .populate({
                 path: 'memberships',
-                select: 'name',
+                select: 'name owner active',
                 populate : {
                     path : 'user',
                     select: 'name'

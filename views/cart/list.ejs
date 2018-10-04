@@ -25,12 +25,16 @@
                                 <input type="number" class="uk-input" name="amount" value="<%= item.amount %>">
                             </div>
                             <div>
-                                <button type="submit" class="uk-icon-button" uk-icon="icon: check"></button>
+                                <button type="submit"
+                                    class="uk-icon-button"
+                                    uk-icon="icon: check"
+                                    data-uk-tooltip title="Mentés">
+                                </button>
                             </div>
                         </div>
                     </form>
                 </td>
-                <td class="uk-align-right">
+                <td class="uk-text-right">
                     <a href="/kolcsonzes/<%= item.tool._id %>/delete" class="uk-icon-button" uk-icon="trash"></a>
                 </td>
             </tr>
