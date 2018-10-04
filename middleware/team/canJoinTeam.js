@@ -3,7 +3,7 @@ var canJoinTeam = function (id) {
     return function (req, res, next) {
         if(!currentUser.memberships) {
             return next();
-        } else if(!currentUser.membership.len < 2) {
+        } else if(!currentUser.membership.length < 2) {
             if(!currentUser.memberships.includes(req.body.id)) {
                 dal.Membership.count({
                     user: currentUser._id,
