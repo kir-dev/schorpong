@@ -11,6 +11,7 @@ module.exports = function(mongoose) {
             }
         },
         name: String,
+        points: { type: Number, default: 0 },
         memberships: [{type: Schema.Types.ObjectId, ref: 'Membership'}]
     }, {timestamps: true});
 
