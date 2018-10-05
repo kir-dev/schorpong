@@ -32,6 +32,8 @@ gem 'omniauth-oauth2'
 
 gem 'dotenv-rails'
 
+gem 'semantic-ui-sass', '~> 2.2', '>= 2.2.1.1'
+
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
