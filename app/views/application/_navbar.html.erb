@@ -1,8 +1,8 @@
 <div class="ui top fixed menu">
   <%= link_to "Hírek", articles_path, :class => "item" %>
   <%= link_to "Események", events_path, :class => "item" %>
-  <%= link_to "Rólunk", "pages/about", :class => "item" %>
-  <%= link_to "Szabályok", "pages/rules", :class => "item" %>
+  <%= link_to "Rólunk", "/pages/about", :class => "item" %>
+  <%= link_to "Szabályok", "/pages/rules", :class => "item" %>
   <%= link_to "Csapatok", teams_path, :class => "item" %>
   <div class="right menu">
     <% if logged_in? %>
