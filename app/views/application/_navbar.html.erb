@@ -1,0 +1,15 @@
+<div class="ui top menu">
+  <%= link_to "Hírek", articles_path, :class => "item" %>
+  <div class="right menu">
+    <% if logged_in? %>
+      <div class="ui dropdown item">
+        <%= current_user.name %>
+        <div class="menu">
+          <%= link_to "Kijelentkezés", logout_path, :class => "item", :method => :post %>
+        </div>
+      </div>
+    <% else %>
+      <%= link_to "Bejelentkezés", oauth_login_path, :class => "item" %>
+    <% end %>
+  </div>
+</div>

@@ -10,11 +10,7 @@
   </head>
 
   <body>
-  <% if logged_in? %>
-    <%= button_to "Kijelentkezés", logout_path %>
-  <% else %>
-    <%= button_to "Bejelentkezés", oauth_login_path %>
-  <% end %>
+    <%= render 'navbar' %>
     <%= yield %>
   </body>
 </html>
