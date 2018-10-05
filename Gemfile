@@ -32,6 +32,7 @@ gem 'omniauth-oauth2'
 
 gem 'dotenv-rails'
 
+gem 'jquery-rails'
 gem 'semantic-ui-sass', '~> 2.2', '>= 2.2.1.1'
 
 # Use ActiveStorage variant
