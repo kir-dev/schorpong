@@ -1,9 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Hírek</h1>
-<% if current_user.admin? %>
-  <%= link_to 'Új hír', new_article_path, :class => "ui button" %>
-<% end %>
+  <%= link_to 'Új hír', new_article_path, :class => "ui button" if admin? %>
 
 <% @articles.each do |article| %>
   <div class="ui segment">

@@ -12,5 +12,5 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new', as: :login
   get '/auth/oauth/callback', to: 'sessions#create'
 
-  root to: redirect('/users')
+  root to: redirect('/articles')
 end

@@ -25,4 +25,9 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.includes([ { memberships: [ :team ] } ]).find(session[:user_id]) if logged_in?
   end
   helper_method :current_user
+
+  def admin?
+    current_user&.admin?
+  end
+  helper_method :admin?
 end
