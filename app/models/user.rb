@@ -1,6 +1,10 @@
 class User < ApplicationRecord
   has_many :memberships
 
+  def admin?
+    self.admin
+  end
+
   def membership_for(team)
     memberships.find { |m| m.team == team }
   end
