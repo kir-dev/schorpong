@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  image: MyString
+  intro: MyText
+  content: MyText
+  application_deadline: 2018-10-05 18:39:46
+  event_date: 2018-10-05 18:39:46
+
+two:
+  name: MyString
+  image: MyString
+  intro: MyText
+  content: MyText
+  application_deadline: 2018-10-05 18:39:46
+  event_date: 2018-10-05 18:39:46

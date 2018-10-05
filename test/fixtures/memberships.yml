@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  owner: false
+  active: false
+  user: one
+  team: one
+
+two:
+  owner: false
+  active: false
+  user: two
+  team: two
