@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :users
   resources :articles
 
-  get '/logout', to: 'sessions#destroy', as: :logout
+  post '/logout', to: 'sessions#destroy', as: :logout
   get '/login', to: 'sessions#new', as: :login
   get '/auth/oauth/callback', to: 'sessions#create'
 
