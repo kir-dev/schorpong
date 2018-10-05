@@ -5,4 +5,5 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-Page.create(titlename: 'About', )
+Page.create(title: 'Rólunk', name: 'about', content: 'Lorem ipsum dolor set')
+Page.create(title: 'Szabályok', name: 'rules', content: 'Lorem ipsum dolor set')

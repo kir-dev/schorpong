@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   before_action :require_admin, except: [:show]
-  before_action :set_page, only: [:show, :edit, :update, :destroy]
+  before_action :set_page, only: [:edit, :update, :destroy]
 
   # GET /pages
   # GET /pages.json
@@ -11,6 +11,7 @@ class PagesController < ApplicationController
   # GET /pages/1
   # GET /pages/1.json
   def show
+    @page = Page.find_by(name: params[:id])
   end
 
   # GET /pages/new
