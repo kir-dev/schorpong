@@ -9,6 +9,8 @@
   <strong>Score:</strong>
   <%= @team.score %>
 </p>
-
+<% if @team.user_can_join?(current_user) %>
+  <%= button_to 'Csatlakozás', team_memberships_path(@team), method: 'post' %> |
+<% end %>
 <%= link_to 'Edit', edit_team_path(@team) %> |
 <%= link_to 'Back', teams_path %>

@@ -1,64 +1,25 @@
 class MembershipsController < ApplicationController
-  before_action :set_membership, only: [:show, :edit, :update, :destroy]
+  before_action :require_login
+  before_action :set_membership, only: [:approve, :destroy]
 
-  # GET /memberships
-  # GET /memberships.json
-  def index
-    @memberships = Membership.all
-  end
-
-  # GET /memberships/1
-  # GET /memberships/1.json
-  def show
-  end
-
-  # GET /memberships/new
-  def new
-    @membership = Membership.new
-  end
-
-  # GET /memberships/1/edit
-  def edit
-  end
-
-  # POST /memberships
-  # POST /memberships.json
   def create
-    @membership = Membership.new(membership_params)
-
-    respond_to do |format|
-      if @membership.save
-        format.html { redirect_to @membership, notice: 'Membership was successfully created.' }
-        format.json { render :show, status: :created, location: @membership }
-      else
-        format.html { render :new }
-        format.json { render json: @membership.errors, status: :unprocessable_entity }
-      end
+    @team = Team.find(params[:team_id])
+    if @team.user_can_join?(current_user)
+      @team.join!(current_user)
+      return redirect_back(fallback_location: team_path(@team))
+    else
+      forbidden_page
     end
   end
 
-  # PATCH/PUT /memberships/1
-  # PATCH/PUT /memberships/1.json
-  def update
-    respond_to do |format|
-      if @membership.update(membership_params)
-        format.html { redirect_to @membership, notice: 'Membership was successfully updated.' }
-        format.json { render :show, status: :ok, location: @membership }
-      else
-        format.html { render :edit }
-        format.json { render json: @membership.errors, status: :unprocessable_entity }
-      end
-    end
+  def approve
+    @membership.approve!
+    redirect_to @membership, notice: 'Membership was successfully updated.'
   end
 
-  # DELETE /memberships/1
-  # DELETE /memberships/1.json
   def destroy
     @membership.destroy
-    respond_to do |format|
-      format.html { redirect_to memberships_url, notice: 'Membership was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to memberships_url, notice: 'Membership was successfully destroyed.'
   end
 
   private

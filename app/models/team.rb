@@ -9,11 +9,11 @@ class Team < ApplicationRecord
 
   def user_can_join?(current_user)
     !member?(current_user) &&
-        current_user.team_admin? &&
+        !current_user.team_admin? &&
         current_user.number_of_memberships < MAXIMUM_MEMBERSHIPS_COUNT
   end
 
   def join!(current_user)
-    Membership.create(group: self, user: current_user)
+    Membership.create(team: self, user: current_user, active: false, owner: false)
   end
 end

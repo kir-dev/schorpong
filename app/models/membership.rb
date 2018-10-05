@@ -10,7 +10,7 @@ class Membership < ApplicationRecord
     self.active
   end
 
-  def accept!
+  def approve!
     self.active = true
     save
   end

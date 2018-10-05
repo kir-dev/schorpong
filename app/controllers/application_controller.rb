@@ -12,6 +12,10 @@ class ApplicationController < ActionController::Base
     redirect_to root_url unless logged_in? && current_user.admin?
   end
 
+  def forbidden_page
+    render 'application/403', status: :forbidden
+  end
+
   def logged_in?
     session[:user_id]
   end

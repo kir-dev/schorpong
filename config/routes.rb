@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
   resources :entries
-  resources :memberships
   resources :pages
   resources :events
-  resources :teams
+  resources :teams do
+    resources :memberships
+  end
   resources :users
   resources :articles
 
