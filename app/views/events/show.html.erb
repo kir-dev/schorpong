@@ -1,9 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
+<h2>
   <%= @event.name %>
-</p>
+</h2>
 
 <p>
   <strong>Image:</strong>
@@ -11,22 +10,22 @@
 </p>
 
 <p>
-  <strong>Intro:</strong>
-  <%= @event.intro %>
+  <strong>
+    <%= @event.intro %>
+  </strong>
 </p>
 
 <p>
-  <strong>Content:</strong>
   <%= @event.content.html_safe %>
 </p>
 
 <p>
-  <strong>Application deadline:</strong>
+  <strong>Jelentkezése határidő:</strong>
   <%= @event.application_deadline %>
 </p>
 
 <p>
-  <strong>Event date:</strong>
+  <strong>Esemény időpontja:</strong>
   <%= @event.event_date %>
 </p>
 <h3>Nevezett csapatok</h3>
@@ -43,4 +42,6 @@
   <% end %>
 <% end %>
 
-<%= link_to 'Edit', edit_event_path(@event) if admin? %>
+<% if current_user&.admin? %>
+  <%= link_to 'Szerkesztés', edit_event_path(@event) if admin? %>
+<% end %>
