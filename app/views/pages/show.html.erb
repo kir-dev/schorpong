@@ -1,19 +1,6 @@
-<p id="notice"><%= notice %></p>
+<h2><%= @page.title %></h2>
 
-<p>
-  <strong>Title:</strong>
-  <%= @page.title %>
-</p>
+<%= link_to 'Szerkesztés', edit_page_path(@page) if admin? %>
 
-<p>
-  <strong>Name:</strong>
-  <%= @page.name %>
-</p>
+<%= @page.content %>
 
-<p>
-  <strong>Content:</strong>
-  <%= @page.content %>
-</p>
-
-<%= link_to 'Edit', edit_page_path(@page) %> |
-<%= link_to 'Back', pages_path %>
