@@ -23,6 +23,10 @@ class User < ApplicationRecord
     membership&.active?
   end
 
+  def can_create_team?
+    self.number_of_memberships == 0
+  end
+
   def number_of_memberships
     memberships.size
   end

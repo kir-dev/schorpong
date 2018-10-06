@@ -26,4 +26,4 @@
 
 <br>
 
-<%= link_to 'New Team', new_team_path %>
+<%= link_to 'Új csapat', new_team_path if current_user&.can_create_team? %>
