@@ -26,14 +26,11 @@ class TeamsController < ApplicationController
   def create
     @team = Team.new(team_params)
 
-    respond_to do |format|
-      if @team.save
-        format.html { redirect_to @team, notice: 'Team was successfully created.' }
-        format.json { render :show, status: :created, location: @team }
-      else
-        format.html { render :new }
-        format.json { render json: @team.errors, status: :unprocessable_entity }
-      end
+    if @team.save
+      Membership.create(team: @team, user: current_user, owner: true, active: true)
+      redirect_to @team, notice: 'Team was successfully created.'
+    else
+      render :new
     end
   end
 
