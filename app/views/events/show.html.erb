@@ -29,7 +29,10 @@
   <strong>Event date:</strong>
   <%= @event.event_date %>
 </p>
-
+<h3>Nevezett csapatok</h3>
+<% @event.entry.each do |entry| %>
+  <%= link_to entry.team.name, team_path(entry.team) %>
+<% end %>
 <% if @event.users_team_can_entry?(current_user) %>
   <%= form_for @entry, url: event_entries_path(@event), method: 'post', class: 'ui form' do |form| %>
     <%= form.select 'team_id', @event.users_memberships(current_user).collect {|m| [ m.team.name, m.team.id ] },
