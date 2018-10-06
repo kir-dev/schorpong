@@ -10,6 +10,7 @@
         <%= current_user.name %>
         <div class="menu">
           <%= link_to "Profilom", user_path(current_user), :class => "item" %>
+          <%= link_to "Felhasználók", users_path, :class => "item" if admin? %>
           <%= link_to "Kijelentkezés", logout_path, :class => "item", :method => :post %>
         </div>
       </div>
