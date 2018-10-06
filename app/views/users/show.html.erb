@@ -20,9 +20,9 @@
   <%= @user.admin %>
 </p>
 
-<p>Csapataim:</p>
+<p>Csapatok:</p>
 <ul class="ui bulleted list">
-  <% current_user.memberships.each { |membership| %>
+  <% @user&.memberships.each { |membership| %>
     <li class="item">
       <%= link_to membership.team.name, team_path(membership.team) %>
       <% if !membership.active? %>
