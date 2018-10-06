@@ -3,7 +3,7 @@ class Membership < ApplicationRecord
   belongs_to :team
 
   def admin?
-    self.admin
+    self.owner
   end
 
   def active?

@@ -9,8 +9,8 @@ class User < ApplicationRecord
     memberships.find { |m| m.team == team }
   end
 
-  def team_admin?
-    memberships.find { |m| m.admin? }
+  def team_admin?(team)
+    memberships.find { |m| m.admin? && m.team == team }
   end
 
   def admin_of?(team)
