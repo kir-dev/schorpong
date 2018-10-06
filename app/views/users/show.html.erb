@@ -1,16 +1,17 @@
 <p id="notice"><%= notice %></p>
 
-<p>
+<h1>
   <%= @user.name %>
-</p>
+</h1>
 
-<% if current_user&.admin? %>
+<% if admin? %>
   <p>
     <%= @user.mail %>
   </p>
+  <%= link_to 'Szerkesztés', edit_user_path(@user) %>
 <% end %>
 
-<p>Csapatok:</p>
+<h2>Csapatok</h2>
 <ul class="ui bulleted list">
   <% @user&.memberships.each { |membership| %>
     <li class="item">
@@ -24,8 +25,3 @@
     </li>
   <% } %>
 </ul>
-
-<% if current_user&.admin? %>
-  <%= link_to 'Edit', edit_user_path(@user) %> | 
-<% end %>
-<%= link_to 'Back', users_path %>
