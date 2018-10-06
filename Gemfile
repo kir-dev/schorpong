@@ -34,6 +34,9 @@ gem 'dotenv-rails'
 
 gem 'jquery-rails'
 gem 'semantic-ui-sass', '~> 2.2', '>= 2.2.1.1'
+gem 'trix-rails', require: 'trix'
+gem 'shrine'
+
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'

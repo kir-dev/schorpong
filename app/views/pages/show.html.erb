@@ -2,5 +2,5 @@
 
 <%= link_to 'Szerkesztés', edit_page_path(@page) if admin? %>
 
-<%= @page.content %>
+<%= @page.content.html_safe %>
 

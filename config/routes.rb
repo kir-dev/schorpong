@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   end
   resources :users
   resources :articles
+  resources :images, only: [:create]
 
   post '/logout', to: 'sessions#destroy', as: :logout
   get '/login', to: 'sessions#new', as: :login
