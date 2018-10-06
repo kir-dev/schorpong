@@ -1,13 +1,4 @@
 class EntriesController < ApplicationController
-
-  # GET /entries
-  # GET /entries.json
-  def index
-    @entries = Entry.all
-  end
-
-  # POST /entries
-  # POST /entries.json
   def create
     @entry = Entry.new(entry_params)
     @event = Event.find(params[:event_id])
@@ -19,15 +10,10 @@ class EntriesController < ApplicationController
     end
   end
 
-  # DELETE /entries/1
-  # DELETE /entries/1.json
   def destroy
     @entry = Entry.find(params[:id])
     @entry.destroy
-    respond_to do |format|
-      format.html { redirect_to entries_url, notice: 'Entry was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to @entry.team, notice: 'Entry was successfully destroyed.'
   end
 
   private

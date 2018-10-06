@@ -5,7 +5,7 @@ class MembershipsController < ApplicationController
     @team = Team.find(params[:team_id])
     if @team.user_can_join?(current_user)
       @team.join!(current_user)
-      return redirect_back(fallback_location: team_path(@team))
+      redirect_back(fallback_location: team_path(@team))
     else
       forbidden_page
     end

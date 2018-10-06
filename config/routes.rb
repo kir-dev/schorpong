@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  resources :pages
+  resources :pages, only: [:show, :edit, :update]
   resources :events do
-    resources :entries
+    resources :entries, only: [:create, :destroy]
   end
   resources :teams do
     resources :memberships do
