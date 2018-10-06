@@ -26,3 +26,6 @@
   width: 140px;
   position:absolute;
 }
+.ui.inverted.vertical.footer.segment {
+  margin-top: 2rem;
+}
