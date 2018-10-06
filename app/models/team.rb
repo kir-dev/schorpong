@@ -7,6 +7,10 @@ class Team < ApplicationRecord
     user.membership_for(self)
   end
 
+  def enetered_for?(event)
+    event.entry.find { |e| e.team == self }
+  end
+
   def user_can_join?(current_user)
     current_user &&
         !member?(current_user) &&

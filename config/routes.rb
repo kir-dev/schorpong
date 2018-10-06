@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-  resources :entries
   resources :pages
-  resources :events
+  resources :events do
+    resources :entries
+  end
   resources :teams do
     resources :memberships
   end
