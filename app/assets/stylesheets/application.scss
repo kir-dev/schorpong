@@ -3,3 +3,9 @@
 body {
     margin-top: 5rem;
 }
+
+
+/* Fix icons gettin 'display: table-cell' */
+i.icon {
+    display: inline-block !important;
+}

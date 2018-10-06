@@ -20,5 +20,19 @@
   <%= @user.admin %>
 </p>
 
+<p>Csapataim:</p>
+<ul class="ui bulleted list">
+  <% current_user.memberships.each { |membership| %>
+    <li class="item">
+      <%= link_to membership.team.name, team_path(membership.team) %>
+      <% if !membership.active? %>
+        &nbsp;(feldolgozás alatt)
+      <% end %>
+      <% if membership.admin? %><%= semantic_icon('shield alternate') %>
+      <% end %>
+    </li>
+  <% } %>
+</ul>
+
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
