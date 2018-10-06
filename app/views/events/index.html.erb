@@ -1,40 +1,17 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Events</h1>
+<h1>Események</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Image</th>
-      <th>Intro</th>
-      <th>Content</th>
-      <th>Application deadline</th>
-      <th>Event date</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<%= link_to 'Új esemény', new_event_path, :class => "ui button primary" if admin? %>
 
-  <tbody>
-    <% @events.each do |event| %>
-      <tr>
-        <td><%= event.name %></td>
-        <td><%= event.image %></td>
-        <td><%= event.intro %></td>
-        <td><%= event.content %></td>
-        <td><%= event.application_deadline %></td>
-        <td><%= event.event_date %></td>
-        <td><%= link_to 'Show', event %></td>
-        <% if current_user&.admin? %>
-          <td><%= link_to 'Edit', edit_event_path(event) %></td>
-          <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
-      </tr>
+<% @events.each do |event| %>
+  <div class="ui red segment">
+    <h2><%= event.name %></h2>
+    <p><%= event.intro %></p>
+    <%= link_to 'Tovább', event, :class => "ui button" %>
+    <% if current_user&.admin? %>
+      <%= link_to 'Szerkesztés', edit_event_path(event), :class => "ui button" %>
+      <%= link_to 'Törlés', event, method: :delete, data: { confirm: 'Are you sure?' }, :class => "ui button negative" %>
     <% end %>
-  </tbody>
-</table>
-
-<br>
-
-
-<%= link_to 'New Event', new_event_path if admin? %>
+  </div>
+<% end %>
