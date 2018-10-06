@@ -8,7 +8,7 @@ Rails.application.routes.draw do
       put '/approve', to: 'memberships#approve'
     end
   end
-  resources :users
+  resources :users, only: [:index, :show, :edit, :update]
   resources :articles
   resources :images, only: [:create]
 
