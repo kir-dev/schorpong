@@ -18,10 +18,12 @@
     <%= form.text_field :name %>
   </div>
 
-  <div class="field">
-    <%= form.label :score %>
-    <%= form.number_field :score %>
-  </div>
+  <% if current_user&.admin? %>
+    <div class="field">
+      <%= form.label :score %>
+      <%= form.number_field :score %>
+    </div>
+  <% end %>
 
   <div class="actions">
     <%= form.submit %>
