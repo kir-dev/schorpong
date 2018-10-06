@@ -1,19 +1,14 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
   <%= @user.name %>
 </p>
 
-<p>
-  <strong>Mail:</strong>
-  <%= @user.mail %>
-</p>
-
-<p>
-  <strong>Admin:</strong>
-  <%= @user.admin %>
-</p>
+<% if current_user&.admin? %>
+  <p>
+    <%= @user.mail %>
+  </p>
+<% end %>
 
 <p>Csapatok:</p>
 <ul class="ui bulleted list">
