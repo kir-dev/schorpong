@@ -28,7 +28,8 @@
       <% if !membership.active? %>
         &nbsp;(feldolgozás alatt)
       <% end %>
-      <% if membership.admin? %><%= semantic_icon('shield alternate') %>
+      <% if membership.admin? %>
+        <i class="shield icon"></i>
       <% end %>
     </li>
   <% } %>

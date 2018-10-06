@@ -1,29 +1,29 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Teams</h1>
+<h1>Csapatok</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Score</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @teams.each do |team| %>
-      <tr>
-        <td><%= team.name %></td>
-        <td><%= team.score %></td>
-        <td><%= link_to 'Show', team %></td>
-        <td><%= link_to 'Edit', edit_team_path(team) %></td>
-        <td><%= link_to 'Destroy', team, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
+<div class="ui cards">
+  <% @teams.each do |team| %>
+    <div class="ui card">
+      <div class="content">
+        <div class="header">
+          <%= team.name %>
+        </div>
+        <span class="ui right ribbon label">
+          <%= team.score %> pont
+        </span>
+        <div class="description">
+          <% active_members(team).each do |membership| %>
+            <%= link_to membership.user.name, user_path(membership.user) %>
+            <% if membership.admin? %>
+              <i class="shield icon"></i>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+      <%= link_to '<div class="ui bottom attached button">Megtekintés</div>'.html_safe, team %>
+    </div>
+  <% end %>
+</div>
 
 <%= link_to 'Új csapat', new_team_path if current_user&.can_create_team? %>
