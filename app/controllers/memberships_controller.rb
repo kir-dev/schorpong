@@ -13,7 +13,7 @@ class MembershipsController < ApplicationController
 
   def approve
     @membership = Membership.find(params[:membership_id])
-    if current_user.team_admin?(@membership.team)
+    if current_user.admin_of?(@membership.team)
       @membership.approve!
       redirect_to @membership.team, notice: 'Membership was successfully updated.'
     else

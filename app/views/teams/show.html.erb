@@ -25,7 +25,7 @@
 <h3>Feldolgozás alatt</h3>
 <% inactive_members(@team).each do |membership| %>
   <%= link_to membership.user.name, user_path(membership.user) %>
-  <% if current_user.team_admin?(membership.team)  %>
+  <% if current_user&.admin_of?(membership.team)  %>
     <%= link_to 'Elfogadás', team_membership_approve_path(membership.team, membership), method: 'put' %>
   <% end %>
 <% end %>
