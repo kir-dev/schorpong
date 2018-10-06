@@ -14,18 +14,11 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= @user.name %>
   </div>
 
   <div class="field">
-    <%= form.label :auth_sch_id %>
-    <%= form.text_field :auth_sch_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :mail %>
-    <%= form.text_area :mail %>
+    <%= @user.mail %>
   </div>
 
   <div class="field">

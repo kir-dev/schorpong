@@ -6,7 +6,6 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Auth sch</th>
       <th>Mail</th>
       <th>Admin</th>
       <th colspan="3"></th>
@@ -17,7 +16,6 @@
     <% @users.each do |user| %>
       <tr>
         <td><%= user.name %></td>
-        <td><%= user.auth_sch_id %></td>
         <td><%= user.mail %></td>
         <td><%= user.admin %></td>
         <td><%= link_to 'Show', user %></td>
