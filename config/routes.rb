@@ -4,7 +4,9 @@ Rails.application.routes.draw do
     resources :entries
   end
   resources :teams do
-    resources :memberships
+    resources :memberships do
+      put '/approve', to: 'memberships#approve'
+    end
   end
   resources :users
   resources :articles

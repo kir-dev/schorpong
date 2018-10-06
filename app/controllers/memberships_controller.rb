@@ -1,6 +1,5 @@
 class MembershipsController < ApplicationController
   before_action :require_login
-  before_action :set_membership, only: [:approve, :destroy]
 
   def create
     @team = Team.find(params[:team_id])
@@ -13,21 +12,22 @@ class MembershipsController < ApplicationController
   end
 
   def approve
-    @membership.approve!
-    redirect_to @membership, notice: 'Membership was successfully updated.'
+    @membership = Membership.find(params[:membership_id])
+    if current_user.team_admin?(@membership.team)
+      @membership.approve!
+      redirect_to @membership.team, notice: 'Membership was successfully updated.'
+    else
+      forbidden_page
+    end
   end
 
   def destroy
+    @membership = Membership.find(params[:id])
     @membership.destroy
     redirect_to memberships_url, notice: 'Membership was successfully destroyed.'
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_membership
-      @membership = Membership.find(params[:id])
-    end
-
     # Never trust parameters from the scary internet, only allow the white list through.
     def membership_params
       params.require(:membership).permit(:owner, :active, :user_id, :team_id)
