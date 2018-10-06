@@ -33,7 +33,10 @@ gem 'omniauth-oauth2'
 gem 'dotenv-rails'
 
 gem 'jquery-rails'
-gem 'semantic-ui-sass', '~> 2.2', '>= 2.2.1.1'
+gem 'less-rails-semantic_ui', '~> 2.3.1'
+gem 'autoprefixer-rails', '8.6.5'
+gem 'therubyracer'
+
 gem 'trix-rails', require: 'trix'
 gem 'shrine'
 

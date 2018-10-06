@@ -13,8 +13,8 @@
  *= require_tree .
  *= require_self
  *= require trix
+ *= require semantic_ui/semantic_ui
  */
-@import "semantic-ui";
 
 body {
     margin-top: 5rem;
