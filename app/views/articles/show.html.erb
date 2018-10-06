@@ -1,24 +1,22 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
+<h2>
   <%= @article.title %>
+</h2>
+
+<!-- TODO: show the picture at the top maybe? -->
+
+<p>
+  <strong>
+    <%= @article.intro %>
+</strong>
 </p>
 
 <p>
-  <strong>Image:</strong>
-  <%= @article.image %>
-</p>
-
-<p>
-  <strong>Intro:</strong>
-  <%= @article.intro %>
-</p>
-
-<p>
-  <strong>Content:</strong>
   <%= @article.content.html_safe %>
 </p>
 
-<%= link_to 'Edit', edit_article_path(@article) %> |
+<% if current_user&.admin? %>
+  <%= link_to 'Edit', edit_article_path(@article) %> |
+<% end %>
 <%= link_to 'Back', articles_path %>

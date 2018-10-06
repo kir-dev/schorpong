@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Hírek</h1>
-  <%= link_to 'Új hír', new_article_path, :class => "ui button primary" if admin? %>
+<%= link_to 'Új hír', new_article_path, :class => "ui button primary" if admin? %>
 
 <% @articles.each do |article| %>
   <div class="ui segment">
