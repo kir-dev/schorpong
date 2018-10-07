@@ -2,57 +2,63 @@
   <%= @event.name %>
 </h1>
 
-<p>
-  <%= @event.image %>
-</p>
+<div class="ui grid">
+<div class="two column row">
+  <div class="twelve wide column">
 
-<p>
-  <strong>
-    <%= @event.intro %>
-  </strong>
-</p>
+    <p>
+      <strong>
+        <%= @event.intro %>
+      </strong>
+    </p>
 
-<p>
-  <%= @event.content.html_safe %>
-</p>
+    <p>
+      <%= @event.content.html_safe %>
+    </p>
 
-<p>
-  <strong>Jelentkezése határidő:</strong>
-  <%= @event.application_deadline %>
-</p>
+    <h3>Nevezett csapatok</h3>
+    <ul class="ui bulleted list">
+      <% @event.entry.each do |entry| %>
+        <%= link_to entry.team.name, team_path(entry.team), class: 'item' %>
+        <% if admin? %> (<%= entry.comment %>) <% end %>
+      <% end %>
+    </ul>
 
-<p>
-  <strong>Esemény időpontja:</strong>
-  <%= @event.event_date %>
-</p>
-<h3>Nevezett csapatok</h3>
-<ul class="ui bulleted list">
-  <% @event.entry.each do |entry| %>
-    <%= link_to entry.team.name, team_path(entry.team), class: 'item' %>
-  <% end %>
-</ul>
+    <% if @event.users_team_can_entry?(current_user) %>
+      <%= form_for @entry, url: event_entries_path(@event), method: 'post', :html => {class: 'ui form'} do |form| %>
+        <div class="fields">
+          <div class="field">
+            <%= form.select 'team_id', @event.users_memberships(current_user).collect {|m| [ m.team.name, m.team.id ] },
+                            { include_blank: true }, class: 'ui dropdown'  %>
+          </div>
+          <div class="field">
+            <%= form.text_area :comment, :rows => '1', :placeholder => 'Megjegyzés' %>
+          </div>
+          <div class="field">
+            <%= form.submit 'Csatlakozás', class: 'ui button' %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+    <br>
 
-<% if @event.users_team_can_entry?(current_user) %>
-  <%= form_for @entry, url: event_entries_path(@event), method: 'post', :html => {class: 'ui form'} do |form| %>
-  <div class="fields">
-    <div class="field">
-      <%= form.select 'team_id', @event.users_memberships(current_user).collect {|m| [ m.team.name, m.team.id ] },
-                { include_blank: true }, class: 'ui dropdown'  %>
-    </div>
-    <div class="field">
-        <%= form.text_area :comment, :rows => '1', :placeholder => 'Megjegyzés' %>
-    </div>
-    <div class="field">
-      <%= form.submit 'Csatlakozás', class: 'ui button' %>
-    </div>
+    <% if current_user&.admin? %>
+      <%= link_to 'Szerkesztés', edit_event_path(@event) if admin? %>
+    <% end %>
   </div>
-  <% end %>
-<% end %>
-<br>
-
-<% if current_user&.admin? %>
-  <%= link_to 'Szerkesztés', edit_event_path(@event) if admin? %>
-<% end %>
+  <div class="four wide column right aligned ">
+    <p>
+      <strong>Jelentkezése határidő</strong>
+    </p>
+    <h3><%= @event.application_deadline.strftime('%Y. %-m. %d. %H:%M') %></h3>
+    <br>
+    <p>
+      <strong>Esemény időpontja</strong>
+    </p>
+    <h3><%= @event.event_date.strftime('%Y. %-m. %d. %H:%M') %></h3>
+  </div>
+</div>
+</div>
 <div id="disqus_thread"></div>
 <script>
 
