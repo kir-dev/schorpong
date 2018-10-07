@@ -32,3 +32,12 @@
 .ui.inverted.vertical.footer.segment {
   margin-top: 2rem;
 }
+.segment .image img {
+  max-width: 100%;
+}
+.segment h2 span {
+  font-size: 12px;
+  float: right;
+  font-weight: normal;
+  color: #7a7a7a;
+}
