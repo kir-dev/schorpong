@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Csapatok</h1>
 
 <%= link_to 'Új csapat', new_team_path, class: 'ui button' if current_user&.can_create_team? %>
