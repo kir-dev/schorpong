@@ -80,6 +80,7 @@ test:
 #
 production:
   <<: *default
+  host: <%= ENV['SCHORPONG_DATABASE_HOST'] %>
   database: schorpong_production
   username: schorpong
   password: <%= ENV['SCHORPONG_DATABASE_PASSWORD'] %>
