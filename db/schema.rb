@@ -72,7 +72,7 @@ ActiveRecord::Schema.define(version: 2018_10_06_164931) do
 
   create_table "teams", force: :cascade do |t|
     t.string "name"
-    t.integer "score"
+    t.integer "score", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -81,7 +81,7 @@ ActiveRecord::Schema.define(version: 2018_10_06_164931) do
     t.string "name"
     t.string "auth_sch_id"
     t.text "mail"
-    t.boolean "admin"
+    t.boolean "admin", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
