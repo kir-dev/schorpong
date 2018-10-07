@@ -20,7 +20,7 @@
 <% @articles.each do |article| %>
   <div class="ui segment red stackable two column grid">
     <div class="image four wide column">
-      <img src="http://placehold.it/356x356">
+      <%= image_tag(article.image.url, alt: 'Image') if article.image? %>
     </div>
     <div class="content twelve wide column">
       <h2><%= article.title %>

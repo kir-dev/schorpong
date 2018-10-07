@@ -1,5 +1,6 @@
 class Event < ApplicationRecord
   has_many :entry
+  mount_uploader :image, ImageUploader
 
   def entered?(team)
     team.enetered_for?(self)

@@ -3,13 +3,21 @@
 <%= link_to 'Új esemény', new_event_path, :class => "ui button primary" if admin? %>
 
 <% @events.each do |event| %>
-  <div class="ui red segment">
-    <h2><%= event.name %></h2>
-    <p><%= event.intro %></p>
-    <%= link_to 'Tovább', event, :class => "ui button" %>
-    <% if current_user&.admin? %>
-      <%= link_to 'Szerkesztés', edit_event_path(event), :class => "ui button" %>
-      <%= link_to 'Törlés', event, method: :delete, data: { confirm: 'Biztosan törlöd?' }, :class => "ui button negative" %>
-    <% end %>
+  <div class="ui segment red stackable two column grid">
+    <div class="image four wide column">
+      <%= image_tag(event.image.url, alt: 'Image') if event.image? %>
+    </div>
+    <div class="content twelve wide column">
+      <h2>
+        <%= event.name %>
+        <span class="meta floated right"> <%= time_ago_in_words event.created_at %></span>
+      </h2>
+      <p><%= event.intro %></p>
+      <%= link_to 'Tovább', event, :class => "ui button" %>
+      <% if current_user&.admin? %>
+        <%= link_to 'Szerkesztés', edit_event_path(event), :class => "ui button" %>
+        <%= link_to 'Törlés', event, method: :delete, data: { confirm: 'Biztosan törlöd?' }, :class => "ui button negative" %>
+      <% end %>
+    </div>
   </div>
 <% end %>
