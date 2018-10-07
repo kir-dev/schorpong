@@ -7,3 +7,4 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 Page.create(title: 'Rólunk', name: 'about', content: 'Lorem ipsum dolor set')
 Page.create(title: 'Szabályok', name: 'rules', content: 'Lorem ipsum dolor set')
+Page.create(title: 'Jelentkezés', name: 'teams', content: 'Lorem ipsum dolor set')

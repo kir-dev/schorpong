@@ -3,6 +3,7 @@ class TeamsController < ApplicationController
   before_action :set_team, only: [:show, :edit, :update]
 
   def index
+    @page = Page.find_by(name: 'teams')
     @teams = Team.order(score: :desc).select { |team| team.number_of_memberships != 0 }
   end
 
