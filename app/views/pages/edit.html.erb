@@ -1,4 +1,4 @@
-<h1>Editing Page</h1>
+<h1>Oldal szerkesztése</h1>
 
 <%= form_with(model: @page, local: true) do |form| %>
   <% if @page.errors.any? %>
@@ -14,21 +14,21 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :title %>
+    <%= form.label :title, 'Cím' %>
     <%= form.text_field :title %>
   </div>
 
   <div class="field">
-    <%= form.label :name %>
+    <%= form.label :name, 'Oldal neve' %>
     <%= form.text_field :name %>
   </div>
 
   <div class="field">
-    <%= form.label :content %>
+    <%= form.label :content, 'Tartalom' %>
     <%= form.trix_editor :content %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit 'Mentés' %>
   </div>
 <% end %>
