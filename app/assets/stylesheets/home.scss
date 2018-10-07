@@ -1,0 +1,86 @@
+// Place all the styles related to the Articles controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.ball.small {
+  transition: 1s;
+}
+.ball {
+  bottom: 450px;
+  width: 50px;
+  height: 50px;
+  filter: blur(3px);
+  z-index: 1001;
+  background: url('/images/animation/ball.png');
+  position: absolute;
+  background-size: 50px 50px;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cups.small {
+  width: 84px;
+  height: 75px;
+  background-size: 84px 75px;
+  bottom: -50px;
+  transition: 1s;
+}
+.cups {
+  background: url('/images/animation/cups.png');
+  width: 350px;
+  height: 300px;
+  position: absolute;
+  background-size: 350px 300px;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  bottom: -125px;
+  z-index: 1001;
+  transition: 1s;
+}
+.cups_back.small {
+  width: 84px;
+  height: 75px;
+  background-size: 84px 75px;
+  bottom: -50px;
+  transition: 1s;
+}
+.cups_back {
+  z-index: 1000;
+  background: url('/images/animation/cups_back.png');
+  width: 350px;
+  height: 300px;
+  position: absolute;
+  background-size: 350px 300px;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  bottom: -125px;
+  transition: 1s;
+}
+.logo_background.small {
+  width: 150px;
+  height: 120px;
+  background-size: 150px 120px;
+  bottom: -75px;
+  transition: 1s;
+}
+.logo_background {
+  z-index: 999;
+  background: url('/images/animation/logo_background.png');
+  width: 600px;
+  height: 480px;
+  position: absolute;
+  background-size: 600px 480px;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  bottom: -215px;
+  display: none;
+  transition: 1s;
+}

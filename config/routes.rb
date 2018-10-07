@@ -12,9 +12,11 @@ Rails.application.routes.draw do
   resources :articles
   resources :images, only: [:create]
 
+  get '/', to: 'home#index'
+
   post '/logout', to: 'sessions#destroy', as: :logout
   get '/login', to: 'sessions#new', as: :login
   get '/auth/oauth/callback', to: 'sessions#create'
 
-  root to: redirect('/articles')
+  root to: redirect('/')
 end

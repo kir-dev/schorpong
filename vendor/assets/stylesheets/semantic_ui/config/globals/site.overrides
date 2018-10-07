@@ -9,6 +9,9 @@
   height: 300px;
   position: relative;
 }
+.big-page-header {
+  height: 700px;
+}
 .page-header svg {
   position: absolute;
   bottom: 0;

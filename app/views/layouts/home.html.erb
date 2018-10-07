@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Schorpong</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+<%= render 'navbar' %>
+<header class="big-page-header page-header">
+  <div class="animation">
+    <div class="ball"></div>
+    <div class="cups"></div>
+    <div class="cups_back"></div>
+    <div class="logo_background"></div>
+  </div>
+</header>
+<div class="ui container">
+  <%= yield %>
+</div>
+<div class="ui inverted vertical footer segment">
+  <div class="ui center aligned container">
+    <div class="ui inverted section divider"></div>
+    <a href="http://kir-dev.sch.bme.hu" target="_blank">
+      <img class="ui centered mini image" src="/images/kirdev.png">
+    </a>
+    <div class="ui horizontal inverted small divided link list">
+      <a class="item" href="https://www.facebook.com/schorpong/">
+        <i class="icon facebook"></i>Schörpong
+      </a>
+      <a class="item" href="mailto:schorpong@sch.bme.hu">
+        <i class="icon mail"></i>schorpong@sch.bme.hu
+      </a>
+    </div>
+    <div class="ui inverted section"></div>
+  </div>
+</div>
+<script>
+    $('.ui.dropdown').dropdown();
+</script>
+</body>
+</html>
