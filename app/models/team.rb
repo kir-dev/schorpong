@@ -14,6 +14,7 @@ class Team < ApplicationRecord
 
   def user_can_join?(current_user)
     current_user &&
+        self.number_of_memberships != 0 &&
         !member?(current_user) &&
         !current_user.team_admin? &&
         self.number_of_memberships < MAXIMUM_MEMBER_COUNT &&
