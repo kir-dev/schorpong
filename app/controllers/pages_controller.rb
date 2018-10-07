@@ -12,7 +12,7 @@ class PagesController < ApplicationController
   def update
     @page = Page.find(params[:id])
     if @page.update(page_params)
-      redirect_to @page, notice: 'Page was successfully updated.'
+      redirect_to root_url, notice: 'Page was successfully updated.'
     else
       render :edit
     end
