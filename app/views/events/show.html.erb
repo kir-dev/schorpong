@@ -33,13 +33,21 @@
     <%= link_to entry.team.name, team_path(entry.team), class: 'item' %>
   <% end %>
 </ul>
-<% if @event.users_team_can_entry?(current_user) %>
-  <%= form_for @entry, url: event_entries_path(@event), method: 'post', class: 'ui form' do |form| %>
-    <%= form.select 'team_id', @event.users_memberships(current_user).collect {|m| [ m.team.name, m.team.id ] },
-               { include_blank: true }, class: 'ui dropdown'  %>
 
-    <%= form.text_area :comment %>
-    <%= form.submit 'Csatlakozás', class: 'ui button' %>
+<% if @event.users_team_can_entry?(current_user) %>
+  <%= form_for @entry, url: event_entries_path(@event), method: 'post', :html => {class: 'ui form'} do |form| %>
+  <div class="fields">
+    <div class="field">
+      <%= form.select 'team_id', @event.users_memberships(current_user).collect {|m| [ m.team.name, m.team.id ] },
+                { include_blank: true }, class: 'ui dropdown'  %>
+    </div>
+    <div class="field">
+        <%= form.text_area :comment, :rows => '1', :placeholder => 'Megjegyzés' %>
+    </div>
+    <div class="field">
+      <%= form.submit 'Csatlakozás', class: 'ui button' %>
+    </div>
+  </div>
   <% end %>
 <% end %>
 <br>
