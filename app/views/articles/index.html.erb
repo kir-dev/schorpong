@@ -4,13 +4,13 @@
 <%= link_to 'Új hír', new_article_path, :class => "ui button primary" if admin? %>
 
 <% @articles.each do |article| %>
-  <div class="ui segment">
+  <div class="ui segment red">
     <h2><%= article.title %></h2>
     <p><%= article.intro %></p>
     <%= link_to 'Tovább olvasom', article, :class => "ui button asd" %>
     <% if current_user&.admin? %>
       <%= link_to 'Szerkesztés', edit_article_path(article), :class => "ui button" %>
-      <%= link_to 'Törlés', article, method: :delete, data: { confirm: 'Are you sure?' }, :class => "ui button negative" %>
+      <%= link_to 'Törlés', article, method: :delete, data: { confirm: 'Biztosan törlöd?' }, :class => "ui button negative" %>
     <% end %>
   </div>
 <% end %>

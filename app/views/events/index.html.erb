@@ -11,7 +11,7 @@
     <%= link_to 'Tovább', event, :class => "ui button" %>
     <% if current_user&.admin? %>
       <%= link_to 'Szerkesztés', edit_event_path(event), :class => "ui button" %>
-      <%= link_to 'Törlés', event, method: :delete, data: { confirm: 'Are you sure?' }, :class => "ui button negative" %>
+      <%= link_to 'Törlés', event, method: :delete, data: { confirm: 'Biztosan törlöd?' }, :class => "ui button negative" %>
     <% end %>
   </div>
 <% end %>

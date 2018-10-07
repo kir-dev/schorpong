@@ -12,36 +12,36 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :name %>
+    <%= form.label :name, 'Cím' %>
     <%= form.text_field :name %>
   </div>
 
   <div class="field">
-    <%= form.label :image %>
+    <%= form.label :image, 'Kép' %>
     <%= form.text_field :image %>
   </div>
 
   <div class="field">
-    <%= form.label :intro %>
+    <%= form.label :intro, 'Bevezető szöveg' %>
     <%= form.text_area :intro %>
   </div>
 
   <div class="field">
-    <%= form.label :content %>
+    <%= form.label :content, 'Tartalom' %>
     <%= form.trix_editor :content %>
   </div>
 
   <div class="field">
-    <%= form.label :application_deadline %>
+    <%= form.label :application_deadline, 'Jelentkezési határidő' %>
     <%= form.datetime_select :application_deadline %>
   </div>
 
   <div class="field">
-    <%= form.label :event_date %>
+    <%= form.label :event_date, 'Esemény időpontja' %>
     <%= form.datetime_select :event_date %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit 'Mentés' %>
   </div>
 <% end %>

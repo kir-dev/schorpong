@@ -12,26 +12,26 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :title %>
+    <%= form.label :title, 'Cím' %>
     <%= form.text_field :title %>
   </div>
 
   <div class="field">
-    <%= form.label :image %>
+    <%= form.label :image, 'Kép' %>
     <%= form.text_field :image %>
   </div>
 
   <div class="field">
-    <%= form.label :intro %>
+    <%= form.label :intro, 'Bevezető szöveg' %>
     <%= form.text_field :intro %>
   </div>
 
   <div class="field">
-    <%= form.label :content %>
+    <%= form.label :content, 'Tartalom' %>
     <%= form.trix_editor :content %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit 'Mentés' %>
   </div>
 <% end %>

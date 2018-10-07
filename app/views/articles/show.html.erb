@@ -4,8 +4,6 @@
   <%= @article.title %>
 </h2>
 
-<!-- TODO: show the picture at the top maybe? -->
-
 <p>
   <strong>
     <%= @article.intro %>
@@ -17,6 +15,6 @@
 </p>
 
 <% if current_user&.admin? %>
-  <%= link_to 'Edit', edit_article_path(@article) %> |
+  <%= link_to 'Szerkesztés', edit_article_path(@article) %> |
 <% end %>
-<%= link_to 'Back', articles_path %>
+<%= link_to 'Vissza', articles_path %>
