@@ -15,12 +15,16 @@
           <%= team.score %> pont
         </span>
         <div class="description">
-          <% active_members(team).each do |membership| %>
-            <%= link_to membership.user.name, user_path(membership.user) %>
-            <% if membership.admin? %>
-              <i class="shield icon"></i>
+          <ul class="ui bulleted list">
+            <% active_members(team).each do |membership| %>
+              <li class="item">
+                <%= link_to membership.user.name, user_path(membership.user) %>
+                <% if membership.admin? %>
+                  <i class="shield icon"></i>
+                <% end %>
+              </li>
             <% end %>
-          <% end %>
+          </ul>
         </div>
       </div>
       <%= link_to '<div class="ui bottom attached button">Megtekintés</div>'.html_safe, team %>

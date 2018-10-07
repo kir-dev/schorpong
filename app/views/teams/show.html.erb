@@ -15,16 +15,20 @@
   <%= link_to 'Szerkesztés', edit_team_path(@team) %>
 <% end %>
 <h3>Aktív tagok</h3>
-<% active_members(@team).each do |membership| %>
-  <%= link_to membership.user.name, user_path(membership.user) %>
-  <% if membership.admin? %>
-    <i class="shield icon"></i>
+<ul class="ui bulleted list">
+  <% active_members(@team).each do |membership| %>
+    <li class="item">
+      <%= link_to membership.user.name, user_path(membership.user) %>
+      <% if membership.admin? %>
+        <i class="shield icon"></i>
+      <% end %>
+    </li>
   <% end %>
-
   <% if membership.can_destroy?(current_user) %>
     <%= link_to 'Tagság törlése', team_membership_destroy_path(membership.team, membership), method: 'delete' %>
   <% end %>
 <% end %>
+</ul>
 
 <% if inactive_members(@team).size > 0 %>
   <h3>Feldolgozás alatt</h3>
