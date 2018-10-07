@@ -15,30 +15,52 @@
   <%= link_to 'Szerkesztés', edit_team_path(@team) %>
 <% end %>
 <h3>Aktív tagok</h3>
-<ul class="ui bulleted list">
-  <% active_members(@team).each do |membership| %>
-    <li class="item">
-      <%= link_to membership.user.name, user_path(membership.user) %>
-      <% if membership.admin? %>
-        <i class="shield icon"></i>
-      <% end %>
-      <% if membership.can_destroy?(current_user) %>
-        <%= link_to '<i class="trash alternate icon"></i>'.html_safe, team_membership_destroy_path(membership.team, membership), method: 'delete', class: 'mini ui icon button negative' %>
-      <% end %>
-    </li>
-  <% end %>
+<ul class="ui cards">
+    <% active_members(@team).each do |membership| %>
+      <li class="card">
+        <div class="content">
+          <div class="header">
+            <%= link_to membership.user.name, user_path(membership.user) %>
+            <% if membership.admin? %>
+              <i class="shield icon"></i>
+            <% end %>
+          </div>
+        </div>
+        <% if membership.can_destroy?(current_user) %>
+          <div class="ui bottom basic attached negative button">
+            <i class="remove icon"></i>
+            Tagság törlése
+          </div>
+        <% end %>
+      </li>
+    <% end %>
 </ul>
 
 <% if inactive_members(@team).size > 0 %>
   <h3>Feldolgozás alatt</h3>
-  <% inactive_members(@team).each do |membership| %>
-    <%= link_to membership.user.name, user_path(membership.user) %>
-    <% if current_user&.eql?(membership.user) %>
-      <%= link_to 'Jelentkezés visszavonása', team_membership_decline_path(membership.team, membership), method: 'delete' %>
+  <ul class="ui cards">
+    <% inactive_members(@team).each do |membership| %>
+      <li class="card">
+        <div class="content">
+          <div class="header">
+            <%= link_to membership.user.name, user_path(membership.user) %>
+          </div>
+          <div class="description">
+            Felvételt kért a csapatba
+          </div>
+        </div>
+        <% if current_user&.eql?(membership.user) %>
+          <%= link_to '<i class="remove icon"></i>Jelentkezés visszavonása'.html_safe, team_membership_decline_path(membership.team, membership), method: 'delete', class: 'ui bottom basic attached negative button' %>
+        <% end %>
+        <% if current_user&.admin_of?(membership.team) %>
+        <div class="extra content">
+          <div class="ui two buttons">
+            <%= link_to 'Elfogadás', team_membership_approve_path(membership.team, membership), method: 'put', class: 'ui basic positive button' %>
+            <%= link_to 'Elutasítás', team_membership_decline_path(membership.team, membership), method: 'delete', class: 'ui basic negative button' %>
+          </div>
+        </div>
+        <% end %>
+      </li>
     <% end %>
-    <% if current_user&.admin_of?(membership.team)  %>
-      <%= link_to 'Elfogadás', team_membership_approve_path(membership.team, membership), method: 'put' %>
-      <%= link_to 'Elutasítás', team_membership_decline_path(membership.team, membership), method: 'delete' %>
-    <% end %>
-  <% end %>
+  </ul>
 <% end %>
