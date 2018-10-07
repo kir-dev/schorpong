@@ -22,7 +22,13 @@
       </div>
     </header>
     <div class="ui container">
-      <p id="notice"><%= notice %></p>
+      <% if notice %>
+        <div class="ui positive message">
+          <div class="header">
+            <%= notice %>
+          </div>
+        </div>
+      <% end %>
       <%= yield %>
     </div>
     <div class="ui inverted vertical footer segment">

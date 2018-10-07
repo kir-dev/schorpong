@@ -41,3 +41,6 @@
   font-weight: normal;
   color: #7a7a7a;
 }
+.ui.container .ui.message {
+  margin-top: 70px;
+}
