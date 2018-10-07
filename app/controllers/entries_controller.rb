@@ -6,7 +6,7 @@ class EntriesController < ApplicationController
     @event = Event.find(params[:event_id])
     @entry.event = @event
     if @entry.save
-      redirect_to @event, notice: 'Entry was successfully created.'
+      redirect_to @event, notice: 'Sikeresen neveztél az eseményre.'
     else
       render :new
     end

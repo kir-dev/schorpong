@@ -15,7 +15,7 @@ class MembershipsController < ApplicationController
     @membership = Membership.find(params[:membership_id])
     if current_user.admin_of?(@membership.team)
       @membership.approve!
-      redirect_to @membership.team, notice: 'Membership was successfully updated.'
+      redirect_to @membership.team, notice: 'Tagság sikeresen firssítve.'
     else
       forbidden_page
     end
@@ -25,7 +25,7 @@ class MembershipsController < ApplicationController
     @membership = Membership.find(params[:membership_id])
     if current_user&.admin_of?(@membership.team) || current_user&.eql?(@membership.user)
       @membership.decline!
-      redirect_to @membership.team, notice: 'Membership was successfully updated.'
+      redirect_to @membership.team, notice: 'Tagság sikeresen firssítve.'
     else
       forbidden_page
     end
@@ -35,7 +35,7 @@ class MembershipsController < ApplicationController
     @membership = Membership.find(params[:membership_id])
     if @membership.can_destroy?(current_user)
       @membership.destroy
-      redirect_to @membership.team, notice: 'Membership was successfully destroyed.'
+      redirect_to @membership.team, notice: 'Tagság sikeresen törölve.'
     else
       forbidden_page
     end
