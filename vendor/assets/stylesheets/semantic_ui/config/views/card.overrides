@@ -1,3 +1,7 @@
 /*******************************
     User Variable Overrides
 *******************************/
+.ui .card {
+    margin-top: 2rem !important;
+    margin-right: 1rem !important;
+}

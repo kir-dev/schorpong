@@ -2,6 +2,8 @@
 
 <h1>Csapatok</h1>
 
+<%= link_to 'Új csapat', new_team_path, class: 'ui button' if current_user&.can_create_team? %>
+
 <div class="ui cards">
   <% @teams.each do |team| %>
     <div class="ui card">
@@ -26,4 +28,3 @@
   <% end %>
 </div>
 
-<%= link_to 'Új csapat', new_team_path if current_user&.can_create_team? %>

@@ -13,15 +13,17 @@
     </div>
   <% end %>
 
+  <div class="ui form">
   <div class="field">
-    <%= form.label :name %>
+    <%= form.label :name, 'Csapatnév' %>
     <%= form.text_field :name %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit 'Mentés', class: 'ui button' %>
   </div>
+</div>
 <% end %>
 
 
-<%= link_to 'Back', teams_path %>
+<%= link_to 'Vissza', teams_path %>
