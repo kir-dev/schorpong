@@ -1,4 +1,5 @@
 class ImagesController < ApplicationController
+  before_action :require_admin
 
   def create
     image_params[:image].open if image_params[:image].tempfile.closed?

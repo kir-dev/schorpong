@@ -1,4 +1,6 @@
 class EntriesController < ApplicationController
+  before_action :require_login
+
   def create
     @entry = Entry.new(entry_params)
     @event = Event.find(params[:event_id])
