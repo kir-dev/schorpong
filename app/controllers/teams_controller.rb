@@ -21,7 +21,7 @@ class TeamsController < ApplicationController
 
     if @team.save
       Membership.create(team: @team, user: current_user, owner: true, active: true)
-      redirect_to @team, notice: 'Team was successfully created.'
+      redirect_to @team, notice: 'Csapat sikeresen létrehozva.'
     else
       render :new
     end
@@ -29,7 +29,7 @@ class TeamsController < ApplicationController
 
   def update
     if @team.update(team_params)
-      redirect_to @team, notice: 'Team was successfully updated.'
+      redirect_to @team, notice: 'Csapat sikeresen módosítva.'
     else
       render :edit
     end
@@ -43,6 +43,10 @@ class TeamsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def team_params
-      params.require(:team).permit(:name, :score)
+      if current_user.admin?
+        params.require(:team).permit(:name, :score)
+      else
+        params.require(:team).permit(:name)
+      end
     end
 end
