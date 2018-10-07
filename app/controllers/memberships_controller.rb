@@ -21,10 +21,24 @@ class MembershipsController < ApplicationController
     end
   end
 
+  def decline
+    @membership = Membership.find(params[:membership_id])
+    if current_user&.admin_of?(@membership.team) || current_user&.eql?(@membership.user)
+      @membership.decline!
+      redirect_to @membership.team, notice: 'Membership was successfully updated.'
+    else
+      forbidden_page
+    end
+  end
+
   def destroy
-    @membership = Membership.find(params[:id])
-    @membership.destroy
-    redirect_to memberships_url, notice: 'Membership was successfully destroyed.'
+    @membership = Membership.find(params[:membership_id])
+    if @membership.can_destroy?(current_user)
+      @membership.destroy
+      redirect_to @membership.team, notice: 'Membership was successfully destroyed.'
+    else
+      forbidden_page
+    end
   end
 
   private

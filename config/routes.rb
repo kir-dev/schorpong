@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   resources :teams do
     resources :memberships do
       put '/approve', to: 'memberships#approve'
+      delete '/decline', to: 'memberships#decline'
+      delete '/destroy', to: 'memberships#destroy'
     end
   end
   resources :users, only: [:index, :show, :edit, :update]
