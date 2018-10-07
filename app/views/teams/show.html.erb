@@ -25,10 +25,9 @@
           </div>
         </div>
         <% if membership.can_destroy?(current_user) %>
-          <div class="ui bottom basic attached negative button">
-            <i class="remove icon"></i>
-            Tagság törlése
-          </div>
+          <%= link_to '<i class="remove icon"></i> Tagság törlése'.html_safe,
+                      team_membership_decline_path(membership.team, membership),
+                      method: 'delete', class: 'ui bottom basic attached negative button' %>
         <% end %>
       </li>
     <% end %>
