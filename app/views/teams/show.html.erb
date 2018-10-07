@@ -22,12 +22,11 @@
       <% if membership.admin? %>
         <i class="shield icon"></i>
       <% end %>
+      <% if membership.can_destroy?(current_user) %>
+        <%= link_to '<i class="trash alternate icon"></i>'.html_safe, team_membership_destroy_path(membership.team, membership), method: 'delete', class: 'mini ui icon button negative' %>
+      <% end %>
     </li>
   <% end %>
-  <% if membership.can_destroy?(current_user) %>
-    <%= link_to 'Tagság törlése', team_membership_destroy_path(membership.team, membership), method: 'delete' %>
-  <% end %>
-<% end %>
 </ul>
 
 <% if inactive_members(@team).size > 0 %>
