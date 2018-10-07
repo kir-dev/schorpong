@@ -44,3 +44,8 @@
 .ui.container .ui.message {
   margin-top: 70px;
 }
+@media screen and (max-width: 780px) {
+  .ui.top.fixed.menu.stackable.inverted {
+    position: absolute;
+  }
+}
