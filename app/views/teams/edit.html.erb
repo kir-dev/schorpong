@@ -1,4 +1,4 @@
-<h1>Editing Team</h1>
+<h1>Csapat szerkesztése</h1>
 
 <%= form_with(model: @team, local: true) do |form| %>
   <% if @team.errors.any? %>
@@ -14,7 +14,7 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :name %>
+    <%= form.label :name, 'Csapatnév' %>
     <%= form.text_field :name %>
   </div>
 
@@ -26,10 +26,10 @@
   <% end %>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit 'Mentés' %>
   </div>
 <% end %>
 
 
-<%= link_to 'Show', @team %> |
-<%= link_to 'Back', teams_path %>
+<%= link_to 'Megtekintés', @team %> |
+<%= link_to 'Vissza', teams_path %>
