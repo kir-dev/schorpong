@@ -8,7 +8,7 @@
 
 <%= link_to 'Új csapat', new_team_path, class: 'ui button' if current_user&.can_create_team? %>
 
-<div class="ui cards">
+<div class="ui centered cards">
   <% @teams.each do |team| %>
     <div class="ui card">
       <div class="content">

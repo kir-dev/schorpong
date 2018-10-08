@@ -3,5 +3,5 @@
 *******************************/
 .ui .card {
     margin-top: 2rem !important;
-    margin-right: 1rem !important;
+    margin-right: 3rem !important;
 }
