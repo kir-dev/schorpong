@@ -10,7 +10,7 @@
   <%= button_to 'Csatlakozás', team_memberships_path(@team), method: 'post', class: 'ui button primary' %>
 <% end %>
 <% if admin? || current_user&.admin_of?(@team) %>
-  <%= link_to 'Szerkesztés', edit_team_path(@team) %>
+  <%= link_to 'Szerkesztés', edit_team_path(@team), class: 'ui button' %>
 <% end %>
 <h3>Aktív tagok</h3>
 <ul class="ui cards">
