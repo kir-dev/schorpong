@@ -3,7 +3,7 @@
 *******************************/
 
 .page-header {
-  background-image: url('/images/header.png');
+  background-image: url('/images/header.jpg');
   background-position: center top;
   background-attachment: fixed;
   height: 300px;
