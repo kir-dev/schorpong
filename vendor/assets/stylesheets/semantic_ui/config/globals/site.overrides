@@ -8,6 +8,7 @@
   background-attachment: fixed;
   height: 300px;
   position: relative;
+  margin-bottom: 10px;
 }
 .big-page-header {
   height: 700px;
@@ -22,7 +23,7 @@
   position:absolute;
   left: 50%;
   margin-left: -70px;
-  bottom:100px
+  bottom:120px
 }
 .page-header .logo img {
   height: 140px;
