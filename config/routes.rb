@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'errors/not_found'
+  get 'errors/internal_server_error'
   resources :pages, only: [:show, :edit, :update]
   resources :events do
     resources :entries, only: [:create, :destroy]
@@ -19,6 +21,9 @@ Rails.application.routes.draw do
   post '/logout', to: 'sessions#destroy', as: :logout
   get '/login', to: 'sessions#new', as: :login
   get '/auth/oauth/callback', to: 'sessions#create'
+
+  match "/404", :to => "errors#not_found", :via => :all
+  match "/500", :to => "errors#internal_server_error", :via => :all
 
   root to: redirect('/')
 end
