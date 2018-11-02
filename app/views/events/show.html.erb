@@ -1,11 +1,8 @@
 <h1>
   <%= @event.name %>
 </h1>
-
-<div class="ui grid">
-<div class="two column row">
-  <div class="twelve wide column">
-
+<div class="wrapper">
+  <div class="event-content">
     <p>
       <strong>
         <%= @event.intro %>
@@ -15,21 +12,27 @@
     <p>
       <%= @event.content.html_safe %>
     </p>
+    <% if current_user&.admin? %>
+      <%= link_to 'Szerkesztés', edit_event_path(@event), class: 'ui button' if admin? %>
+    <% end %>
+  </div>
+    <div class="event-applied-teams">
+      <h3 class="applied-teams-title">Nevezett csapatok</h3>
+      <ul class="ui bulleted list">
+        <% @event.entry.each do |entry| %>
+          <%= link_to entry.team.name, team_path(entry.team), class: 'item team-name-item' %>
+          <% if admin? %>
+            (<%= entry.comment %>)
+          <% end %>
+        <% end %>
+      </ul>
 
-    <h3>Nevezett csapatok</h3>
-    <ul class="ui bulleted list">
-      <% @event.entry.each do |entry| %>
-        <%= link_to entry.team.name, team_path(entry.team), class: 'item' %>
-        <% if admin? %> (<%= entry.comment %>) <% end %>
-      <% end %>
-    </ul>
-
-    <% if @event.users_team_can_entry?(current_user) %>
-      <%= form_for @entry, url: event_entries_path(@event), method: 'post', :html => {class: 'ui form'} do |form| %>
+      <% if @event.users_team_can_entry?(current_user) %>
+        <%= form_for @entry, url: event_entries_path(@event), method: 'post', :html => {class: 'ui form'} do |form| %>
         <div class="fields">
           <div class="field">
             <%= form.select 'team_id', @event.users_memberships(current_user).collect {|m| [ m.team.name, m.team.id ] },
-                            { include_blank: true }, class: 'ui dropdown'  %>
+                                { include_blank: true }, class: 'ui dropdown'  %>
           </div>
           <div class="field">
             <%= form.text_area :comment, :rows => '1', :placeholder => 'Megjegyzés' %>
@@ -38,45 +41,45 @@
             <%= form.submit 'Csatlakozás', class: 'ui button' %>
           </div>
         </div>
+        <% end %>
       <% end %>
-    <% end %>
-    <br>
+    </div>
 
-    <% if current_user&.admin? %>
-      <%= link_to 'Szerkesztés', edit_event_path(@event) if admin? %>
-    <% end %>
-  </div>
-  <div class="four wide column right aligned ">
+  <div class="event-deadlines">
     <p>
       <strong>Jelentkezési határidő</strong>
     </p>
-    <h3><%= @event.application_deadline.strftime('%Y. %-m. %d. %H:%M') %></h3>
+    <h3 class="datetime-text">
+      <%= @event.application_deadline.strftime('%Y. %-m. %d. %H:%M') %>
+    </h3>
     <br>
     <p>
       <strong>Esemény időpontja</strong>
     </p>
-    <h3><%= @event.event_date.strftime('%Y. %-m. %d. %H:%M') %></h3>
+    <h3 class="datetime-text">
+      <%= @event.event_date.strftime('%Y. %-m. %d. %H:%M') %>
+    </h3>
   </div>
 </div>
-</div>
+
+
 <div id="disqus_thread"></div>
 <script>
-
-    /**
-     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
-    /*
-    var disqus_config = function () {
-    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-    };
-    */
-    (function() { // DON'T EDIT BELOW THIS LINE
-        var d = document, s = d.createElement('script');
-        s.src = 'https://schorpong-sch-bme-hu.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
+  /**
+   *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+   *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+  /*
+  var disqus_config = function () {
+  this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+  this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+  };
+  */
+  (function () { // DON'T EDIT BELOW THIS LINE
+    var d = document,
+      s = d.createElement('script');
+    s.src = 'https://schorpong-sch-bme-hu.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-
