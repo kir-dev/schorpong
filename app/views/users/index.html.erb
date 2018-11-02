@@ -1,10 +1,10 @@
-<h1>Users</h1>
+<h1>Felhasználók</h1>
 
 <table class="ui celled table">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Mail</th>
+      <th>Név</th>
+      <th>Email</th>
       <th>Admin</th>
       <th colspan="3"></th>
     </tr>
@@ -16,8 +16,8 @@
         <td><%= user.name %></td>
         <td><%= user.mail %></td>
         <td><%= user.admin %></td>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
+        <td><%= link_to 'Megtekintés', user %></td>
+        <td><%= link_to 'Szerkesztés', edit_user_path(user) %></td>
       </tr>
     <% end %>
   </tbody>

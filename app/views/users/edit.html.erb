@@ -1,4 +1,4 @@
-<h1>Editing User</h1>
+<h1>Felhasználó szerkesztése</h1>
 
 <%= form_with(model: @user, local: true) do |form| %>
   <% if @user.errors.any? %>
@@ -27,10 +27,10 @@
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit 'Mentés', class: 'ui button' %>
   </div>
 <% end %>
 
 
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', users_path %>
+<%= link_to 'Megtekintés', @user %> |
+<%= link_to 'Vissza', users_path %>
