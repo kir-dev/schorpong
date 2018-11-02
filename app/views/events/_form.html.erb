@@ -10,38 +10,39 @@
       </ul>
     </div>
   <% end %>
+  <div class="ui form">
+    <div class="field">
+      <%= form.label :name, 'Cím' %>
+      <%= form.text_field :name %>
+    </div>
 
-  <div class="field">
-    <%= form.label :name, 'Cím' %>
-    <%= form.text_field :name %>
+    <div class="field">
+      <%= form.label :image, 'Kép' %>
+      <%= form.file_field :image %>
+    </div>
+
+    <div class="field">
+      <%= form.label :intro, 'Bevezető szöveg' %>
+      <%= form.text_area :intro, :rows => '2' %>
+    </div>
+
+    <div class="field">
+      <%= form.label :content, 'Tartalom' %>
+      <%= form.trix_editor :content %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :image, 'Kép' %>
-    <%= form.file_field :image %>
-  </div>
+    <div class="field date-field">
+      <%= form.label :application_deadline, 'Jelentkezési határidő:' %>
+      <%= form.datetime_select :application_deadline %>
+    </div>
 
-  <div class="field">
-    <%= form.label :intro, 'Bevezető szöveg' %>
-    <%= form.text_area :intro %>
-  </div>
+    <div class="field date-field">
+      <%= form.label :event_date, 'Esemény időpontja:' %>
+      <%= form.datetime_select :event_date %>
+    </div>
 
-  <div class="field">
-    <%= form.label :content, 'Tartalom' %>
-    <%= form.trix_editor :content %>
-  </div>
-
-  <div class="field">
-    <%= form.label :application_deadline, 'Jelentkezési határidő' %>
-    <%= form.datetime_select :application_deadline %>
-  </div>
-
-  <div class="field">
-    <%= form.label :event_date, 'Esemény időpontja' %>
-    <%= form.datetime_select :event_date %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit 'Mentés' %>
-  </div>
+    <div class="actions">
+      <%= form.submit 'Mentés', class: 'ui button' %>
+    </div>
 <% end %>
