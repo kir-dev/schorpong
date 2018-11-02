@@ -10,7 +10,7 @@
       </ul>
     </div>
   <% end %>
-
+<div class="ui form">
   <div class="field">
     <%= form.label :title, 'Cím' %>
     <%= form.text_field :title %>
@@ -32,6 +32,7 @@
   </div>
 
   <div class="actions">
-    <%= form.submit 'Mentés' %>
+    <%= form.submit 'Mentés', class: 'ui button' %>
   </div>
+</div>
 <% end %>

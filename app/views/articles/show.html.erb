@@ -13,7 +13,7 @@
 </p>
 
 <% if current_user&.admin? %>
-  <%= link_to 'Szerkesztés', edit_article_path(@article) %>
+  <%= link_to 'Szerkesztés', edit_article_path(@article), class: 'ui button' %>
 <% end %><div id="disqus_thread"></div>
 <script>
 
