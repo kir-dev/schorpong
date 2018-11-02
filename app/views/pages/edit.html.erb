@@ -12,18 +12,19 @@
       </ul>
     </div>
   <% end %>
+  <div class="ui form">
+    <div class="field">
+      <%= form.label :title, 'Cím' %>
+      <%= form.text_field :title %>
+    </div>
 
-  <div class="field">
-    <%= form.label :title, 'Cím' %>
-    <%= form.text_field :title %>
-  </div>
+    <div class="field">
+      <%= form.label :content, 'Tartalom' %>
+      <%= form.trix_editor :content %>
+    </div>
 
-  <div class="field">
-    <%= form.label :content, 'Tartalom' %>
-    <%= form.trix_editor :content %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit 'Mentés' %>
+    <div class="actions">
+      <%= form.submit 'Mentés', class: 'ui button' %>
+    </div>
   </div>
 <% end %>
