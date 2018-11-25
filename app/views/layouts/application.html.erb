@@ -23,7 +23,7 @@
         <img src="/images/logo.png">
       </div>
     </header>
-    <div class="ui container">
+    <section class="ui container">
       <% if notice %>
         <div class="ui positive message">
           <div class="header">
@@ -32,8 +32,8 @@
         </div>
       <% end %>
       <%= yield %>
-    </div>
-    <div class="ui inverted vertical footer segment">
+    </section>
+    <footer class="ui inverted vertical footer segment">
       <div class="ui center aligned container">
         <div class="ui inverted section divider"></div>
         <a href="http://kir-dev.sch.bme.hu" target="_blank">
@@ -49,7 +49,7 @@
         </div>
         <div class="ui inverted section"></div>
       </div>
-    </div>
+    </footer>
     <script>
       $('.ui.dropdown').dropdown();
     </script>
