@@ -1,24 +1,29 @@
-# README
+Schörpong
+=========
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+#Install
 
-Things you may want to cover:
+Run the following lines as your normal user:
+```bash
+sudo apt install rbenv
+git clone https://github.com/kir-dev/schorpong
+cd schorpong
+rbenv install 2.5.1
+gem install bundle
+bundle install
+sudo su postgres
+psql -c 'create user "schorpong" with superuser password '\''schorpong'\'';'
+exit
+rails db:migrate
+rails db:seed
+```
 
-* Ruby version
+#Configuration
 
-* System dependencies
+If you want to use different database user, you can change the parameters in `config/database.yml`.
 
-* Configuration
+For the authentication use the `.env` file and set the `APP_ID ` and `APP_SECRET`variables.
 
-* Database creation
+#Deployment
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+To be written...
