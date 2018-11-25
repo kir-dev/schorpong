@@ -1,5 +1,6 @@
 class EntriesController < ApplicationController
   before_action :require_login
+  before_action :require_admin, only: [:toggle_showed_up]
 
   def create
     @entry = Entry.new(entry_params)
@@ -12,6 +13,11 @@ class EntriesController < ApplicationController
     end
   end
 
+  def toggle_showed_up
+    @entry = Entry.find(params[:entry_id])
+    @entry.toggle_showed_up!
+  end
+
   def destroy
     @entry = Entry.find(params[:id])
     @entry.destroy
@@ -21,6 +27,6 @@ class EntriesController < ApplicationController
   private
     # Never trust parameters from the scary internet, only allow the white list through.
     def entry_params
-      params.require(:entry).permit(:team_id, :event_id, :comment)
+      params.require(:entry).permit(:team_id, :event_id, :comment, :entry_id)
     end
 end

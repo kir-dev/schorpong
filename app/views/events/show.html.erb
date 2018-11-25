@@ -18,14 +18,38 @@
   </div>
     <div class="event-applied-teams">
       <h3 class="applied-teams-title">Nevezett csapatok</h3>
-      <ul class="ui bulleted list">
+      <div class="ui centered cards">
         <% @event.entry.each do |entry| %>
-          <%= link_to entry.team.name, team_path(entry.team), class: 'item team-name-item' %>
-          <% if admin? %>
-            (<%= entry.comment %>)
-          <% end %>
+
+          <div class="ui card">
+            <div class="content">
+              <div class="header">
+                <%= link_to entry.team.name, team_path(entry.team), class: 'item team-name-item' %>
+              </div>
+              <% if admin? %>
+                <div class="description">
+                  <%= entry.comment %>
+                </div>
+              <% end %>
+            </div>
+              <% if admin? %>
+                <div class="extra content">
+                  <div class="ui grid row">
+                    <div class="eight wide column">
+                      Megjelent
+                    </div>
+                    <div class="eight wide column right aligned">
+                      <div class="ui toggle checkbox">
+                        <%= check_box_tag 'showed_up', 'showed_up', entry.showed_up, class: 'showed-up', entry: entry.id, event: @event.id %>
+                        <label></label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            </div>
         <% end %>
-      </ul>
+      </div>
 
       <% if @event.users_team_can_entry?(current_user) %>
         <%= form_for @entry, url: event_entries_path(@event), method: 'post', :html => {class: 'ui form'} do |form| %>
