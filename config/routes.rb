@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   get 'errors/internal_server_error'
   resources :pages, only: [:show, :edit, :update]
   resources :events do
-    resources :entries, only: [:create, :destroy]
+    resources :entries, only: [:create, :destroy] do
+      put '/', to: 'entries#toggle_showed_up'
+    end
   end
   resources :teams do
     resources :memberships do
