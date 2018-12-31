@@ -19,3 +19,7 @@
 //= require trix_attachments
 //= require trix
 //= require_tree .
+
+$(document).on('turbolinks:load', function() {
+  $('.ui.dropdown').dropdown();
+})

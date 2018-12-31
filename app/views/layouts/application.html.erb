@@ -15,43 +15,26 @@
 
   <body>
     <%= render 'navbar' %>
-    <header class="page-header">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
-        <polygon fill="white" points="0, 0, 0, 100, 100, 100"/>
-      </svg>
-      <div class="logo">
-        <img src="/images/logo.png">
-      </div>
-    </header>
-    <div class="ui container">
-      <% if notice %>
-        <div class="ui positive message">
-          <div class="header">
-            <%= notice %>
+    <main>
+      <header class="page-header">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+          <polygon fill="white" points="0, 0, 0, 100, 100, 100"/>
+        </svg>
+        <div class="logo">
+          <img src="/images/logo.png">
+        </div>
+      </header>
+      <div class="ui container">
+        <% if notice %>
+          <div class="ui positive message">
+            <div class="header">
+              <%= notice %>
+            </div>
           </div>
-        </div>
-      <% end %>
-      <%= yield %>
-    </div>
-    <div class="ui inverted vertical footer segment">
-      <div class="ui center aligned container">
-        <div class="ui inverted section divider"></div>
-        <a href="http://kir-dev.sch.bme.hu" target="_blank">
-          <img class="ui centered mini image" src="/images/kirdev.png">
-        </a>
-        <div class="ui horizontal inverted small divided link list">
-          <a class="item" href="https://www.facebook.com/schorpong/">
-            <i class="icon facebook"></i>Schörpong
-          </a>
-          <a class="item" href="mailto:schorpong@sch.bme.hu">
-            <i class="icon mail"></i>schorpong@sch.bme.hu
-          </a>
-        </div>
-        <div class="ui inverted section"></div>
+        <% end %>
+        <%= yield %>
       </div>
-    </div>
-    <script>
-      $('.ui.dropdown').dropdown();
-    </script>
+    </main>
+    <%= render 'footer' %>
   </body>
 </html>
