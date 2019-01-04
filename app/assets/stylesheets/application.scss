@@ -17,7 +17,7 @@
  */
 
 
-/* Fix icons gettin 'display: table-cell' */
+/* Fix icons getting 'display: table-cell' */
 i.icon {
     display: inline-block !important;
 }
@@ -26,4 +26,14 @@ i.icon {
     max-width: 100%;
     width: auto;
     height: auto;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+
+    main {
+        flex: 1;
+    }
 }
