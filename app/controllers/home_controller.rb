@@ -4,7 +4,7 @@ class HomeController < ApplicationController
       redirect_to '/articles'
     else
       cookies.permanent[:visited] = true
-      @articles = Article.all
+      @articles = Article.order(created_at: :desc).all
       render 'articles/index'
     end
   end
