@@ -3,7 +3,7 @@ class Event < ApplicationRecord
   mount_uploader :image, ImageUploader
 
   def entered?(team)
-    team.enetered_for?(self)
+    team.entered_for?(self)
   end
 
   def users_team_can_entry?(current_user)
