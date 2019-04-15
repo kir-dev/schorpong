@@ -31,6 +31,17 @@
                   <%= entry.comment %>
                 </div>
               <% end %>
+              <% if @event.can_entry? && entry.revocable_by?(current_user) %>
+                <%= link_to [@event, entry], method: :delete do %>
+                  <div class="extra content">
+                    <div class="ui two buttons">
+                      <div class="ui basic red button">
+                        Visszavonás
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+              <% end %>
             </div>
               <% if admin? %>
                 <div class="extra content">
@@ -53,10 +64,10 @@
 
       <% if @event.users_team_can_entry?(current_user) %>
         <%= form_for @entry, url: event_entries_path(@event), method: 'post', :html => {class: 'ui form'} do |form| %>
-        <div class="fields">
+        <div class="fields entry-form">
           <div class="field">
             <%= form.select 'team_id', @event.users_memberships(current_user).collect {|m| [ m.team.name, m.team.id ] },
-                                { include_blank: true }, class: 'ui dropdown'  %>
+              { include_blank: true }, class: 'ui dropdown'  %>
           </div>
           <div class="field">
             <%= form.text_area :comment, :rows => '1', :placeholder => 'Megjegyzés' %>

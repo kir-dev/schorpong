@@ -6,4 +6,8 @@ class Entry < ApplicationRecord
     self.showed_up = !self.showed_up
     self.save
   end
+
+  def revocable_by?(current_user)
+    team.memberships.any? { |m| m.user == current_user }
+  end
 end
