@@ -26,12 +26,18 @@
       </div>
     <% end %>
 
+    <div class="field">
+      <%= form.label :image, 'Kép (.jpg, .jpeg vagy .png)' %>
+      <%= form.file_field :image %><br>
+      <% if form.object.image? %>
+        <%= image_tag form.object.image.url(:thumb) %><br>
+        <%= form.label :remove_image, 'Kép törlése' %>
+        <%= form.check_box :remove_image %>
+      <% end %>
+    </div>
+
     <div class="actions">
       <%= form.submit 'Mentés', class: 'ui button' %>
     </div>
   <% end %>
 </div>
-
-
-<%= link_to 'Megtekintés', @team %> |
-<%= link_to 'Vissza', teams_path %>

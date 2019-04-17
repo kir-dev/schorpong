@@ -11,13 +11,20 @@
 <div class="ui centered cards">
   <% @teams.each do |team| %>
     <div class="ui card">
-      <div class="content">
-        <div class="header">
-          <%= team.name %>
-        </div>
+      <div class="image">
+        <% if team.image? %>
+          <%= image_tag(team.image.url(:square_thumb), alt: 'Image') %>
+        <% else %>
+          <%= image_tag('profile-placeholder.png', alt: 'Image') %>
+        <% end %>
         <span class="ui right ribbon label">
           <%= team.score %> pont
         </span>
+      </div>
+      <div class="content">
+        <div class="header">
+          <%= link_to team.name, team %>
+        </div>
         <div class="description">
           <ul class="ui bulleted list">
             <% active_members(team).each do |membership| %>
@@ -31,7 +38,6 @@
           </ul>
         </div>
       </div>
-      <%= link_to '<div class="ui bottom attached button">Megtekintés</div>'.html_safe, team %>
     </div>
   <% end %>
 </div>

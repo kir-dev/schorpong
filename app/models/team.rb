@@ -1,6 +1,15 @@
 class Team < ApplicationRecord
   has_many :memberships
 
+  mount_uploader :image, ImageUploader
+
+  validate :check_dimensions
+  def check_dimensions
+    return unless !image_cache.nil? && (image.width < 500 || image.height < 500)
+
+    errors.add :image, 'A képnek legalább 500x500-as méretűnek kell lennie.'
+  end
+
   MAXIMUM_MEMBERSHIPS_COUNT = 2
   MAXIMUM_MEMBER_COUNT = 3
 
@@ -14,11 +23,11 @@ class Team < ApplicationRecord
 
   def user_can_join?(current_user)
     current_user &&
-        self.number_of_memberships != 0 &&
-        !member?(current_user) &&
-        !current_user.team_admin? &&
-        self.number_of_memberships < MAXIMUM_MEMBER_COUNT &&
-        current_user.number_of_memberships < MAXIMUM_MEMBERSHIPS_COUNT
+      number_of_memberships != 0 &&
+      !member?(current_user) &&
+      !current_user.team_admin? &&
+      number_of_memberships < MAXIMUM_MEMBER_COUNT &&
+      current_user.number_of_memberships < MAXIMUM_MEMBERSHIPS_COUNT
   end
 
   def number_of_memberships
