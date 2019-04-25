@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
-  before_action :require_admin, except: [:show]
-  before_action :set_user, only: [:show, :edit, :update]
+  before_action :require_admin, except: %i[show edit update]
+  before_action :set_user, only: %i[show edit update]
+  before_action :require_same_or_admin_user, only: %i[edit update]
 
   def index
     @users = User.all
@@ -21,6 +22,7 @@ class UsersController < ApplicationController
   end
 
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
@@ -28,6 +30,14 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:name, :mail, :admin)
+      if admin?
+        params.require(:user).permit(:name, :mail, :admin)
+      else
+        params.require(:user).permit(:image, :remove_image)
+      end
+    end
+
+    def require_same_or_admin_user
+      redirect_to root_url unless can_update_user?(@user)
     end
 end

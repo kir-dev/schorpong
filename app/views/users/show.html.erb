@@ -2,11 +2,11 @@
   <%= @user.name %>
 </h1>
 
-<% if admin? %>
+<% if can_update_user?(@user) %>
   <p>
     <%= @user.mail %>
   </p>
-  <%= link_to 'Szerkesztés', edit_user_path(@user) %>
+  <%= link_to 'Szerkesztés', edit_user_path(@user), class: 'ui button' %>
 <% end %>
 
 <h2>Csapatok</h2>

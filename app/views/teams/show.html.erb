@@ -16,6 +16,13 @@
 <ul class="ui cards">
     <% active_members(@team).each do |membership| %>
       <li class="card">
+        <div class="image">
+          <% if membership.user.image? %>
+            <%= image_tag(membership.user.image.url(:square_thumb), alt: 'Image') %>
+          <% else %>
+            <%= image_tag('profile-placeholder.png', alt: 'Image') %>
+          <% end %>
+        </div>
         <div class="content">
           <div class="header">
             <%= link_to membership.user.name, user_path(membership.user) %>
@@ -38,6 +45,13 @@
   <ul class="ui cards">
     <% inactive_members(@team).each do |membership| %>
       <li class="card">
+        <div class="image">
+          <% if membership.user.image? %>
+            <%= image_tag(membership.user.image.url(:square_thumb), alt: 'Image') %>
+          <% else %>
+            <%= image_tag('profile-placeholder.png', alt: 'Image') %>
+          <% end %>
+        </div>
         <div class="content">
           <div class="header">
             <%= link_to membership.user.name, user_path(membership.user) %>

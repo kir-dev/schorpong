@@ -37,11 +37,29 @@ class ImageUploader < CarrierWave::Uploader::Base
     process resize_to_fit: [300, 200]
   end
 
+  version :square_thumb do
+    process resize_to_fill: [500, 500]
+  end
+
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
-  # def extension_whitelist
-  #   %w(jpg jpeg gif png)
-  # end
+  def extension_whitelist
+    %w[jpg jpeg png]
+  end
+
+  attr_reader :width, :height
+  before :cache, :capture_size
+  def capture_size(file)
+    return unless version_name.blank? # Only do this once, to the original version
+
+    if file.path.nil? # file sometimes is in memory
+      img = ::MiniMagick::Image::read(file.file)
+      @width = img[:width]
+      @height = img[:height]
+    else
+      @width, @height = `identify -format "%wx %h" #{file.path}`.split(/x/).map{|dim| dim.to_i }
+    end
+  end
 
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.

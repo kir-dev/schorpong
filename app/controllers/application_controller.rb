@@ -30,4 +30,9 @@ class ApplicationController < ActionController::Base
     current_user&.admin?
   end
   helper_method :admin?
+
+  def can_update_user?(user)
+    current_user&.admin? || user.id == current_user&.id
+  end
+  helper_method :can_update_user?
 end

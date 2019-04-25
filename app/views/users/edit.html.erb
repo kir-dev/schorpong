@@ -13,17 +13,28 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= @user.name %>
-  </div>
-
-  <div class="field">
-    <%= @user.mail %>
-  </div>
-
-  <div class="field">
-    <%= form.label :admin %>
-    <%= form.check_box :admin %>
+  <div class="ui two column stackable grid">
+    <div class="column">
+      <div class="field">
+        <%= form.label :image, 'Kép (.jpg, .jpeg vagy .png)' %>
+        <%= form.file_field :image %><br>
+        <% if form.object.image? %>
+          <%= image_tag form.object.image.url(:square_thumb) %><br>
+          <%= form.label :remove_image, 'Kép törlése' %>
+          <%= form.check_box :remove_image %>
+        <% end %>
+      </div>
+    </div>
+    <div class="column">
+      <h2><%= @user.name %></h2>
+      <h3><%= @user.mail %></h3>
+      <% if admin? %>
+        <div class="field">
+          <%= form.label :admin %>
+          <%= form.check_box :admin %>
+        </div>
+      <% end %>
+    </div>
   </div>
 
   <div class="actions">
@@ -31,6 +42,3 @@
   </div>
 <% end %>
 
-
-<%= link_to 'Megtekintés', @user %> |
-<%= link_to 'Vissza', users_path %>
