@@ -37,7 +37,7 @@ gem 'less-rails-semantic_ui', '~> 2.3.1'
 gem 'autoprefixer-rails', '9.6.1.1'
 gem 'therubyracer'
 
-gem 'carrierwave', '~> 1.0'
+gem 'carrierwave', '~> 2.0'
 
 gem 'trix-rails', require: 'trix'
 gem 'shrine'
