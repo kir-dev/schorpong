@@ -34,7 +34,7 @@ gem 'dotenv-rails'
 
 gem 'jquery-rails'
 gem 'less-rails-semantic_ui', '~> 2.3.1'
-gem 'autoprefixer-rails', '8.6.5'
+gem 'autoprefixer-rails', '9.6.4'
 gem 'therubyracer'
 
 gem 'carrierwave', '~> 1.0'
