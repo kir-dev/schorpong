@@ -1,0 +1,41 @@
+version: '3'
+services:
+  postgres:
+    image: postgres:9.6
+    environment:
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - database_folder:/var/lib/postgresql/data/pgdata
+    restart: always
+    networks:
+      - schorpong_network
+  web:
+    build: .
+    command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    environment:
+      - RAILS_SERVE_STATIC_FILES=true
+      - RAILS_ENV=production
+      - DATABASE_PASSWORD=
+      - DATABASE_USER=postgres
+      - DATABASE_NAME=schorpong
+      - DATABASE_HOST=postgres
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - public_folder:/schorpong/public
+    ports:
+      - "127.0.0.1:3001:3000"
+    networks:
+      - schorpong_network
+    depends_on:
+      - postgres
+networks:
+  schorpong_network:
+volumes:
+  public_folder:
+    external:
+      name: schorpong_public
+  database_folder:
+    external:
+      name: schorpong_database
