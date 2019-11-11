@@ -8,6 +8,6 @@ class Entry < ApplicationRecord
   end
 
   def revocable_by?(current_user)
-    team.memberships.any? { |m| m.user == current_user }
+    team.memberships.any? { |m| m.user == current_user } || current_user.admin?
   end
 end
