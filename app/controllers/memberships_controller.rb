@@ -31,6 +31,16 @@ class MembershipsController < ApplicationController
     end
   end
 
+  def transfer_admin
+    @membership = Membership.find(params[:membership_id])
+    if current_user&.admin_of?(@membership.team) && !current_user&.eql?(@membership.user)
+      @membership.transfer_admin!(current_user)
+      redirect_to @membership.team, notice: 'Tagság sikeresen firssítve.'
+    else
+      forbidden_page
+    end
+  end
+
   def destroy
     @membership = Membership.find(params[:membership_id])
     if @membership.can_destroy?(current_user)

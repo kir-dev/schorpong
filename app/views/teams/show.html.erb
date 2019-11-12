@@ -37,6 +37,9 @@
                       team_membership_decline_path(membership.team, membership),
                       method: 'delete', class: 'ui bottom basic attached negative button' %>
         <% end %>
+        <% if current_user&.admin_of?(@team) %>
+          <%= link_to 'Admin jogosultság átadása', team_membership_transferadmin_path(membership.team, membership), method: :put, data: { confirm: 'Biztosan át szeretnéd adni az admin jogosultságot?' }, :class => "ui button" %>
+        <% end %>
       </li>
     <% end %>
 </ul>
