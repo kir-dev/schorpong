@@ -36,6 +36,11 @@ class TeamsController < ApplicationController
     end
   end
 
+  def destroy
+    @team.destroy
+    redirect_to teams_url, notice: 'Team was successfully destroyed.'
+  end
+
   private
 
     # Use callbacks to share common setup or constraints between actions.
