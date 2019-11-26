@@ -36,9 +36,13 @@ class TeamsController < ApplicationController
     end
   end
 
-  def destroy
-    @team.destroy
-    redirect_to teams_url, notice: 'Team was successfully destroyed.'
+  def delete_memberships
+    if current_user.admin?
+      @team.delete_memberships!
+      redirect_to @team, notice: 'Csapat sikeresen törölve.'
+    else
+      forbidden_page
+    end
   end
 
   private
