@@ -32,4 +32,15 @@ class SessionsController < ApplicationController
       end
     end
   end
+
+  def create_for_registered
+    @user = User.find_by(mail: params[:mail])
+    if @user && @user.authenticate(params[:password])
+       session[:user_id] = @user.id
+       redirect_to root_url
+    else
+      flash[:notice] = 'Sikertelen bejelentkezés! :('
+      redirect_to sign_in_path
+    end
+  end
 end

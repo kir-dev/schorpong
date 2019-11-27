@@ -27,5 +27,10 @@ Rails.application.routes.draw do
   match "/404", :to => "errors#not_found", :via => :all
   match "/500", :to => "errors#internal_server_error", :via => :all
 
+  resources :registration, only: [:new,:create]
+
+  get '/signin', to: 'application#sign_in', as: :sign_in
+  post '/login_registered',to: 'sessions#create_for_registered', as: :session_for_registered
+
   root to: redirect('/')
 end

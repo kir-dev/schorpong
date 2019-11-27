@@ -35,4 +35,7 @@ class ApplicationController < ActionController::Base
     current_user&.admin? || user.id == current_user&.id
   end
   helper_method :can_update_user?
+
+  def sing_in
+  end
 end

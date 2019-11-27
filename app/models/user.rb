@@ -1,12 +1,13 @@
 class User < ApplicationRecord
   has_many :memberships
-
+  has_secure_password validations: false
+  validates :mail,  presence: true, uniqueness: {message: " már foglalt!" }
+  validates :password, length: {minimum: 6,message:"túl rövid!"}               
   mount_uploader :image, ImageUploader
 
   validate :check_dimensions
   def check_dimensions
     return unless !image_cache.nil? && (image.width < 500 || image.height < 500)
-
     errors.add :image, 'A képnek legalább 300x500-as méretűnek kell lennie.'
   end
 

@@ -1,6 +1,10 @@
 ---
 hu:
   activerecord:
+    attributes:
+      user:
+        mail: "E-mail cím"
+        password: 'Jelszó'
     errors:
       messages:
         record_invalid: Sikertelen validálás %{errors}

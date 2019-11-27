@@ -1,0 +1,12 @@
+ <%= form_for(@registration,as: 'registration',url: registration_index_path, html:{class:'ui form'} )do |f| %>
+    <%= f.label :Név%>
+    <%= f.text_field :name%> 
+    <%= f.label :Email%>
+    <%= f.text_field :mail%> 
+    <%= f.label :Jelszó%>
+    <%= f.label 'legalább 6 karakter!', class:'ui pointing below label'%>
+    <%= f.password_field :password%>
+    <%= f.label 'Jelszó mégegyszer'%>   
+    <%= f.password_field :password_confirmation%>
+    <%= f.submit :Regisztrálás, class:'ui button' %>
+  <% end %>

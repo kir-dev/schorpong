@@ -1,0 +1,15 @@
+  <%= tag.h1 :Belépés,class:'ui header'%>
+
+<%= form_tag session_for_registered_path,class:'ui form' do %>
+   <%= label_tag :mail%>
+   <%= text_field_tag :mail %>
+   <br>
+   <%= label_tag :password%>
+   <%= password_field_tag :password%>
+   <br>
+   <%= submit_tag 'Belépés', class:'ui button'%>
+<%end%>
+
+<%= link_to 'AutSCH',oauth_login_path %>
+<br>
+<%= link_to 'Regisztráció',new_registration_path %>
