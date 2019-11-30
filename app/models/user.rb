@@ -1,17 +1,22 @@
 class User < ApplicationRecord
+  include BCrypt
+
   has_many :memberships
+  has_secure_password
 
   mount_uploader :image, ImageUploader
 
   validate :check_dimensions
+  validates :mail,  presence: true, uniqueness: { message: ' már foglalt' }
+  validates :password, length: { minimum: 6, message: 'túl rövid' }, on: :create
+
   def check_dimensions
     return unless !image_cache.nil? && (image.width < 500 || image.height < 500)
-
     errors.add :image, 'A képnek legalább 300x500-as méretűnek kell lennie.'
   end
 
   def admin?
-    self.admin
+    admin
   end
 
   def membership_for(team)
@@ -33,10 +38,14 @@ class User < ApplicationRecord
   end
 
   def can_create_team?
-    self.number_of_memberships == 0
+    number_of_memberships == 0
   end
 
   def number_of_memberships
     memberships.size
+  end
+
+  def create_random_password
+    update(password_digest: Password.create(SecureRandom.hex(30)))
   end
 end

@@ -1,5 +1,4 @@
 class SessionsController < ApplicationController
-
   def new
   end
 
@@ -8,7 +7,7 @@ class SessionsController < ApplicationController
     redirect_to root_url
   end
 
-  def create
+  def authsch_login
     raw_user = request.env['omniauth.auth']['extra']['raw_info']
     redirect_url = session[:redirect_url] || root_path
     user = User.find_by(auth_sch_id: raw_user['internal_id'])
@@ -20,7 +19,8 @@ class SessionsController < ApplicationController
       oauth_params = {
           auth_sch_id: oauth_data["internal_id"],
           mail: oauth_data["mail"],
-          name: oauth_data["displayName"]
+          name: oauth_data["displayName"],
+          password: SecureRandom.hex(30)
       }
       @user = User.create(oauth_params)
       if @user.valid?
@@ -30,6 +30,17 @@ class SessionsController < ApplicationController
       else
         render :new
       end
+    end
+  end
+
+  def email_login
+    @user = User.find_by(mail: params[:mail])
+    if @user && @user.authenticate(params[:password])
+       session[:user_id] = @user.id
+       redirect_to root_url
+    else
+      flash[:notice] = 'Sikertelen bejelentkezés! :('
+      redirect_to sign_in_path
     end
   end
 end

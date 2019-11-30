@@ -1,0 +1,17 @@
+<%= tag.h1 :Belépés,class:'ui header'%>
+
+<%= form_tag email_login_path,class:'ui form' do %>
+  <%= tag.div class: 'fields' do %> 
+    <%= tag.div class: 'field' do %> 
+      <%= label_tag :mail, 'Email'%>
+      <%= text_field_tag :mail %>
+    <%end%>
+    <%= tag.div class: 'field' do %> 
+      <%= label_tag :password, 'Jelszó'%>
+      <%= password_field_tag :password%> 
+    <%end%>
+  <%end%>
+  <%= submit_tag 'Belépés', class:'ui button'%>
+  <%= link_to 'Regisztráció',new_registration_path, class:'ui button' %>
+  <%= link_to 'AuthSCH',oauth_login_path, class:'ui primary button' %>
+<%end%>
