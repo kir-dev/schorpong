@@ -8,7 +8,6 @@ Rails.application.routes.draw do
     end
   end
   resources :teams do
-    delete '/delete_memberships', to: 'teams#delete_memberships'
     resources :memberships do
       put '/approve', to: 'memberships#approve'
       delete '/decline', to: 'memberships#decline'

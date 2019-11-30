@@ -12,8 +12,8 @@
 <% if admin? || current_user&.admin_of?(@team) %>
   <%= link_to 'Szerkesztés', edit_team_path(@team), class: 'ui button' %>
 <% end %>
-<% if admin? %>
-  <%= link_to 'Törlés', team_delete_memberships_path(@team), method: :delete, data: { confirm: 'Biztosan törlöd?' }, :class => "ui button negative" %>
+<% if admin? && @team.memberships.size > 0 %>
+  <%= link_to 'Törlés', team_path(@team), method: :delete, data: { confirm: 'Biztosan törlöd?' }, :class => "ui button negative" %>
 <% end %>
 <h3>Aktív tagok</h3>
 <ul class="ui cards">

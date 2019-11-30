@@ -1,6 +1,6 @@
 class TeamsController < ApplicationController
   before_action :require_admin, only: [:destroy]
-  before_action :set_team, only: %i[show edit update]
+  before_action :set_team, only: %i[show edit update destroy]
 
   def index
     @page = Page.find_by(name: 'teams')
@@ -36,7 +36,7 @@ class TeamsController < ApplicationController
     end
   end
 
-  def delete_memberships
+  def destroy
     if current_user.admin?
       @team.delete_memberships!
       redirect_to teams_path, notice: 'Csapat sikeresen törölve.'
