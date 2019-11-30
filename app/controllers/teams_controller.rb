@@ -39,7 +39,7 @@ class TeamsController < ApplicationController
   def delete_memberships
     if current_user.admin?
       @team.delete_memberships!
-      redirect_to @team, notice: 'Csapat sikeresen törölve.'
+      redirect_to teams_path, notice: 'Csapat sikeresen törölve.'
     else
       forbidden_page
     end
