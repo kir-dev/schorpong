@@ -37,4 +37,10 @@ class Team < ApplicationRecord
   def join!(current_user)
     Membership.create(team: self, user: current_user, active: false, owner: false)
   end
+
+  def delete_memberships!
+    memberships.each do |membership|
+      membership.decline!
+    end
+  end
 end
