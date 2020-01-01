@@ -30,7 +30,7 @@
       <%= form.label :image, 'Kép (.jpg, .jpeg vagy .png)' %>
       <%= form.file_field :image %><br>
       <% if form.object.image? %>
-        <%= image_tag form.object.image.url(:thumb) %><br>
+        <%= image_tag form.object.thumb %><br>
         <%= form.label :remove_image, 'Kép törlése' %>
         <%= form.check_box :remove_image %>
       <% end %>

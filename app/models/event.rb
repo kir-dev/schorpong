@@ -1,6 +1,8 @@
 class Event < ApplicationRecord
+  include ImageHelper
   has_many :entry
   mount_uploader :image, ImageUploader
+  has_one_attached :new_image
 
   def entered?(team)
     team.entered_for?(self)

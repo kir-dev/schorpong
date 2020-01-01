@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :require_admin, except: %i[show edit update]
+
   before_action :set_user, only: %i[show edit update]
   before_action :require_same_or_admin_user, only: %i[edit update]
 
@@ -14,8 +15,9 @@ class UsersController < ApplicationController
   end
 
   def update
-    if @user.update(user_params)
-      redirect_to @user, notice: 'User was successfully updated.'
+    @user.image.purge if user_params[:remove_image] == "1"
+    if @user.update(user_params.except(:remove_image))
+      redirect_to(@user, notice: "User was successfully updated.")
     else
       render :edit
     end
@@ -23,21 +25,19 @@ class UsersController < ApplicationController
 
   private
 
-    # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_user
+    @user = User.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def user_params
-      if admin?
-        params.require(:user).permit(:name, :mail, :admin)
-      else
-        params.require(:user).permit(:image, :remove_image)
-      end
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def user_params
+    permitted_attributes = %i[image remove_image]
+    permitted_attributes.push(:admin) if admin?
+    params.require(:user).permit(permitted_attributes)
+  end
 
-    def require_same_or_admin_user
+  def require_same_or_admin_user
       redirect_to root_url unless can_update_user?(@user)
-    end
+  end
 end

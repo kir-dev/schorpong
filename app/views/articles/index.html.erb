@@ -5,7 +5,7 @@
 <% @articles.each do |article| %>
   <div class="ui segment red stackable two column grid">
     <div class="image four wide column">
-      <%= image_tag(article.image.url(:thumb), alt: 'Image') if article.image? %>
+      <%= image_tag(article.thumb, alt: 'Image') if article.image? %>
     </div>
     <div class="content twelve wide column">
       <h2><%= article.title %>

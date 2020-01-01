@@ -18,8 +18,9 @@
       <div class="field">
         <%= form.label :image, 'Kép (.jpg, .jpeg vagy .png)' %>
         <%= form.file_field :image %><br>
-        <% if form.object.image? %>
-          <%= image_tag form.object.image.url(:square_thumb) %><br>
+        <% if @user.image.attached? %>
+            <%=image_tag @user.square_thumb%>
+          <br>
           <%= form.label :remove_image, 'Kép törlése' %>
           <%= form.check_box :remove_image %>
         <% end %>

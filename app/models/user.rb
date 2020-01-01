@@ -1,9 +1,17 @@
 class User < ApplicationRecord
+  include ImageHelper
   has_many :memberships
 
   mount_uploader :image, ImageUploader
+  has_one_attached :new_image
+  validates :image, dimension: {
+                      width: { min: 300 },
+                      height: { min: 500 },
+                      message: "A képnek legalább 300x500-as méretűnek kell lennie.",
+                    }, if: :image?
 
   validate :check_dimensions
+
   def check_dimensions
     return unless !image_cache.nil? && (image.width < 500 || image.height < 500)
 

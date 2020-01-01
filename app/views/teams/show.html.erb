@@ -21,7 +21,7 @@
       <li class="card">
         <div class="image">
           <% if membership.user.image? %>
-            <%= image_tag(membership.user.image.url(:square_thumb), alt: 'Image') %>
+            <%= image_tag(membership.user.square_thumb, alt: 'Image') %>
           <% else %>
             <%= image_tag('profile-placeholder.png', alt: 'Image') %>
           <% end %>
@@ -50,7 +50,7 @@
       <li class="card">
         <div class="image">
           <% if membership.user.image? %>
-            <%= image_tag(membership.user.image.url(:square_thumb), alt: 'Image') %>
+            <%= image_tag(membership.user.square_thumb, alt: 'Image') %>
           <% else %>
             <%= image_tag('profile-placeholder.png', alt: 'Image') %>
           <% end %>

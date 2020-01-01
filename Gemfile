@@ -42,6 +42,7 @@ gem 'carrierwave', '~> 1.0'
 gem 'trix-rails', require: 'trix'
 gem 'shrine'
 
+gem 'active_storage_validations', '~> 0.8.5'
 
 # Use ActiveStorage variant
 gem 'mini_magick', '~> 4.9'
