@@ -16,7 +16,6 @@ Rails.application.routes.draw do
   end
   resources :users, only: [:index, :show, :edit, :update]
   resources :articles
-  resources :images, only: [:create]
 
   get '/', to: 'home#index'
 
