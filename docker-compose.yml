@@ -3,9 +3,9 @@ services:
   postgres:
     image: postgres:9.6
     environment:
-      - PGDATA=/var/lib/postgresql/data/pgdata
+      - PGDATA=/var/lib/postgresql/data/schorpong_pgdata
     volumes:
-      - database_folder:/var/lib/postgresql/data/pgdata
+      - database_folder:/var/lib/postgresql/data/schorpong_pgdata
     restart: always
     networks:
       - schorpong_network

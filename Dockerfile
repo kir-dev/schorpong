@@ -1,4 +1,4 @@
-FROM ruby:2.6.3
+FROM ruby:2.6.5
 RUN apt-get update -qq &&\
     apt-get install -y build-essential libpq-dev nodejs imagemagick apt-transport-https
 
@@ -21,6 +21,8 @@ ARG SECRET_KEY_BASE
 COPY Gemfile .
 COPY Gemfile.lock .
 RUN bundle install --deployment --without test development --retry 3
+
+RUN yarn install --check-files
 
 # Copy application
 COPY . .
