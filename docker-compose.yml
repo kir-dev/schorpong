@@ -15,7 +15,6 @@ services:
     environment:
       - RAILS_SERVE_STATIC_FILES=true
       - RAILS_ENV=production
-      - DATABASE_PASSWORD=
       - DATABASE_USER=postgres
       - DATABASE_NAME=schorpong
       - DATABASE_HOST=postgres
@@ -25,7 +24,7 @@ services:
     volumes:
       - public_folder:/schorpong/public
     ports:
-      - "127.0.0.1:3001:3000"
+      - "3001:3000"
     networks:
       - schorpong_network
     depends_on:
