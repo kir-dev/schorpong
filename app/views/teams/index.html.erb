@@ -11,9 +11,9 @@
 <div class="ui centered cards">
   <% @teams.each do |team| %>
     <div class="ui card">
-      <div class="image">
+      <div class="image"> 
         <% if team.image? %>
-          <%= image_tag(team.image.url(:square_thumb), alt: 'Image') %>
+          <%= image_tag(team.square_thumb, alt: 'Image') %>
         <% else %>
           <%= image_tag('profile-placeholder.png', alt: 'Image') %>
         <% end %>

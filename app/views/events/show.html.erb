@@ -24,7 +24,7 @@
           <div class="ui card">
             <div class="image">
               <% if entry.team.image? %>
-                <%= image_tag(entry.team.image.url(:square_thumb), alt: 'Image') %>
+                <%= image_tag(entry.team.square_thumb, alt: 'Image') %>
               <% else %>
                 <%= image_tag('team-placeholder.png', alt: 'Image') %>
               <% end %>

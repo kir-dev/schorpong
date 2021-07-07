@@ -1,3 +1,5 @@
 class Article < ApplicationRecord
-  mount_uploader :image, ImageUploader
+  include ImageHelper
+
+  has_one_attached :image
 end
