@@ -15,10 +15,10 @@ Article.create(
   content: 'Lorem ipsum dolor sit amet valami valami hosszabb dolog'
 )
 
-user1 = User.create(name: 'Teszt Ellek', mail: 'mail@example.org', admin: true)
-user2 = User.create(name: 'Elektrom Ágnes', mail: 'elektrom@example.org', admin: false)
-user3 = User.create(name: 'Para Zita', mail: 'para@example.org', admin: false)
-user4 = User.create(name: 'Trab Antal', mail: 'trab@example.org', admin: true)
+user1 = User.create(name: 'Teszt Ellek', mail: 'mail@example.org', admin: true, password: 'mailmail')
+user2 = User.create(name: 'Elektrom Ágnes', mail: 'elektrom@example.org', admin: false, password: 'elektrom')
+user3 = User.create(name: 'Para Zita', mail: 'para@example.org', admin: false, password: 'parapara')
+user4 = User.create(name: 'Trab Antal', mail: 'trab@example.org', admin: true, password: 'trabtrab')
 
 team1 = Team.create(name: 'Teszt csapat1', score: 0)
 team2 = Team.create(name: 'Teszt csapat2', score: 0)
