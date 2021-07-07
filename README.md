@@ -8,7 +8,7 @@ Run the following lines as your normal user:
 sudo apt install rbenv
 git clone https://github.com/kir-dev/schorpong
 cd schorpong
-rbenv install 2.5.7
+rbenv install 2.6.3
 gem install bundler
 bundle install
 sudo su postgres
