@@ -17,7 +17,7 @@
           </div>
         </div>
       <% else %>
-        <%= link_to "Bejelentkezés", oauth_login_path, :class => "item" %>
+        <%= button_to "Bejelentkezés", oauth_login_path, :class => "item", method: :post %>
       <% end %>
     </div>
   </div>

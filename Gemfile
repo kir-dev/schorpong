@@ -42,6 +42,9 @@ gem 'carrierwave', '~> 1.0'
 gem 'trix-rails', require: 'trix'
 gem 'shrine'
 gem 'semantic-ui-sass'
+gem 'devise'
+gem "omniauth-rails_csrf_protection"
+
 
 
 
