@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_21_211427) do
-
+ActiveRecord::Schema[7.0].define(version: 2022_03_21_211926) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,7 +19,7 @@ ActiveRecord::Schema.define(version: 2022_03_21_211427) do
     t.string "record_type", null: false
     t.bigint "record_id", null: false
     t.bigint "blob_id", null: false
-    t.datetime "created_at", null: false
+    t.datetime "created_at", precision: nil, null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
@@ -32,8 +31,8 @@ ActiveRecord::Schema.define(version: 2022_03_21_211427) do
     t.text "metadata"
     t.string "service_name", null: false
     t.bigint "byte_size", null: false
-    t.string "checksum", null: false
-    t.datetime "created_at", null: false
+    t.string "checksum"
+    t.datetime "created_at", precision: nil, null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
@@ -48,16 +47,16 @@ ActiveRecord::Schema.define(version: 2022_03_21_211427) do
     t.string "image"
     t.text "intro"
     t.text "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
   end
 
   create_table "entries", force: :cascade do |t|
     t.text "comment"
     t.bigint "team_id"
     t.bigint "event_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.boolean "showed_up", default: false
     t.index ["event_id"], name: "index_entries_on_event_id"
     t.index ["team_id"], name: "index_entries_on_team_id"
@@ -68,16 +67,16 @@ ActiveRecord::Schema.define(version: 2022_03_21_211427) do
     t.string "image"
     t.text "intro"
     t.text "content"
-    t.datetime "application_deadline"
-    t.datetime "event_date"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "application_deadline", precision: nil
+    t.datetime "event_date", precision: nil
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
   end
 
   create_table "images", force: :cascade do |t|
     t.text "image_data"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
   end
 
   create_table "memberships", force: :cascade do |t|
@@ -85,8 +84,8 @@ ActiveRecord::Schema.define(version: 2022_03_21_211427) do
     t.boolean "active"
     t.bigint "user_id"
     t.bigint "team_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["team_id"], name: "index_memberships_on_team_id"
     t.index ["user_id"], name: "index_memberships_on_user_id"
   end
@@ -95,15 +94,15 @@ ActiveRecord::Schema.define(version: 2022_03_21_211427) do
     t.string "title"
     t.string "name"
     t.text "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
   end
 
   create_table "teams", force: :cascade do |t|
     t.string "name"
     t.integer "score", default: 0
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.string "image"
   end
 
@@ -112,8 +111,8 @@ ActiveRecord::Schema.define(version: 2022_03_21_211427) do
     t.string "auth_sch_id"
     t.text "mail"
     t.boolean "admin", default: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.string "image"
   end
 
