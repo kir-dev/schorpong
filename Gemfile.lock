@@ -245,6 +245,8 @@ GEM
       childprocess (>= 0.5, < 5.0)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2)
+    semantic-ui-sass (2.4.4.0)
+      sassc
     shrine (3.4.0)
       content_disposition (~> 1.0)
       down (~> 5.1)
@@ -311,6 +313,7 @@ DEPENDENCIES
   rails (~> 7.0.1)
   sassc-rails
   selenium-webdriver
+  semantic-ui-sass
   shrine
   spring
   spring-watcher-listen (~> 2.0.0)

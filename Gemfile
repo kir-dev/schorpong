@@ -41,6 +41,8 @@ gem 'carrierwave', '~> 1.0'
 
 gem 'trix-rails', require: 'trix'
 gem 'shrine'
+gem 'semantic-ui-sass'
+
 
 
 # Use ActiveStorage variant

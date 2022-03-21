@@ -15,6 +15,7 @@
 //= require activestorage
 //= require turbolinks
 //= require trix_attachments
+//= require semantic-ui
 //= require trix
 //= require_tree .
 
