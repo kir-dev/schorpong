@@ -13,6 +13,10 @@ development:
 
 test:
   <<: *default
+  username: schorpong
+  password: schorpong
+  host: localhost
+  port: 5432
   database: schorpong_test
 
 production:
