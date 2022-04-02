@@ -327,7 +327,7 @@ DEPENDENCIES
   omniauth-oauth2
   omniauth-rails_csrf_protection
   pg (>= 0.18, < 2.0)
-  puma (~> 4.2)
+  puma (~> 4.3)
   rails (~> 7.0.1)
   sassc-rails
   selenium-webdriver
