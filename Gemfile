@@ -3,6 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.0.3'
 
+gem 'byebug'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 7.0.1'
 # Use postgresql as the database for Active Record
@@ -35,7 +36,7 @@ gem 'dotenv-rails'
 gem 'jquery-rails'
 # gem 'less-rails-semantic_ui', '~> 2.3.1'
 gem 'autoprefixer-rails', '8.6.5'
-gem 'therubyracer'
+#gem 'therubyracer'
 
 gem 'carrierwave', '~> 1.0'
 

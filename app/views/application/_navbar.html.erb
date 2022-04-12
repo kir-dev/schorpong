@@ -6,6 +6,7 @@
     <%= link_to "Rólunk", "/pages/about", :class => "item" %>
     <%= link_to "Szabályok", "/pages/rules", :class => "item" %>
     <%= link_to "Csapatok", teams_path, :class => "item" %>
+    <%= current_user&.name %>
     <div class="right menu">
       <% if logged_in? %>
         <div class="ui dropdown item">
@@ -13,11 +14,16 @@
           <div class="menu">
             <%= link_to "Profilom", user_path(current_user), :class => "item" %>
             <%= link_to "Felhasználók", users_path, :class => "item" if admin? %>
-            <%= link_to "Kijelentkezés", logout_path, :class => "item", :method => :post %>
+            <!-- <%= link_to "Kijelentkezés", logout_path, :class => "item", :method => :post %> -->
+            <%= link_to "Kijelentkezés", destroy_user_session_path, :class => "item", :method => :delete %>
           </div>
         </div>
       <% else %>
-        <%= link_to "Bejelentkezés", oauth_login_path, :class => "item", method: :post %>
+        <!-- <%= link_to "Bejelentkezés", oauth_login_path, :class => "item", method: :post %> -->
+        <div>
+          <%= link_to "Bejelentkezés", new_user_session_path, :class => "item" %>
+          <%= link_to "Regisztráció", new_user_registration_path, :class => "item" %>
+        </div>
       <% end %>
     </div>
   </div>
