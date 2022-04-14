@@ -4,7 +4,7 @@ class TeamsController < ApplicationController
 
   def index
     @page = Page.find_by(name: 'teams')
-    @teams = Team.order(score: :desc).reject { |team| team.number_of_memberships.zero? }
+    @teams = Team.order(score: :desc)
   end
 
   def show
