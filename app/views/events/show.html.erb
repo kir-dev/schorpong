@@ -19,23 +19,23 @@
     <div class="event-applied-teams">
       <h3 class="applied-teams-title">Nevezett csapatok</h3>
       <div class="ui centered cards">
-        <% @event.entry.each do |entry| %>
-
+        <% @teams.each do |team| %>
+          <%entry = team.entry_for(@event) %>
           <div class="ui card">
             <div class="image">
-              <% if entry.team.image? %>
-                <%= image_tag(entry.team.image.url(:square_thumb), alt: 'Image') %>
+              <% if team.image? %>
+                <%= image_tag(team.image.url(:square_thumb), alt: 'Image') %>
               <% else %>
                 <%= image_tag('team-placeholder.png', alt: 'Image') %>
               <% end %>
             </div>
             <div class="content">
               <div class="header">
-                <%= link_to entry.team.name, team_path(entry.team), class: 'item team-name-item' %>
+                <%= link_to team.name, team_path(team), class: 'item team-name-item' %>
               </div>
               <% if admin? %>
                 <div class="description">
-                  <%= entry.comment %>
+                  
                 </div>
               <% end %>
               <% if @event.can_entry? && entry.revocable_by?(current_user) %>

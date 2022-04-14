@@ -1,4 +1,7 @@
 class Team < ApplicationRecord
+  
+  default_scope { ids = Membership.select("team_id, count(*) as member_count").group("team_id").having("count(*) > 0").map(&:team_id)
+                  Team.where(id:ids)}
   has_many :memberships
 
   mount_uploader :image, ImageUploader
@@ -42,5 +45,8 @@ class Team < ApplicationRecord
     memberships.each do |membership|
       membership.decline!
     end
+  end
+  def entry_for(event)
+    Entry.find_by(team:self, event: event)
   end
 end

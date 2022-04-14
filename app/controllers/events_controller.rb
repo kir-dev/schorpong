@@ -8,6 +8,7 @@ class EventsController < ApplicationController
 
   def show
     @entry = Entry.new
+    @teams = Team.where(id:@event.entry.map(&:team_id))
   end
 
   def new

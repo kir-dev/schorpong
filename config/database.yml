@@ -6,8 +6,8 @@ default: &default
 development:
   <<: *default
   database: schorpong_development
-  username: schorpong
-  password: schorpong
+  username: postgres
+  password: Yxcvbnm13xy
   host: localhost
   port: 5432
 
