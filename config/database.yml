@@ -2,26 +2,16 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-
+  username: <%= ENV.fetch('DATABASE_USER', 'postgres') %>
+  password: <%= ENV.fetch('DATABASE_PASSWORD', 'postgres') %>
+  host: <%= ENV.fetch('DATABASE_HOST', 'localhost') %>
+  port: <%= ENV.fetch('DATABASE_PORT', '5432') %>
 development:
   <<: *default
   database: schorpong_development
-  username: schorpong
-  password: schorpong
-  host: localhost
-  port: 5432
-
 test:
   <<: *default
-  username: schorpong
-  password: schorpong
-  host: localhost
-  port: 5432
   database: schorpong_test
-
 production:
   <<: *default
-  database: <%= ENV['DATABASE_NAME'] %>
-  username: <%= ENV['DATABASE_USER'] %>
-  password: <%= ENV['DATABASE_PASSWORD'] %>
-  host: <%= ENV['DATABASE_HOST'] %>
+  database: schorpong

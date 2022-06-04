@@ -20,9 +20,19 @@ rails db:seed
 
 # Configuration
 
-If you want to use different database user, you can change the parameters in `config/database.yml`.
+All environment variables have a default value, so the app can be started without a .env file.
+The default database setup expects you to run a PostgreSQL server on `localhost:5432`, and have a user named `postgres`, with `postgres` as password.
+You can create it this with the following command:
+```shell
+sudo -u postgres createuser -Ps postgres
+```
+To override the default copy the `.env.example` to create the `.env` file.
 
-For the authentication use the `.env` file and set the `APP_ID ` and `APP_SECRET`variables.
+```shell
+cp .env.example .env
+```
+
+If you want to setup login with AutSCH, register your app and provide the `APP_ID ` and `APP_SECRET`variables in the `.env` file.
 
 The redirect path for the AuthSCH entry should be `	http://localhost:3000/auth/oauth/callback/`
 # Deployment

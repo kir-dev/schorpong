@@ -1,0 +1,30 @@
+<% if @user.errors.any? %>
+  <div id="error_explanation">
+    <h2> Az alábbi hibák léptek fel:</h2>
+
+    <ul>
+      <% @user.errors.each do |error| %>
+        <li><%= error.full_message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+<%= form_with(model: @user, local: true, url: email_registration_path, class: 'ui form') do |form| %>
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+  <div class="field">
+  <%= form.label :mail %>
+    <%= form.text_field :mail %>
+  </div>
+  <div class="field">
+    <%= form.label :password %>
+    <%= form.password_field :password %>
+  </div>
+  <div class="field">
+    <%= form.label :confirmation %>
+    <%= form.password_field :confirmation %>
+  </div>
+  <%= form.submit'Regisztráció', class: 'ui button primary' %>
+<% end %>

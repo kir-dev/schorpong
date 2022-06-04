@@ -1,0 +1,14 @@
+<%= form_with(model: @user, local: true, url: email_login_page_url, class: 'ui form') do |form| %>
+  <div class="field">
+    <%= form.label :mail %>
+    <%= form.text_field :mail %>
+  </div>
+  <div class="field">
+    <%= form.label :password %>
+    <%= form.password_field :password %>
+  </div>
+
+  <%= form.submit 'Belépés', class: 'ui button primary' %>
+<% end %>
+<br/>
+<%= link_to 'Regisztráció', email_registration_page_path , class: 'ui button secondary mt-3' %>

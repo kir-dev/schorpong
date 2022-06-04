@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   get 'errors/not_found'
   get 'errors/internal_server_error'
@@ -26,6 +26,12 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new', as: :login
   get '/auth/oauth/callback', to: 'sessions#create'
 
+  scope :email do
+    get '/login', to: 'session_with_email#login_page', as: :email_login_page
+    post '/login', to: 'session_with_email#login', as: :email_login
+    get '/registration', to: 'session_with_email#registration_page', as: :email_registration_page
+    post '/registration', to: 'session_with_email#registration', as: :email_registration
+  end
   match "/404", :to => "errors#not_found", :via => :all
   match "/500", :to => "errors#internal_server_error", :via => :all
 

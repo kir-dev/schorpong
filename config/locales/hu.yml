@@ -4,6 +4,14 @@ hu:
     errors:
       messages:
         record_invalid: Sikertelen validálás %{errors}
+    models:
+      user: "Felhasználó"
+    attributes:
+      user:
+        password: "Jelszó"
+        mail: "E-mail"
+        name: "Név"
+        confirmation: "Jelszó megerősítése"
   date:
     abbr_day_names:
     - v.
