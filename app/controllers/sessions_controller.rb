@@ -18,9 +18,9 @@ class SessionsController < ApplicationController
     else
       oauth_data = raw_user
       oauth_params = {
-          auth_sch_id: oauth_data["internal_id"],
-          mail: oauth_data["mail"],
-          name: oauth_data["displayName"]
+        auth_sch_id: oauth_data["internal_id"],
+        mail: oauth_data["mail"],
+        name: oauth_data["displayName"]
       }
       @user = User.create(oauth_params)
       if @user.valid?

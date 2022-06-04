@@ -17,7 +17,13 @@
           </div>
         </div>
       <% else %>
-        <%= link_to "Bejelentkezés", oauth_login_path, :class => "item", method: :post %>
+        <div class="ui dropdown item">
+          <a>Bejelentkezés</a>
+          <div class="menu">
+            <%= link_to "AuthSCH-s Bejelentkezés", oauth_login_path, :class => "item", method: :post %>
+            <%= link_to "Email-es Bejelentkezés", email_login_page_path, :class => "item" %>
+          </div>
+        </div>
       <% end %>
     </div>
   </div>

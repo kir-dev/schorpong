@@ -5,10 +5,14 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-Page.create(title: 'Rólunk', name: 'about', content: 'Lorem ipsum dolor set')
-Page.create(title: 'Szabályok', name: 'rules', content: 'Lorem ipsum dolor set')
-Page.create(title: 'Jelentkezés', name: 'teams', content: 'Lorem ipsum dolor set')
-Page.create(title: 'Kölcsönzés', name: 'rents', content: 'Lorem ipsum dolor set')
+require 'bcrypt'
+
+pages = [{ title: 'Rólunk', name: 'about' },
+         { title: 'Szabályok', name: 'rules' },
+         { title: 'Jelentkezés', name: 'teams' },
+         { title: 'Kölcsönzés', name: 'rents' }]
+
+pages.each { |page| Page.create!(page.merge content: 'Lorem ipsum dolor set') }
 
 Article.create(
   title: 'Teszt article',
@@ -16,18 +20,19 @@ Article.create(
   content: 'Lorem ipsum dolor sit amet valami valami hosszabb dolog'
 )
 
-user1 = User.create(name: 'Teszt Ellek', mail: 'mail@example.org', admin: true)
-user2 = User.create(name: 'Elektrom Ágnes', mail: 'elektrom@example.org', admin: false)
-user3 = User.create(name: 'Para Zita', mail: 'para@example.org', admin: false)
-user4 = User.create(name: 'Trab Antal', mail: 'trab@example.org', admin: true)
-
 team1 = Team.create(name: 'Teszt csapat1', score: 0)
 team2 = Team.create(name: 'Teszt csapat2', score: 0)
+teams = [{ team: team1, comment: 'Hello' }, { team: team2, comment: '' }]
 
-Membership.create(user_id: user1.id, team_id: team1.id, owner: true, active: true)
-Membership.create(user_id: user2.id, team_id: team1.id, owner: false, active: true)
-Membership.create(user_id: user3.id, team_id: team2.id, owner: true, active: true)
-Membership.create(user_id: user4.id, team_id: team2.id, owner: true, active: false)
+users = [{ name: 'Teszt Elek', admin: true, teamid: 1, owner: true, active: true },
+         { name: 'Elektrom Ágnes', admin: false, teamid: 1, owner: false, active: true },
+         { name: 'Para Zita', admin: false, teamid: 2, owner: true, active: true },
+         { name: 'Trab Antal', admin: true, teamid: 2, owner: true, active: false }]
+users.each { |user|
+  mail = user[:name].split[0].downcase + '@example.org'
+  iteruser = User.create(name: user[:name], mail: mail , password: BCrypt::Password.create('123456'), admin: user[:admin])
+  Membership.create(user_id: iteruser.id, team_id: teams[user[:teamid] - 1][:team].id, owner: user[:owner], active: user[:active])
+}
 
 event1 = Event.create(
   name: 'Teszt event',
@@ -37,5 +42,4 @@ event1 = Event.create(
   event_date: DateTime.now + 6.days
 )
 
-Entry.create(team_id: team1.id, event_id: event1.id, showed_up: false)
-Entry.create(team_id: team2.id, event_id: event1.id, showed_up: false, comment: 'Hello')
+teams.each { |t| Entry.create(team_id: t[:team].id, event_id: event1.id, showed_up: false, comment: t[:comment]) }

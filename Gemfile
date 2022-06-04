@@ -25,7 +25,7 @@ gem 'jbuilder', '~> 2.9'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.17'
 
 gem 'omniauth'
 gem 'omniauth-oauth2'
@@ -35,7 +35,7 @@ gem 'dotenv-rails'
 gem 'jquery-rails'
 # gem 'less-rails-semantic_ui', '~> 2.3.1'
 gem 'autoprefixer-rails', '8.6.5'
-gem 'therubyracer'
+#gem 'therubyracer'
 
 gem 'carrierwave', '~> 1.0'
 
