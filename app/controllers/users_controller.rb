@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :require_admin, except: %i[show edit update]
+  before_action :require_admin, except: %i[show edit update set_animation]
   before_action :set_user, only: %i[show edit update]
   before_action :require_same_or_admin_user, only: %i[edit update]
 
@@ -19,6 +19,11 @@ class UsersController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def set_animation
+    current_user.update!(animation_enabled: params[:animation_enabled])
+    render json: {}
   end
 
   private

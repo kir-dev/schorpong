@@ -16,6 +16,16 @@
             <%= link_to "Kijelentkezés", logout_path, :class => "item", :method => :post %>
           </div>
         </div>
+        <div class="item">
+          <a class="anim">Animáció</a>
+          <label class="switch">
+            <input type="checkbox" id="toggle_visited"
+                   <% if current_user.animation_enabled? %>checked
+                   <% end %>
+                   onclick="toggleAnimationHandler(this)">
+            <span class="slider round"></span>
+          </label>
+        </div>
       <% else %>
         <div class="ui dropdown item">
           <a>Bejelentkezés</a>

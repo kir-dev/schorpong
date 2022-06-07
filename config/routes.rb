@@ -16,7 +16,9 @@ Rails.application.routes.draw do
       delete '/destroy', to: 'memberships#destroy'
     end
   end
-  resources :users, only: [:index, :show, :edit, :update]
+  resources :users, only: [:index, :show, :edit, :update] do
+    post :set_animation, on: :collection
+  end
   resources :articles
   resources :images, only: [:create]
 
