@@ -2,8 +2,7 @@ $(document).ready(function () {
     $(window).scroll(function () {
         if ($(this).scrollTop() >= 150) {
             $('.title').fadeOut("slow");
-        }
-        else {
+        } else {
             $('.title').fadeIn("slow");
         }
         if ($(this).scrollTop() >= 260) {
@@ -18,8 +17,7 @@ $(document).ready(function () {
                 $('.ball').css('background-size', 20);
                 $('.ball').css('bottom', 8);
             }
-        }
-        else {
+        } else {
             $('.ball').removeClass('small');
             $('.logo_background').removeClass('small');
             $('.cups').removeClass('small');

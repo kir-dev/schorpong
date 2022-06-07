@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_03_114434) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_13_142211) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -115,6 +115,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_03_114434) do
     t.datetime "updated_at", precision: nil, null: false
     t.string "image"
     t.string "password"
+    t.boolean "animation_enabled"
     t.index ["mail"], name: "index_users_on_mail", unique: true
   end
 
