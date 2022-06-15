@@ -1,0 +1,36 @@
+<h1>Eszközök</h1>
+
+<%= link_to 'Új eszköz', new_item_path, :class => "ui button primary" if admin? %>
+
+<table class="ui celled table">
+  <thead>
+    <tr>
+      <th>Név</th>
+      <th>Mennyiség</th>
+      <% if admin? %>
+        <th colspan="3"></th>
+      <% else %>
+        <th colspan="1"></th>
+      <% end %>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @items.each do |item| %>
+      <tr>
+        <td><%= item.name %></td>
+        <td><%= item.number %> darab</td>
+        <td>
+          <%= link_to 'Kölcsönzés', new_rent_path(:item_id => item.id) if  logged_in? %>
+          <%= "A kölcsönzéshez be kell jelentkezned." unless logged_in? %>
+        </td>
+        <% if admin? %>
+          <td><%= link_to 'Szerkesztés', edit_item_path(item), :class => "ui button" %></td>
+          <td><%= link_to 'Törlés', item, method: :delete, :class => "ui button negative" %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

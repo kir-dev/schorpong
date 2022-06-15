@@ -1,0 +1,53 @@
+<h1>Kölcsönzések</h1>
+
+<h3>Szűrés állapotra</h3>
+<%= form_with url: "/rents_index", local: true do |form| %>
+  <div class="container ui">
+    <%= form.check_box :unprocessed, checked: to_checked(params[:unprocessed]) %>
+    <%= form.label :unprocessed, "feldolgozatlan", class: 'item filteroption' %>
+
+    <%= form.check_box :approved, checked: to_checked(params[:approved]) %>
+    <%= form.label :approved, "engedélyezve", class: 'item filteroption' %>
+
+    <%= form.check_box :rejected, checked: to_checked(params[:rejected]) %>
+    <%= form.label :rejected, "elutasítva", class: 'item filteroption' %>
+
+    <%= form.check_box :taken, checked: to_checked(params[:taken]) %>
+    <%= form.label :taken, "kiadva", class: 'item filteroption' %>
+
+    <%= form.check_box :returned, checked: to_checked(params[:returned]) %>
+    <%= form.label :returned, "visszavéve", class: 'item filteroption' %>
+
+  </div>
+  <br>
+  <%= form.submit "Szűrés", class: "ui button primary" %>
+<% end %>
+
+<table class="ui celled table">
+  <thead>
+    <tr>
+      <th>Név</th>
+      <th>Eszköz</th>
+      <th>Kezdet</th>
+      <th>Vége</th>
+      <th>Állapot</th>
+      <th>Műveletek</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @rents.each do |rent| %>
+      <tr>
+        <td><%= rent.user.name %></td>
+        <td><%= rent.item.name %></td>
+        <td><%= rent.begin.strftime("%Y.%m.%d. %H:%M") %></td>
+        <td><%= rent.end.strftime("%Y.%m.%d. %H:%M") %></td>
+        <td><%= I18n.t :"rent_states.#{rent.state}" %></td>
+        <td><%= link_to 'Engedélyez', approve_path(:rent => rent), method: "approve", :class => "ui button primary" if rent.unprocessed? %>
+        <%= link_to 'Elutasít', reject_path(:rent => rent), method: "reject", :class => "ui button negative" if rent.unprocessed? %>
+        <%= link_to 'Kiad', take_path(:rent => rent), method: "take", :class => "ui button" if rent.approved? %>
+        <%= link_to 'Visszavesz', return_path(:rent => rent), method: "return", :class => "ui button" if rent.taken? %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

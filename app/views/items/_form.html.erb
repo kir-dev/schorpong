@@ -1,0 +1,29 @@
+<% if @item.errors.any? %>
+  <div id="error_explanation">
+    <h2> Az alábbi hibák léptek fel:</h2>
+
+    <ul>
+      <% @item.errors.each do |error| %>
+        <li><%= error.full_message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+<%= form_with(model: item, local: true, class: 'ui form') do |form| %>
+
+  <div class="ui form">
+    <div class="field">
+      <%= form.label :name, 'Név' %>
+      <%= form.text_field :name %>
+    </div>
+
+    <div class="field">
+      <%= form.label :number, 'Mennyiség' %>
+      <%= form.number_field :number %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit 'Mentés', class: 'ui button' %>
+    </div>
+  </div>
+<% end %>
