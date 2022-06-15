@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :memberships
+  has_many :rents
   validates :name, presence: true
   validates :mail, presence: true, uniqueness: true
   validates :password, presence: true, length: { minimum: 6}, unless: -> { auth_sch_id.present? }

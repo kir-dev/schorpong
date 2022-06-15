@@ -2,7 +2,14 @@
   <div class="container ui">
     <%= link_to "Hírek", articles_path, :class => "item" %>
     <%= link_to "Események", events_path, :class => "item" %>
-    <%= link_to "Kölcsönzés", "/pages/rents", :class => "item" %>
+    <div class="ui dropdown item">
+      Kölcsönzés
+      <div class="menu">
+        <%= link_to "Eszközök", "/items", :class => "item" %>
+        <%= link_to "Kölcsönzéseim", users_rents_path, :class => "item" if logged_in? %>
+        <%= link_to "Összes kölcsönzés", rents_path, :class => "item" if admin? %>
+      </div>
+    </div>
     <%= link_to "Rólunk", "/pages/about", :class => "item" %>
     <%= link_to "Szabályok", "/pages/rules", :class => "item" %>
     <%= link_to "Csapatok", teams_path, :class => "item" %>

@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
+  resources :rents, only: [:new, :index, :create]
+  get 'users_rents', to: 'rents#users_index'
+  post 'users_rents', to: 'rents#users_index'
+  post 'rents_index', to: 'rents#index'
+
+  post 'approve', to: 'rents#approve'
+  post 'reject', to: 'rents#reject'
+  post 'take', to: 'rents#take'
+  post 'return', to: 'rents#return'
+  resources :items, only: [:new, :index, :create, :edit, :destroy, :update]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   get 'errors/not_found'

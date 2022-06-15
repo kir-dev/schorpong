@@ -1,0 +1,40 @@
+<% if @rent.errors.any? %>
+  <div id="error_explanation">
+    <h2> Az alábbi hibák léptek fel:</h2>
+
+    <ul>
+      <% @rent.errors.each do |error| %>
+        <li><%= error.full_message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+<%= form_with(model: rent, local: true, class: 'ui form') do |form| %>
+
+  <div class="ui form">
+    <div>
+      <h5>Név</h5>
+      <%= User.find(current_user.id).name %>
+      <%= form.hidden_field :user_id, :value => current_user.id %>
+    </div>
+
+    <div>
+      <h5>Eszköz</h5>
+      <%= Item.find(@rent.item_id).name %>
+      <%= form.hidden_field :item_id, :value => @rent.item_id %>
+    </div>
+
+    <div class="field">
+      <%= form.label :begin, 'Kezdete' %>
+      <%= form.datetime_field :begin %>
+    </div>
+
+    <div class="field">
+      <%= form.label :end, 'Vége' %>
+      <%= form.datetime_field :end %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit 'Mentés', class: 'ui button' %>
+    </div>
+<% end %>

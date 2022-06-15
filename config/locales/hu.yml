@@ -6,12 +6,21 @@ hu:
         record_invalid: Sikertelen validálás %{errors}
     models:
       user: "Felhasználó"
+      item: "Eszköz"
     attributes:
       user:
         password: "Jelszó"
         mail: "E-mail"
         name: "Név"
         confirmation: "Jelszó megerősítése"
+      item:
+        name: "Név"
+        number: "Mennyiség"
+      rent:
+        begin: "Kezdete"
+        end: "Vége"
+        state: "Állapot"
+        item: "Eszköz"
   date:
     abbr_day_names:
     - v.
@@ -202,3 +211,9 @@ hu:
       long: "%Y. %B %e., %A, %H:%M"
       short: "%b %e., %H:%M"
     pm: du.
+  rent_states:
+    unprocessed: "feldolgozatlan"
+    approved: "engedélyezve"
+    rejected: "elutasítva"
+    taken: "kiadva"
+    returned: "visszavéve"
