@@ -79,6 +79,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_16_134517) do
     t.datetime "updated_at", precision: nil, null: false
   end
 
+  create_table "items", force: :cascade do |t|
+    t.string "name"
+    t.integer "number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_items_on_deleted_at"
+  end
+
   create_table "memberships", force: :cascade do |t|
     t.boolean "owner"
     t.boolean "active"
@@ -98,6 +107,18 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_16_134517) do
     t.datetime "updated_at", precision: nil, null: false
   end
 
+  create_table "rents", force: :cascade do |t|
+    t.bigint "item_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "begin"
+    t.datetime "end"
+    t.integer "state"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_rents_on_item_id"
+    t.index ["user_id"], name: "index_rents_on_user_id"
+  end
+
   create_table "teams", force: :cascade do |t|
     t.string "name"
     t.integer "score", default: 0
@@ -115,6 +136,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_16_134517) do
     t.datetime "updated_at", precision: nil, null: false
     t.string "image"
     t.string "password"
+    t.boolean "animation_enabled"
     t.index ["mail"], name: "index_users_on_mail", unique: true
   end
 
@@ -124,4 +146,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_16_134517) do
   add_foreign_key "entries", "teams"
   add_foreign_key "memberships", "teams"
   add_foreign_key "memberships", "users"
+  add_foreign_key "rents", "items"
+  add_foreign_key "rents", "users"
 end
