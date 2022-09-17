@@ -8,7 +8,8 @@
 require 'bcrypt'
 require 'date'
 
-pages = [{ title: 'Rólunk', name: 'about' },
+pages = [{ title: 'Kölcsönzés leírás', name: 'rents' },
+         { title: 'Rólunk', name: 'about' },
          { title: 'Szabályok', name: 'rules' },
          { title: 'Jelentkezés', name: 'teams' }]
 
