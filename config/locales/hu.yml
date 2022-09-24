@@ -17,6 +17,7 @@ hu:
         name: "Név"
         number: "Mennyiség"
       rent:
+        number: "Darabszám"
         begin: "Kezdete"
         end: "Vége"
         state: "Állapot"

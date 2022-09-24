@@ -25,6 +25,11 @@
     </div>
 
     <div class="field">
+      <%= form.label :number, 'Darabszám' %>
+      <%= form.number_field :number %>
+    </div>
+
+    <div class="field">
       <%= form.label :begin, 'Kezdete' %>
       <%= form.datetime_field :begin %>
     </div>

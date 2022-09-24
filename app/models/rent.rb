@@ -5,6 +5,8 @@ class Rent < ApplicationRecord
 
   validates :begin, presence: true, comparison: { greater_than: DateTime.now, message: " később legyen, mint a mostani időpont." }
   validates :end, presence: true , comparison: { greater_than: :begin, message: " később legyen, mint a kezdete." }
+  validates :number, presence: true, comparison: { greater_than: 0 }
+  validates_with RentNumberValidator
 
   #STATE MACHINE
   def approve!
