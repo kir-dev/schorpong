@@ -3,11 +3,20 @@ class Rent < ApplicationRecord
   belongs_to :user
   enum state: [:unprocessed, :approved, :rejected, :taken, :returned], _default: :unprocessed
 
-  validates :begin, presence: true, comparison: { greater_than: DateTime.now, message: " később legyen, mint a mostani időpont." }
+  validates :begin, presence: true
+  validate :begin_cant_be_before_the_present
   validates :end, presence: true , comparison: { greater_than: :begin, message: " később legyen, mint a kezdete." }
   validates :number, presence: true, comparison: { greater_than: 0 }
   validates_with RentNumberValidator
 
+
+  def begin_cant_be_before_the_present
+    if self.begin < Time.now
+      errors.add(:begin, "később legyen, mint a mostani időpont.")
+    end
+  end
+
+  #
   #STATE MACHINE
   def approve!
     raise Exceptions::ForbiddenTransition unless unprocessed?
