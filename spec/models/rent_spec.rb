@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Rent, type: :model do
   let(:user) { create(:user) }
-  let(:item) { create(:item) }
+  let(:item) { create(:item, number: 10) }
   let(:pre_existing_rent) do
     Rent.create!(state: :approved, item: item, user: user,
                  begin: DateTime.new(2022, 1, 10),
@@ -13,7 +13,7 @@ RSpec.describe Rent, type: :model do
     Rent.new(state: :approved, item: item, user: user,
              begin: begin_date,
              end: end_date,
-             number: 5)
+             number: rent_number)
   end
 
   subject do
@@ -29,34 +29,58 @@ RSpec.describe Rent, type: :model do
     Timecop.return
   end
 
-  context 'when the rent starts before the pre existing rent' do
-    let(:begin_date) { DateTime.new(2022, 1, 5) }
-    context 'and ends before the current rent' do
-      let(:end_date) { DateTime.new(2022, 1, 9) }
-      it { expect(subject).to be_valid }
+  context 'when the rent number equals to all available item number' do
+    let(:rent_number) { 10 }
+    context 'when the rent starts before the pre existing rent' do
+      let(:begin_date) { DateTime.new(2022, 1, 5) }
+      context 'and ends before the current rent' do
+        let(:end_date) { DateTime.new(2022, 1, 9) }
+        it { expect(subject).to be_valid }
+      end
+      context 'and ends on the current rent beginning date' do
+        let(:end_date) { DateTime.new(2022, 1, 10) }
+        it { expect(subject).to be_valid }
+      end
+      context 'and ends after the current_rent is take' do
+        let(:end_date) { DateTime.new(2022, 1, 11) }
+        it {
+          expect(subject).not_to be_valid
+        }
+      end
     end
-    context 'and ends on the current rent beginning date' do
-      let(:end_date) { DateTime.new(2022, 1, 10) }
-      it { expect(subject).to be_valid }
+
+    context 'when the rent ends after the pre existing rent' do
+      let(:end_date) { DateTime.new(2022, 1, 20) }
+      context 'and begins before the current rent is back' do
+        let(:begin_date) { DateTime.new(2022, 1, 14) }
+        it { expect(subject).not_to be_valid }
+      end
+      context 'and begins whe the current rent is back' do
+        let(:begin_date) { DateTime.new(2022, 1, 15) }
+        it { expect(subject).to be_valid }
+      end
+      context 'and begins after the current rent is back' do
+        let(:begin_date) { DateTime.new(2022, 1, 16) }
+        it { expect(subject).to be_valid }
+      end
     end
-    context 'and ends after the current_rent is take' do
-      let(:end_date) { DateTime.new(2022, 1, 11) }
+    context 'and begins and ends during the current rent' do
+      let(:begin_date) { DateTime.new(2022, 1, 11) }
+      let(:end_date) { DateTime.new(2022, 1, 14) }
+      it { expect(subject).not_to be_valid }
+    end
+    context 'and begins and ends at the same time as the current rent' do
+      let(:begin_date) { DateTime.new(2022, 1, 10) }
+      let(:end_date) { DateTime.new(2022, 1, 15) }
       it { expect(subject).not_to be_valid }
     end
   end
 
-  context 'when the rent ends after the pre existing rent' do
-    let(:end_date) { DateTime.new(2022, 1, 20) }
-    context 'and begins before the current rent is back' do
-      let(:begin_date) { DateTime.new(2022, 1, 14) }
-      it { expect(subject).not_to be_valid }
-    end
-    context 'and begins whe the current rent is back' do
-      let(:begin_date) { DateTime.new(2022, 1, 15) }
-      it { expect(subject).to be_valid }
-    end
-    context 'and begins after the current rent is back' do
-      let(:begin_date) { DateTime.new(2022, 1, 16) }
+  context 'when the rent number is less then all available item number' do
+    let(:rent_number) { 1 }
+    context 'and begins and ends at the same time as the current rent' do
+      let(:begin_date) { DateTime.new(2022, 1, 10) }
+      let(:end_date) { DateTime.new(2022, 1, 15) }
       it { expect(subject).to be_valid }
     end
   end

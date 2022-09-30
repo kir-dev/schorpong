@@ -53,5 +53,9 @@ class Rent < ApplicationRecord
   def item
     Item.unscoped { super }
   end
+
+  def days
+    (self.begin.to_date.. self.end.to_date).to_a
+  end
 end
 
