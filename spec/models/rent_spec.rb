@@ -37,10 +37,12 @@ RSpec.describe Rent, type: :model do
         let(:end_date) { DateTime.new(2022, 1, 9) }
         it { expect(subject).to be_valid }
       end
+
       context 'and ends on the current rent beginning date' do
         let(:end_date) { DateTime.new(2022, 1, 10) }
         it { expect(subject).to be_valid }
       end
+
       context 'and ends after the current_rent is take' do
         let(:end_date) { DateTime.new(2022, 1, 11) }
         it {
@@ -55,20 +57,24 @@ RSpec.describe Rent, type: :model do
         let(:begin_date) { DateTime.new(2022, 1, 14) }
         it { expect(subject).not_to be_valid }
       end
+
       context 'and begins whe the current rent is back' do
         let(:begin_date) { DateTime.new(2022, 1, 15) }
         it { expect(subject).to be_valid }
       end
+
       context 'and begins after the current rent is back' do
         let(:begin_date) { DateTime.new(2022, 1, 16) }
         it { expect(subject).to be_valid }
       end
     end
+
     context 'and begins and ends during the current rent' do
       let(:begin_date) { DateTime.new(2022, 1, 11) }
       let(:end_date) { DateTime.new(2022, 1, 14) }
       it { expect(subject).not_to be_valid }
     end
+
     context 'and begins and ends at the same time as the current rent' do
       let(:begin_date) { DateTime.new(2022, 1, 10) }
       let(:end_date) { DateTime.new(2022, 1, 15) }
@@ -82,6 +88,62 @@ RSpec.describe Rent, type: :model do
       let(:begin_date) { DateTime.new(2022, 1, 10) }
       let(:end_date) { DateTime.new(2022, 1, 15) }
       it { expect(subject).to be_valid }
+    end
+  end
+
+  context "when a rent overlaps two existing rents but their is enough item" do
+    let(:rent_1) do
+      Rent.new(state: :approved, item: item, user: user,
+               begin: DateTime.new.change(year: 2022, month: 1, day: 5, hour: 12),
+               end: DateTime.new.change(year: 2022, month: 1, day: 10, hour: 12),
+               number: 5)
+    end
+    let(:rent_2) do
+      Rent.new(state: :approved, item: item, user: user,
+               begin: DateTime.new.change(year: 2022, month: 1, day: 10, hour: 14),
+               end: DateTime.new.change(year: 2022, month: 1, day: 15, hour: 12),
+               number: 5)
+    end
+
+    let(:current_rent) do
+      Rent.new(state: :approved, item: item, user: user,
+               begin: DateTime.new.change(year: 2022, month: 1, day: 8, hour: 14),
+               end: DateTime.new.change(year: 2022, month: 1, day: 12, hour: 12),
+               number: 5)
+    end
+    it 'should be valid' do
+      rent_1.save!
+      rent_2.save!
+      expect(current_rent).to be_valid
+    end
+  end
+
+  context "when a rent overlaps two existing rents but their is not enough item" do
+    let(:rent_1) do
+      Rent.new(state: :approved, item: item, user: user,
+               begin: DateTime.new.change(year: 2022, month: 1, day: 5, hour: 12),
+               end: DateTime.new.change(year: 2022, month: 1, day: 10, hour: 12),
+               number: 5)
+    end
+
+    let(:rent_2) do
+      Rent.new(state: :approved, item: item, user: user,
+               begin: DateTime.new.change(year: 2022, month: 1, day: 10, hour: 14),
+               end: DateTime.new.change(year: 2022, month: 1, day: 15, hour: 12),
+               number: 5)
+    end
+
+    let(:current_rent) do
+      Rent.new(state: :approved, item: item, user: user,
+               begin: DateTime.new.change(year: 2022, month: 1, day: 8, hour: 14),
+               end: DateTime.new.change(year: 2022, month: 1, day: 12, hour: 12),
+               number: 10)
+    end
+
+    it 'should be invalid' do
+      rent_1.save!
+      rent_2.save!
+      expect(current_rent).not_to be_valid
     end
   end
 end
