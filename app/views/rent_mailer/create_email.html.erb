@@ -1,7 +1,44 @@
-<h1>Új feldolgozatlan eszköz igénylés</h1>
-<p>Az igénylés részlete:</p>
-<ul>
-  <li>Eszköz: <%= @rent.item.name %></li>
-  <li>Kölcsönzés kezdete: <%= @rent.begin %></li>
-  <li>Kölcsönzés vége: <%= @rent.end %></li>
-</ul>
+<head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.js"></script>
+</head>
+<body>
+
+
+<div class="container" style="max-width: 1000px; margin: auto; padding: 2rem">
+  <div class="ui center aligned grid">
+    <div class="row black">
+      <div class="red sixteen wide column inv">
+        <h1>Új feldolgozatlan eszközigénylés</h1>
+      </div>
+    </div>
+    <div class="black row">
+      <div class="column">
+        <h2>Eszköz: <%= @rent.item.name %></h2>
+      </div>
+    </div>
+    <div class="black row">
+      <div class="eight wide column">
+        <h3>Kölcsönzés kezdete:</h3>
+      </div>
+      <div class="eight wide column">
+        <h3>Kölcsönzés vége:</h3>
+      </div>
+    </div>
+    <div class="black row">
+      <div class="eight wide column">
+        <h3><%= @rent.begin.strftime("%Y-%m-%d %H:%M") %></h3>
+      </div>
+      <div class="eight wide column">
+        <h3><%= @rent.end.strftime("%Y-%m-%d %H:%M") %></h3>
+      </div>
+    </div>
+    <div class="black row">
+      <div class="column">
+        <%= link_to "Részletek", rents_url, class:"ui red huge button" %>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+

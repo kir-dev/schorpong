@@ -11,7 +11,7 @@ module Schorpong
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
     config.i18n.default_locale = :hu
-
+    routes.default_url_options[:host] = 'localhost:3001'
     config.action_mailer.delivery_method = :smtp
     config.action_mailer.smtp_settings = {
       address:              'smtp.gmail.com',
