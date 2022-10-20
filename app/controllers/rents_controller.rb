@@ -31,6 +31,7 @@ class RentsController < ApplicationController
 
     respond_to do |format|
       if @rent.save
+        RentMailer.with(rent: @rent).create_email.deliver_later
         format.html { redirect_to users_rents_url, notice: "Sikeres kölcsönzés." }
         format.json { render :show, status: :created, location: @rent }
       else
