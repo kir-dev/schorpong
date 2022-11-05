@@ -45,10 +45,15 @@ event1 = Event.create(
 
 teams.each { |t| Entry.create(team_id: t[:team].id, event_id: event1.id, showed_up: false, comment: t[:comment]) }
 
-items = [{ name: 'Pohár', number: 3 },
-         { name: 'Labda', number: 5 }]
+items = [{ name: 'Pohár', number: 10 },
+         { name: 'Labda', number: 20 }]
 items.each { |item| Item.create(item) }
 
-rents = [{ item_id: 1, user_id: 1, begin: DateTime.new(2022,6,23,4,5,6), end: DateTime.new(2022,6,30,4,5,6)},
-         { item_id: 2, user_id: 2, begin: DateTime.new(2022,6,24,4,5,6), end: DateTime.new(2022,6,29,4,5,6)}]
+rents =[ { item_id: 1, user_id: 1, begin: DateTime.now + 3.days, end: DateTime.now + 4.days, number: 10},
+         { item_id: 2, user_id: 2, begin: DateTime.now + 3.days, end: DateTime.now + 4.days, number: 1},
+         { item_id: 2, user_id: 2, begin: DateTime.now + 3.days, end: DateTime.now + 5.days, number: 2},
+         { item_id: 2, user_id: 2, begin: DateTime.now + 3.days, end: DateTime.now + 9.days, number: 3},
+         { item_id: 2, user_id: 2, begin: DateTime.now + 6.days, end: DateTime.now + 7.days, number: 4},
+         { item_id: 2, user_id: 2, begin: DateTime.now + 6.days, end: DateTime.now + 9.days, number: 5},
+         { item_id: 2, user_id: 2, begin: DateTime.now + 9.days, end: DateTime.now + 10.days, number: 6}]
 rents.each { |rent| Rent.create(rent) }

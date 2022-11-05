@@ -27,6 +27,7 @@
   <thead>
   <tr>
     <th>Eszköz</th>
+    <th>Darabszám</th>
     <th>Kezdet</th>
     <th>Vége</th>
     <th>Állapot</th>
@@ -37,6 +38,7 @@
   <% @rents.each do |rent| %>
     <tr>
       <td><%= rent.item.name %></td>
+      <td><%= rent.number %> darab</td>
       <td><%= rent.begin.strftime("%Y.%m.%d. %H:%M") %></td>
       <td><%= rent.end.strftime("%Y.%m.%d. %H:%M") %></td>
       <td><%= I18n.t :"rent_states.#{rent.state}" %></td>
