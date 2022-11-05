@@ -146,4 +146,60 @@ RSpec.describe Rent, type: :model do
       expect(current_rent).not_to be_valid
     end
   end
+
+  context "when a rent overlaps two existing rents ending at the same time but their is enough item" do
+    let(:rent_1) do
+      Rent.new(state: :approved, item: item, user: user,
+               begin: DateTime.new.change(year: 2022, month: 1, day: 5, hour: 12),
+               end: DateTime.new.change(year: 2022, month: 1, day: 10, hour: 12),
+               number: 3)
+    end
+    let(:rent_2) do
+      Rent.new(state: :approved, item: item, user: user,
+               begin: DateTime.new.change(year: 2022, month: 1, day: 7, hour: 12),
+               end: DateTime.new.change(year: 2022, month: 1, day: 10, hour: 12),
+               number: 3)
+    end
+
+    let(:current_rent) do
+      Rent.new(state: :approved, item: item, user: user,
+               begin: DateTime.new.change(year: 2022, month: 1, day: 3, hour: 12),
+               end: DateTime.new.change(year: 2022, month: 1, day: 12, hour: 12),
+               number: 4)
+    end
+    it 'should be valid' do
+      rent_1.save!
+      rent_2.save!
+      expect(current_rent).to be_valid
+    end
+  end
+
+  context "when a rent overlaps two existing rents ending at the same time but their is not enough item" do
+    let(:rent_1) do
+      Rent.new(state: :approved, item: item, user: user,
+               begin: DateTime.new.change(year: 2022, month: 1, day: 5, hour: 12),
+               end: DateTime.new.change(year: 2022, month: 1, day: 10, hour: 12),
+               number: 3)
+    end
+
+    let(:rent_2) do
+      Rent.new(state: :approved, item: item, user: user,
+               begin: DateTime.new.change(year: 2022, month: 1, day: 7, hour: 12),
+               end: DateTime.new.change(year: 2022, month: 1, day: 10, hour: 12),
+               number: 3)
+    end
+
+    let(:current_rent) do
+      Rent.new(state: :approved, item: item, user: user,
+               begin: DateTime.new.change(year: 2022, month: 1, day: 3, hour: 12),
+               end: DateTime.new.change(year: 2022, month: 1, day: 12, hour: 12),
+               number: 5)
+    end
+
+    it 'should not be valid' do
+      rent_1.save!
+      rent_2.save!
+      expect(current_rent).not_to be_valid
+    end
+  end
 end
